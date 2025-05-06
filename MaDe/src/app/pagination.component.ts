@@ -50,11 +50,11 @@ export class PaginationComponent implements OnInit {
 
   ngOnInit(): void {
     this.items$.subscribe((items) => {
-      console.log('items', items);
+      console.log('elementi', items);
     });
 
     this.changePage$.subscribe((page) => {
-      console.log('change page was triggered', page);
+      console.log('cambio pagina attivato', page);
     });
   }
 

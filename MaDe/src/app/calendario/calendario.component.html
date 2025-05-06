@@ -13,7 +13,7 @@
             class="calendar-headline-control calendar-headline-control-today"
             (click)="goToToday()"
           >
-            Today
+            Oggi
           </div>
           <div class="calendar-headline-control" (click)="goToNextMonth()">»</div>
         </div>
@@ -45,12 +45,12 @@
         @if (activeDay(); as activeDay) {
           <div>{{ activeDay.toLocaleString(DATE_MED) }}</div>
         } @else {
-          <div>Please select a day</div>
+          <div>Seleziona un giorno</div>
         }
       </div>
       <div>
         @if (activeDay() && activeDayMeetings().length === 0) {
-          <div>No Planned Meetings today</div>
+          <div>Nessun incontro programmato oggi</div>
         }
   
         @if (activeDay() && activeDayMeetings().length > 0) {
@@ -61,4 +61,3 @@
       </div>
     </div>
   </div>
-  

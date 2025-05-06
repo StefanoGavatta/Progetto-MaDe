@@ -35,7 +35,7 @@ export class CalendarioComponent {
       .splitBy({ day: 1 })
       .map((d) => {
         if (d.start === null) {
-          throw new Error('Wrong dates');
+          throw new Error('Date errate');
         }
         return d.start;
       });
