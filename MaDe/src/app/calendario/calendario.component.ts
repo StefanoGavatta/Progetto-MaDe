@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, signal, Signal, WritableSignal } from '@angular/core';
+import { DateTime } from 'luxon';
 
 @Component({
   selector: 'app-calendario',
@@ -8,4 +9,6 @@ import { Component } from '@angular/core';
 })
 export class CalendarioComponent {
 
+  today: Signal<DateTime> = signal(DateTime.local());
+  firstDayOfActiveMonth: WritableSignal<DateTime> =signal(this.today().startOf('month'));
 }
