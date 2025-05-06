@@ -60,11 +60,11 @@
   .calendar-grid-cell {
     padding: 5px;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    flex-direction: column;
     border-bottom: 1px solid rgb(190, 190, 190);
     border-right: 1px solid rgb(190, 190, 190);
     cursor: pointer;
+    min-height: 80px;
   }
   
   .calendar-grid-cell:hover {
@@ -75,6 +75,32 @@
     background: #9ba3bf;
   }
   
+  .day-number {
+    font-weight: bold;
+    margin-bottom: 4px;
+  }
+  
+  .day-events {
+    font-size: 11px;
+  }
+  
+  .event-item {
+    background-color: #e2e8f0;
+    border-radius: 3px;
+    padding: 2px 4px;
+    margin-bottom: 2px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  .event-more {
+    font-size: 10px;
+    color: #666;
+    text-align: center;
+    margin-top: 2px;
+  }
+  
   .schedule {
     margin-left: 10px;
   }
@@ -83,4 +109,3 @@
     font-weight: 600;
     margin-bottom: 30px;
   }
-  

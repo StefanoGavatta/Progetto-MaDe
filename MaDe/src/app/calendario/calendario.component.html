@@ -35,7 +35,15 @@
             }"
             (click)="activeDay.set(dayOfMonth)"
           >
-            {{ dayOfMonth.day }}
+            <div class="day-number">{{ dayOfMonth.day }}</div>
+            <div class="day-events">
+              @for (meeting of getMeetingsForDay(dayOfMonth); track $index) {
+                <div class="event-item" *ngIf="$index < 3">{{ meeting }}</div>
+              }
+              @if (getMeetingsForDay(dayOfMonth).length > 2) {
+                <div class="event-more">+{{ getMeetingsForDay(dayOfMonth).length - 2 }} altri</div>
+              }
+            </div>
           </div>
         }
       </div>

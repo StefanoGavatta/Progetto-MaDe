@@ -55,6 +55,15 @@ export class CalendarioComponent {
     return this.meetings()[activeDayISO] ?? [];
   });
 
+  // Nuovo metodo per ottenere gli eventi di un giorno specifico
+  getMeetingsForDay(day: DateTime): string[] {
+    const dayISO = day.toISODate();
+    if (!dayISO) {
+      return [];
+    }
+    return this.meetings()[dayISO] ?? [];
+  }
+
   goToPreviousMonth(): void {
     this.firstDayOfActiveMonth.set(
       this.firstDayOfActiveMonth().minus({ month: 1 }),

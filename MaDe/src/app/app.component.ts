@@ -12,7 +12,6 @@ import { CalendarioComponent } from './calendario/calendario.component';
 export class AppComponent {
   title = 'MaDe';
   meetings = {
-    '2024-04-05': ['Bere Caffè', 'Studiare React', 'Dormire'],
-    '2024-04-06': ['Bere Caffè', 'Studiare Angular', 'Dormire'],
+    '2024-04-05': ["test1", "test2", "test2", "test2", "test2", "test2", "test2"],
   };
 }
