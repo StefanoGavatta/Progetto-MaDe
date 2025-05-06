@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { CalendarioComponent } from './calendario/calendario.component';
+import { MapsComponent } from './components/maps/maps.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, CalendarioComponent],
+  imports: [RouterOutlet, CalendarioComponent,MapsComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
