@@ -1,11 +1,16 @@
 .calendar-container {
-    display: flex;
-  }
-  
-  .calendar {
-    padding-right: 10px;
-    min-width: 384px;
-  }
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap; /* Permette il wrapping su schermi piccoli */
+  width: 100%;
+}
+
+.calendar {
+  padding-right: 10px;
+  min-width: 300px;
+  width: 100%;
+  max-width: 1200px;
+}
   
   .calendar-headline {
     display: flex;
@@ -52,19 +57,22 @@
   
   .calendar-grid {
     display: grid;
-    grid-template-columns: repeat(7, minmax(0, 1fr));
+    grid-template-columns: repeat(7, minmax(40px, 1fr));
+    width: 100%;
     border-top: 1px solid rgb(190, 190, 190);
     border-left: 1px solid rgb(190, 190, 190);
   }
   
   .calendar-grid-cell {
-    padding: 5px;
+    padding: 0.5rem;
+    aspect-ratio: 1/1; /* Mantiene le celle quadrate */
     display: flex;
     flex-direction: column;
     border-bottom: 1px solid rgb(190, 190, 190);
     border-right: 1px solid rgb(190, 190, 190);
     cursor: pointer;
-    min-height: 80px;
+    min-height: auto;
+    min-width: auto;
   }
   
   .calendar-grid-cell:hover {
@@ -77,11 +85,12 @@
   
   .day-number {
     font-weight: bold;
-    margin-bottom: 4px;
+    margin-bottom: 0.2rem;
+    font-size: clamp(0.7rem, 1vw, 1rem);
   }
   
   .day-events {
-    font-size: 11px;
+    font-size: clamp(0.6rem, 0.8vw, 0.8rem);
   }
   
   .event-item {
@@ -109,3 +118,52 @@
     font-weight: 600;
     margin-bottom: 30px;
   }
+
+@media (max-width: 768px) {
+  .calendar-grid-cell {
+    padding: 0.25rem;
+  }
+  
+  .day-events {
+    font-size: 9px;
+  }
+  
+  .event-item {
+    padding: 1px 2px;
+    margin-bottom: 1px;
+  }
+}
+
+@media (max-width: 640px) {
+  .event-item:nth-child(n+3) {
+    display: none; /* Mostra solo i primi 2 eventi su schermi piccoli */
+  }
+  
+  .event-more {
+    display: block;
+  }
+}
+
+@media (max-width: 480px) {
+  .calendar-container {
+    flex-direction: column;
+  }
+  
+  .schedule {
+    margin-left: 0;
+    margin-top: 20px;
+  }
+
+  .calendar-grid {
+    grid-template-columns: repeat(7, 1fr);
+  }
+  
+  .calendar-grid-cell {
+    min-height: 50px; /* Altezza minima su mobile */
+    aspect-ratio: auto; /* Rimuove aspect-ratio su mobile */
+  }
+  
+  .event-item {
+    white-space: normal; /* Permette il wrapping del testo */
+  }
+}
