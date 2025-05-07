@@ -19,24 +19,18 @@ html, body {
     flex-wrap: wrap; 
     gap: 20px;  
     justify-content: center; 
-    max-width: 100%; /* Imposta una larghezza massima del container */
-    margin: 0 auto; /* Centra il container */
+    max-width: 100%;
+    margin: 0 auto;
 }
   
-/* Per garantire massimo 4 carte per riga */
+/* Modifica per avere massimo 3 carte per riga invece di 4 */
 .card-grid app-card {
-  flex: 0 0 calc(25% - 20px); /* Larghezza fissa al 25% meno il gap */
+  flex: 0 0 calc(33.333% - 20px); /* Larghezza fissa al 33.333% meno il gap */
   max-width: 300px; /* Mantiene la larghezza massima della carta */
   min-width: 250px; /* Imposta una larghezza minima */
 }
-  
-/* Responsive per schermi più piccoli */
-@media (max-width: 1200px) {
-    .card-grid app-card {
-      flex: 0 0 calc(33.333% - 20px); /* 3 carte per riga */
-    }
-}
 
+/* Responsive per schermi più piccoli - manteniamo lo stesso */
 @media (max-width: 900px) {
     .card-grid app-card {
       flex: 0 0 calc(50% - 20px); /* 2 carte per riga */
