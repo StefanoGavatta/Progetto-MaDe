@@ -18,8 +18,12 @@ private readonly apiUrl = "https://api.retescuolevallagarina.it";
 }
 
 getSchoolData(id: string): Observable<Scuola | null> {
- return this.http.get<Scuola>(`${this.apiUrl}/items/schools/${id}`);
-}
+  return this.http.get<Scuola>(`${this.apiUrl}/items/schools/${id}`);
+ }
+
+ getMoreSchoolData(id: string): Observable<Scuola | null> {
+  return this.http.get<Scuola>(`${this.apiUrl}/items/schools?fields=%2A,%2A.%2A`);
+ }
 
   constructor(private http: HttpClient) { }
 

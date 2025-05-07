@@ -1,0 +1,31 @@
+.card {
+  
+  width: 300px; /* Dimensione standard */
+  height: 380px; /* Altezza standard */
+  margin: 10px;
+  transition: transform 0.3s ease;
+}
+
+.card-img-top {
+  height: 180px; /* Altezza standard per l'immagine */
+  object-fit: cover; /* Mantiene le proporzioni dell'immagine */
+}
+
+.card-body {
+  padding: 15px;
+}
+
+.card-title {
+  color: black; /* Cambiato da white a black */
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+.card-text {
+  color: black; /* Cambiato da #ddd a black */
+  font-size: 0.9rem;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 4; /* Limita il testo a 4 righe */
+  -webkit-box-orient: vertical;
+}

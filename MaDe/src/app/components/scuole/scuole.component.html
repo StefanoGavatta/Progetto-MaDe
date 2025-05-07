@@ -1,14 +1,12 @@
-
+<div class="container">
 <div class="card-grid">
-    @for(scuole of scuolaData()?.data; track $index) {
-        <div class="card" style="width: 18rem;">
-            <img src="https://api.retescuolevallagarina.it/assets/{{scuole.logo}}" class="card-img-top" alt="...">
-            <div class="card-body">
-            <h5 class="card-title">{{scuole.name}}</h5>
-            <p class="card-text">{{scuole.description}}</p>
-            </div>
-        </div>
+    @for(scuola of scuolaData()?.data; track $index) {
+        <app-card 
+            [name]="scuola.name" 
+            [description]="scuola.description" 
+            [logo]="scuola.logo">
+        </app-card>
     }
 </div>
-
+</div>
 
