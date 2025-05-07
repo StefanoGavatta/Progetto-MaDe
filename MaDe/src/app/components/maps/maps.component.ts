@@ -56,7 +56,7 @@ export class MapsComponent implements AfterViewInit, OnInit {
     }).addTo(this.map); // Aggiungiamo subito le tiles alla mappa
 
     L.Routing.control({
-      waypoints: [this.posizioneDa, L.latLng(45.8895, 11.0344)],
+      waypoints: [L.latLng(45.8895, 11.0344), L.latLng(45.8895, 11.0344)],
       routeWhileDragging: true
     }).addTo(this.map);
     

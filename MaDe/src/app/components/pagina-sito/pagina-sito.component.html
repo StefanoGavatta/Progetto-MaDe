@@ -1,0 +1,8 @@
+<div class="container-elementi">
+    <iframe [src]="videoUrl" frameborder="0" allowfullscreen></iframe>
+    <img [src]="imageUrl">
+    <div class="testo-container">
+      <h2>{{ scuolaData()?.data?.name ?? "Non esiste"  }}</h2>
+      <h3>{{ scuolaData()?.data?.description ?? "Non esiste" }}</h3>
+    </div>
+</div>
