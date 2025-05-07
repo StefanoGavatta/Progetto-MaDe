@@ -1,8 +1,20 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, inject, OnInit, signal, WritableSignal } from '@angular/core';
 import * as L from 'leaflet';
 import { Icon, icon, Marker } from "leaflet";
 import "leaflet-routing-machine/dist/leaflet-routing-machine.css";
 import "leaflet-routing-machine";
+import { DirectusService } from '../../services/directus.service';
+import { SchoolsData } from '../../interfaces/schools-data';
+import { range } from 'rxjs';
+
+
+interface Scuola {
+  lat: number;
+  lng: number;
+  nome: string;
+  logo: string;
+}
+
 
 const iconRetinaUrl = 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png';
 const iconUrl = 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png';
@@ -37,47 +49,71 @@ export class MapsComponent implements AfterViewInit, OnInit {
   posizioneDa!: L.LatLng;
   posizioneA!: L.LatLng;
   map: any;
+  scuolaData: WritableSignal<SchoolsData | null> = signal(null);
+
+
+  private scuole : Scuola[] = [];
+
+    // Aggiungi qui le coordinate delle altre scuole
+
   private defaultIcon: Icon = icon({
     iconUrl: "https://unpkg.com/leaflet@1.5.1/dist/images/marker-icon.png"
   });
 
   private routingControl: any; // Variabile per memorizzare il controllo di routing
-
+  private directusService: DirectusService = inject(DirectusService)
+  
   private initMap(): void {
-    this.map = L.map('map', {
-      center: [45.8895, 11.0344],
-      zoom: 15
-    });
-
-    const tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      maxZoom: 19,
-      minZoom: 10,
-      attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-    }).addTo(this.map); // Aggiungiamo subito le tiles alla mappa
-
-    L.Routing.control({
-      waypoints: [L.latLng(45.8895, 11.0344), L.latLng(45.8895, 11.0344)],
-      routeWhileDragging: true
-    }).addTo(this.map);
     
-    const scuole = [
-      { lat: 45.886, lng: 11.038, nome: 'Istituto di Istruzione Superiore Don Milani' },
-      { lat: 45.895, lng: 11.045, nome: 'Istituto Comprensivo Rovereto Nord' },
-      { lat: 45.892, lng: 11.031, nome: 'Scuola Primaria “F.lli Filzi”' },
-      { lat: 45.879, lng: 11.042, nome: 'Istituto Comprensivo Rovereto Sud' },
-      { lat: 45.891, lng: 11.049, nome: 'Istituto Comprensivo Rovereto Est'
-      }
-      // Aggiungi qui le coordinate delle altre scuole
-    ];
 
-    scuole.forEach(scuola => {
-      L.marker([scuola.lat, scuola.lng], { icon: this.defaultIcon })
-        .addTo(this.map)
-        .bindPopup(scuola.nome);
-    });
+    this.directusService.getSchoolsData().subscribe(dati => {
+      this.map = L.map('map', {
+        center: [45.8895, 11.0344],
+        zoom: 15
+      });
+  
+      const tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        minZoom: 10,
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+      }).addTo(this.map); // Aggiungiamo subito le tiles alla mappa
+  
+      L.Routing.control({
+        waypoints: [L.latLng(45.8895, 11.0344), L.latLng(45.8895, 11.0344)],
+        routeWhileDragging: true
+      }).addTo(this.map);
+      
+      this.scuolaData.set(dati)
+       const data = this.scuolaData()?.data;
+      if (Array.isArray(data)) {
+        for (let i = 0; i < data.length; i++) {
+          this.scuole.push({
+            
+            lat: data[i].position.coordinates[1],
+            lng: data[i].position.coordinates[0],
+            nome: data[i].name,
+            logo:` https://api.retescuolevallagarina.it/assets/${data[i].logo}   `
+          })
+        }
 
+        for (let i = 0; i < data.length; i++) {
+          L.marker([this.scuole[i].lat, this.scuole[i].lng], { icon: this.defaultIcon })
+          .addTo(this.map)
+          .bindPopup(`<b>${this.scuole[i].nome}</b><br><img src="${this.scuole[i].logo}" alt="${this.scuole[i].nome} logo" style="width:50px;height:auto;">`);
+        }
+
+        this.scuole.forEach(scuola => {
+          L.marker([scuola.lat, scuola.lng], { icon: this.defaultIcon })
+            .addTo(this.map)
+            .bindPopup(`<b>${scuola.nome}</b><br><img src="${scuola.logo}" alt="${scuola.nome} logo" style="width:50px;height:auto;">`);
+        });            
+      } else {
+      } 
+
+  });
   }
 
+ 
   constructor() { }
 
   ngAfterViewInit(): void {
@@ -87,7 +123,6 @@ export class MapsComponent implements AfterViewInit, OnInit {
   ngOnInit(): void {
     Marker.prototype.options.icon = this.defaultIcon;
     if (!navigator.geolocation) {
-      console.log('Geolocalizzazione non supportata');
     } else {
       navigator.geolocation.getCurrentPosition((position) => {
         const lat = position.coords.latitude;
@@ -97,19 +132,16 @@ export class MapsComponent implements AfterViewInit, OnInit {
 /*         this.routingControl.setWaypoints([L.latLng(lat, lng), this.routingControl.getWaypoints()[1]]);
  */      
         this.posizioneDa = L.latLng(lat, lng);
-
 }, (error) => {
         console.error('Errore nella geolocalizzazione:', error);
       });
     }
   }
-
   watchPosition() {
     navigator.geolocation.watchPosition((position) => {
       const lat = position.coords.latitude;
       const lng = position.coords.longitude;
       this.posizioneDa = L.latLng(lat, lng);
-      console.log('Posizione attuale:', this.posizioneDa);
       // Potresti aggiornare la posizione del marker "Sei qui!" qui
     }, (error) => {
       console.error('Errore nella geolocalizzazione:', error);

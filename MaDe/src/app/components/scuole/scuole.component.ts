@@ -2,6 +2,7 @@
 import { Component, inject, OnInit, signal, WritableSignal } from '@angular/core';
 import { DirectusService } from '../../services/directus.service';
 import { SchoolsData } from '../../interfaces/schools-data';
+import { CardComponent } from './card/card.component';
 
 @Component({
   selector: 'app-scuole',
@@ -21,4 +22,5 @@ export class ScuoleComponent implements OnInit{
           console.log("aaaaa")
       });
   }
+}
 
