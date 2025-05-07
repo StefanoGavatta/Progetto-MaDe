@@ -3,12 +3,13 @@ import { CommonModule } from '@angular/common';
 import { DirectusService } from '../../services/directus.service';
 import { SchoolsData } from '../../interfaces/schools-data';
 import { CardComponent } from './card/card.component';
+import { FiltraComponent } from './filtra/filtra.component';
 
 
 @Component({
   selector: 'app-scuole',
   standalone: true,
-  imports: [CommonModule, CardComponent],
+  imports: [CommonModule, CardComponent, FiltraComponent],
   templateUrl: './scuole.component.html',
   styleUrl: './scuole.component.css'
 })
@@ -22,10 +23,7 @@ export class ScuoleComponent implements OnInit{
           this.scuolaData.set(dati);
           console.log(this.scuolaData());
 
-          this.directusService.getMoreSchoolData().subscribe(dati => {
-            this.scuolaData.set(dati);
-            console.log(this.scuolaData());
-          });
+
       });
   }
 }

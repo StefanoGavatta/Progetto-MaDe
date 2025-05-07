@@ -1,12 +1,9 @@
 <div class="container">
-<div class="card-grid">
-    @for(scuola of scuolaData()?.data; track $index) {
-        <app-card 
-            [name]="scuola.name" 
-            [description]="scuola.description" 
-            [logo]="scuola.logo">
+    <app-filtra></app-filtra>
+    <div class="card-grid">
+        @for(scuola of scuolaData()?.data; track $index) {
+        <app-card [name]="scuola.name" [description]="scuola.description" [logo]="scuola.logo">
         </app-card>
-    }
+        }
+    </div>
 </div>
-</div>
-
