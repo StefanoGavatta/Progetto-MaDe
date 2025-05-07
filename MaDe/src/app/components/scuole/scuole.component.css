@@ -1,0 +1,6 @@
+.card-grid {
+    display: flex;
+    flex-wrap: wrap; /* Permette alle card di andare a capo su schermi piccoli */
+    gap: 20px; /* Spazio tra le card */
+    padding: 20px; /* Spazio intorno alle card */
+  }
