@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { CalendarioComponent } from './calendario/calendario.component';
+import { CalendarioComponent } from './components/calendario/calendario.component';
 import { MapsComponent } from './components/maps/maps.component';
 
 @Component({
