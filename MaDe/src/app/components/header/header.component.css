@@ -1,0 +1,18 @@
+.collapse.navbar-collapse {
+  display: flex;
+  justify-content: end;
+}
+
+.navbar-nav {
+  margin-left: 0 !important; /* Rimuovo il margine a sinistra */
+  margin-right: 20vh !important; /* Rimuovo il margine a destra */
+}
+
+.nav-item {
+  margin-right: 25px; /* Aggiunge spazio tra gli elementi */
+}
+
+.nav-link {
+  padding-left: 10px;
+  padding-right: 10px;
+}
