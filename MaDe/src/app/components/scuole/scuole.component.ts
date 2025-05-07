@@ -4,6 +4,7 @@ import { DirectusService } from '../../services/directus.service';
 import { SchoolsData } from '../../interfaces/schools-data';
 import { CardComponent } from './card/card.component';
 
+
 @Component({
   selector: 'app-scuole',
   standalone: true,
@@ -18,8 +19,14 @@ export class ScuoleComponent implements OnInit{
 
   ngOnInit(): void {
       this.directusService.getSchoolsData().subscribe(dati => {
-          this.scuolaData.set(dati)
-          console.log(this.scuolaData())
+          this.scuolaData.set(dati);
+          console.log(this.scuolaData());
+
+          this.directusService.getMoreSchoolData().subscribe(dati => {
+            this.scuolaData.set(dati);
+            console.log(this.scuolaData());
+          });
       });
   }
 }
+  

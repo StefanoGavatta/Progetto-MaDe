@@ -21,8 +21,8 @@ getSchoolData(id: string): Observable<Scuola | null> {
   return this.http.get<Scuola>(`${this.apiUrl}/items/schools/${id}`);
  }
 
- getMoreSchoolData(id: string): Observable<Scuola | null> {
-  return this.http.get<Scuola>(`${this.apiUrl}/items/schools?fields=%2A,%2A.%2A`);
+ getMoreSchoolData(): Observable<SchoolsData | null> {
+  return this.http.get<SchoolsData>(`${this.apiUrl}/items/schools?fields=%2A,%2A.%2A`);
  }
 
   constructor(private http: HttpClient) { }
