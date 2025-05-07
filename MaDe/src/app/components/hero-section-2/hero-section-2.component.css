@@ -1,0 +1,70 @@
+#sfondo {
+    background-image: url('https://esempio.com/immagine.jpg'); /* Sostituisci con l'URL della tua immagine */
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: 100vh; /* Occupa l'altezza completa della viewport */
+    width: 100%; /* Occupa la larghezza completa */
+    margin: 0;
+    padding: 0;
+    position: relative;
+}
+
+/* Assicurati che non ci siano margini esterni che interferiscano */
+:host {
+    display: block;
+    margin: 0;
+    padding: 0;
+}
+
+/* Stili per le card circolari */
+.card {
+    transition: transform 0.3s, box-shadow 0.3s;
+    background-color: rgba(255, 255, 255, 0.9); /* Sfondo semi-trasparente */
+    border-radius: 50%; /* Trasforma in cerchio */
+    aspect-ratio: 1/1; /* Mantiene proporzione 1:1 (cerchio perfetto) */
+    width: 220px; /* Dimensione fissa */
+    height: 220px; /* Dimensione fissa */
+    margin: 0 auto; /* Centra orizzontalmente */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden; /* Nasconde contenuto che esce dal cerchio */
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.card-body {
+    padding: 0;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+/* Stile per il testo per assicurare la leggibilità sullo sfondo */
+.container {
+    color: #333;
+}
+
+/* Stili aggiuntivi per adattare il contenuto al cerchio */
+.card h3 {
+    margin-bottom: 10px;
+    font-size: 1.4rem;
+}
+
+.card .btn {
+    padding: 6px 15px;
+    font-size: 0.9rem;
+}
+
+.card i {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+}
