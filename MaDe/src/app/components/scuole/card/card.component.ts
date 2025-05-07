@@ -12,4 +12,5 @@ export class CardComponent {
   @Input() name: string = '';
   @Input() description: string = '';
   @Input() logo: string = '';
+  @Input() tipo: string = '';
 }

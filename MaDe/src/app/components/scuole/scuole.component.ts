@@ -1,9 +1,9 @@
 import { Component, inject, OnInit, signal, WritableSignal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DirectusService } from '../../services/directus.service';
-import { SchoolsData } from '../../interfaces/schools-data';
 import { CardComponent } from './card/card.component';
 import { FiltraComponent } from './filtra/filtra.component';
+import { ScuolaDettagliata } from '../../interfaces/scuola-dettagliata';
 
 
 @Component({
@@ -16,15 +16,20 @@ import { FiltraComponent } from './filtra/filtra.component';
 export class ScuoleComponent implements OnInit{
 
   directusService = inject(DirectusService);
-  scuolaData: WritableSignal<SchoolsData | null> = signal(null);
+  scuoleDettagliate: WritableSignal<ScuolaDettagliata | null> = signal(null);
 
   ngOnInit(): void {
-      this.directusService.getSchoolsData().subscribe(dati => {
-          this.scuolaData.set(dati);
-          console.log(this.scuolaData());
+    this.directusService.getMoreSchoolData().subscribe(dati => {
+      this.scuoleDettagliate.set(dati);
+      console.log("Dati dettagliati scuole:", this.scuoleDettagliate());
+    });
+  }
 
-
-      });
+  getTipoScuola(scuola: any): string {
+    if (scuola && scuola.type && scuola.type.name) {
+      return scuola.type.name;
+    }
+    return 'Tipo non specificato';
   }
 }
-  
+

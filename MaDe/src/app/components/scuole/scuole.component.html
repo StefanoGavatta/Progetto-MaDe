@@ -1,8 +1,12 @@
 <div class="container">
     <app-filtra></app-filtra>
     <div class="card-grid">
-        @for(scuola of scuolaData()?.data; track $index) {
-        <app-card [name]="scuola.name" [description]="scuola.description" [logo]="scuola.logo">
+        @for(scuola of scuoleDettagliate()?.data; track $index) {
+        <app-card 
+            [name]="scuola.name" 
+            [description]="scuola.description || ''" 
+            [logo]="scuola.logo?.id || ''"
+            [tipo]="getTipoScuola(scuola)">
         </app-card>
         }
     </div>

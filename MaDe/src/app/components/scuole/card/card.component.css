@@ -32,6 +32,13 @@
   font-size: 0.9rem;
   overflow: hidden;
   display: -webkit-box;
-  -webkit-line-clamp: 4; /* Limita il testo a 4 righe */
+  -webkit-line-clamp: 3; /* Ridotto a 3 righe per fare spazio al tipo */
   -webkit-box-orient: vertical;
+}
+
+.card-type {
+  color: #555;
+  font-size: 0.85rem;
+  font-style: italic;
+  margin-top: 8px;
 }
