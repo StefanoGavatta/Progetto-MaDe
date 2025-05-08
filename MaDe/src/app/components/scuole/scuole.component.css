@@ -1,4 +1,4 @@
-/* Reset globale per rimuovere margini e padding predefiniti */
+
 html, body {
   margin: 0;
   padding: 0;
@@ -42,3 +42,4 @@ html, body {
       flex: 0 0 100%; /* 1 carta per riga */
     }
 }
+

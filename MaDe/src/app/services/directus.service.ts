@@ -30,3 +30,5 @@ getSchoolData(id: string): Observable<Scuola | null> {
   constructor(private http: HttpClient) { }
 
 }
+
+
