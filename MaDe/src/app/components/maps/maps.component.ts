@@ -60,16 +60,23 @@ export class MapsComponent implements AfterViewInit, OnInit {
     iconUrl: "https://unpkg.com/leaflet@1.5.1/dist/images/marker-icon.png"
   });
 
+
+  private defaultIconPuntatori: Icon = icon({
+    iconUrl: "/download.png",
+    iconSize: [32, 32], // Imposta la larghezza e l'altezza desiderate (es. 32x32 pixel)
+    iconAnchor: [16, 32], // Imposta il punto dell'icona che corrisponde alla posizione (es. il centro inferiore)
+    popupAnchor: [0, -32]  // Imposta dove si "aggancia" la popup rispetto all'icona (es. sopra il centro)
+  });
+
   private routingControl: any; // Variabile per memorizzare il controllo di routing
   private directusService: DirectusService = inject(DirectusService)
   
   private initMap(): void {
     
-
     this.directusService.getSchoolsData().subscribe(dati => {
       this.map = L.map('map', {
         center: [45.8895, 11.0344],
-        zoom: 15
+        zoom: 14
       });
   
       const tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -77,18 +84,19 @@ export class MapsComponent implements AfterViewInit, OnInit {
         minZoom: 10,
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
       }).addTo(this.map); // Aggiungiamo subito le tiles alla mappa
-  
+      Marker.prototype.options.icon = this.defaultIconPuntatori;
+
       L.Routing.control({
-        waypoints: [L.latLng(45.8895, 11.0344), L.latLng(45.8895, 11.0344)],
-        routeWhileDragging: true
+        waypoints: [L.latLng(45.8895, 11.0344),L.latLng(45.8895, 11.0344)],
+        routeWhileDragging: true,
       }).addTo(this.map);
-      
+
+      Marker.prototype.options.icon = this.defaultIcon;
       this.scuolaData.set(dati)
        const data = this.scuolaData()?.data;
       if (Array.isArray(data)) {
         for (let i = 0; i < data.length; i++) {
           this.scuole.push({
-            
             lat: data[i].position.coordinates[1],
             lng: data[i].position.coordinates[0],
             nome: data[i].name,
@@ -96,17 +104,20 @@ export class MapsComponent implements AfterViewInit, OnInit {
           })
         }
 
-        for (let i = 0; i < data.length; i++) {
+/*         for (let i = 0; i < data.length; i++) {
           L.marker([this.scuole[i].lat, this.scuole[i].lng], { icon: this.defaultIcon })
           .addTo(this.map)
           .bindPopup(`<b>${this.scuole[i].nome}</b><br><img src="${this.scuole[i].logo}" alt="${this.scuole[i].nome} logo" style="width:50px;height:auto;">`);
         }
-
+ */
         this.scuole.forEach(scuola => {
           L.marker([scuola.lat, scuola.lng], { icon: this.defaultIcon })
             .addTo(this.map)
             .bindPopup(`<b>${scuola.nome}</b><br><img src="${scuola.logo}" alt="${scuola.nome} logo" style="width:50px;height:auto;">`);
-        });            
+        });       
+        
+        Marker.prototype.options.icon = this.defaultIconPuntatori;
+
       } else {
       } 
 
