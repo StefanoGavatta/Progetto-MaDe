@@ -41,3 +41,20 @@
   align-items: center;
 }
 
+.components-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.component-item {
+  flex: 1 1 300px; /* This makes components stack when there's less than ~300px available for each */
+}
+
+@media (max-width: 768px) {
+  .components-row {
+      flex-direction: column;
+  }
+  .components-row app-info {
+      align-self: flex-start;
+  }
+}
