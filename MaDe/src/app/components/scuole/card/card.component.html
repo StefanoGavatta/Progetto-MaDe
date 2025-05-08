@@ -5,4 +5,13 @@
     <p class="card-text">{{description}}</p>
     <p class="card-type">Tipo di scuola: {{tipo}}</p>
   </div>
+  <div class="card-button-container">
+   <!--  <button class="btn" (click)="goToDetails()">Dettagli</button> -->
+    <label class="burger" [attr.for]="'burger-' + uniqueId">
+      <input type="checkbox" [id]="'burger-' + uniqueId">
+      <span></span>
+      <span></span>
+      <span></span>
+    </label>
+  </div>
 </div>

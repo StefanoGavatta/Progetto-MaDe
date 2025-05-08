@@ -5,6 +5,7 @@
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   border: 1px solid rgba(0, 0, 0, 0.125);
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  position: relative; /* Necessario per posizionare il pulsante */
 }
 
 .card:hover {
@@ -19,20 +20,21 @@
 
 .card-body {
   padding: 15px;
+  padding-bottom: 50px; /* Spazio per il pulsante */
 }
 
 .card-title {
-  color: black; /* Cambiato da white a black */
+  color: black;
   font-size: 1.2rem;
   margin-bottom: 10px;
 }
 
 .card-text {
-  color: black; /* Cambiato da #ddd a black */
+  color: black;
   font-size: 0.9rem;
   overflow: hidden;
   display: -webkit-box;
-  -webkit-line-clamp: 3; /* Ridotto a 3 righe per fare spazio al tipo */
+  -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
 }
 
@@ -41,4 +43,91 @@
   font-size: 0.85rem;
   font-style: italic;
   margin-top: 8px;
+}
+
+.card-button-container {
+  position: absolute;
+  bottom: 15px;
+  right: 15px;  /* Cambiato da left a right per posizionare a destra */
+}
+
+.btn-details {
+  background-color: #007bff;
+  color: white;
+  font-size: 0.9rem;
+  padding: 5px 15px;
+  border-radius: 4px;
+  width: auto;
+}
+
+.btn-details:hover {
+  background-color: #0069d9;
+}
+
+.card-grid app-card {
+  flex: 0 0 calc(33.333% - 20px); /* Larghezza fissa al 33.333% meno il gap */
+  max-width: 300px; /* Mantiene la larghezza massima della carta */
+  min-width: 250px; /* Imposta una larghezza minima */
+}
+
+
+/* From Uiverse.io by Cevorob */ 
+.burger {
+  position: relative;
+  width: 40px;
+  height: 30px;
+  background: transparent;
+  cursor: pointer;
+  display: block;
+}
+
+.burger input {
+  display: none;
+}
+
+.burger span {
+  display: block;
+  position: absolute;
+  height: 4px;
+  width: 100%;
+  background: black;
+  border-radius: 9px;
+  opacity: 1;
+  left: 0;
+  transform: rotate(0deg);
+  transition: .25s ease-in-out;
+}
+
+.burger span:nth-of-type(1) {
+  top: 0px;
+  transform-origin: left center;
+}
+
+.burger span:nth-of-type(2) {
+  top: 50%;
+  transform: translateY(-50%);
+  transform-origin: left center;
+}
+
+.burger span:nth-of-type(3) {
+  top: 100%;
+  transform-origin: left center;
+  transform: translateY(-100%);
+}
+
+.burger input:checked ~ span:nth-of-type(1) {
+  transform: rotate(45deg);
+  top: 0px;
+  left: 5px;
+}
+
+.burger input:checked ~ span:nth-of-type(2) {
+  width: 0%;
+  opacity: 0;
+}
+
+.burger input:checked ~ span:nth-of-type(3) {
+  transform: rotate(-45deg);
+  top: 28px;
+  left: 5px;
 }
