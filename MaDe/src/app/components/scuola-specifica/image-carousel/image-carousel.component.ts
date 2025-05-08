@@ -32,32 +32,23 @@ export class ImageCarouselComponent {
     return `translateX(-${this.startIndex * 25}%)`;
   }
 
-  // Controlla se il pulsante "prev" dovrebbe essere disabilitato
-  get canGoBack(): boolean {
-    return this.startIndex > 0;
-  }
-
-  // Controlla se il pulsante "next" dovrebbe essere disabilitato
-  get canGoForward(): boolean {
-    return this.startIndex < this.images.length - this.visibleImages;
-  }
-
-  // Le immagini attualmente visibili nel carosello
-  get visibleSlides(): string[] {
-    return this.images.slice(this.startIndex, this.startIndex + this.visibleImages);
-  }
-
-  // Vai all'immagine precedente
+  // Vai all'immagine precedente (con ciclo)
   prevImage(): void {
-    if (this.canGoBack) {
+    if (this.startIndex > 0) {
       this.startIndex--;
+    } else {
+      // Se siamo all'inizio, andiamo all'ultimo gruppo possibile di immagini
+      this.startIndex = this.images.length - this.visibleImages;
     }
   }
 
-  // Vai all'immagine successiva
+  // Vai all'immagine successiva (con ciclo)
   nextImage(): void {
-    if (this.canGoForward) {
+    if (this.startIndex < this.images.length - this.visibleImages) {
       this.startIndex++;
+    } else {
+      // Se siamo alla fine, torniamo all'inizio
+      this.startIndex = 0;
     }
   }
 }

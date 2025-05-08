@@ -1,7 +1,6 @@
 <div class="carousel-container">
   <button class="nav-button prev-button" 
           (click)="prevImage()" 
-          [disabled]="!canGoBack" 
           aria-label="Immagine precedente">
     <span class="arrow-icon">&#10094;</span>
   </button>
@@ -18,7 +17,6 @@
 
   <button class="nav-button next-button" 
           (click)="nextImage()" 
-          [disabled]="!canGoForward" 
           aria-label="Immagine successiva">
     <span class="arrow-icon">&#10095;</span>
   </button>
