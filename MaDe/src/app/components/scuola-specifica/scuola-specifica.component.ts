@@ -9,9 +9,10 @@ import { ContattaciComponent } from './contattaci/contattaci.component';
 import { DirectusService } from '../../services/directus.service';
 import { OnInit, signal, WritableSignal, computed } from '@angular/core';
 import { ScuolaDettagliata } from '../../interfaces/scuola-dettagliata';
+import { LogoNomeComponent } from './logo-nome/logo-nome.component';
 @Component({
   selector: 'app-scuola-specifica',
-  imports: [ImageCarouselComponent,ChiSiamoComponent, InfoComponent, EventiComponent, VideoComponent, ContattaciComponent],
+  imports: [ImageCarouselComponent,ChiSiamoComponent, InfoComponent, EventiComponent, VideoComponent, ContattaciComponent, LogoNomeComponent],
   templateUrl: './scuola-specifica.component.html',
   styleUrl: './scuola-specifica.component.css'
 })

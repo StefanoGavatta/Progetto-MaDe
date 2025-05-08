@@ -4,21 +4,23 @@ import { ScuolaService } from '../../../services/scuola.service';
 import { Subscription } from 'rxjs';
 
 @Component({
-  selector: 'app-chi-siamo',
-  templateUrl: './chi-siamo.component.html',
-  styleUrls: ['./chi-siamo.component.css'],
+  selector: 'app-logo-nome',
   standalone: true,
-  imports: [CommonModule]
+  imports: [CommonModule],
+  templateUrl: './logo-nome.component.html',
+  styleUrl: './logo-nome.component.css'
 })
-export class ChiSiamoComponent implements OnInit, OnDestroy {
+export class LogoNomeComponent implements OnInit, OnDestroy {
+  nome: string = '';
+  logo: string = '';
   private subscription: Subscription | undefined;
 
   constructor(private scuolaService: ScuolaService) {}
 
   ngOnInit(): void {
-    // Manteniamo la sottoscrizione per possibili usi futuri
     this.subscription = this.scuolaService.scuolaSelezionata$.subscribe(scuola => {
-      // In futuro potremmo usare altri dati della scuola se necessario
+      this.nome = scuola.name;
+      this.logo = scuola.logo;
     });
   }
 

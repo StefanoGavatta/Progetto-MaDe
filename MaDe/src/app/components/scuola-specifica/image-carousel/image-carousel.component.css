@@ -6,7 +6,6 @@
   padding: 0 20px;
   overflow: hidden;
   border-radius: 8px;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
 .carousel-track {
@@ -33,13 +32,11 @@
   height: 250px; /* Aumentato da 180px a 250px */
   object-fit: cover;
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease;
 }
 
 .carousel-slide img:hover {
   transform: scale(1.05);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
 .nav-button {
@@ -51,7 +48,6 @@
   border-radius: 50%;
   background-color: rgba(255, 255, 255, 0.8);
   border: none;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -62,7 +58,6 @@
 
 .nav-button:hover:not(:disabled) {
   background-color: rgba(255, 255, 255, 1);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
 .nav-button:disabled {
