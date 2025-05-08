@@ -1,26 +1,30 @@
 <div class="container">
-    
-  <!-- Immagine sulla sinistra -->
-  <img src="assets/images/sss.png" alt="Immagine della scuola" class="immagine-scuola">
 
-  <!-- Contenuto della scuola sulla destra -->
-  <div class="contenuto-scuola">
-    <!-- Qui puoi inserire le informazioni specifiche della scuola -->
-    <h2>nome scuola</h2>
-    <p>Informazioni sulla scuola...</p>
-  </div>
+    <!-- Immagine sulla sinistra -->
+    <img src="assets/images/sss.png" alt="Immagine della scuola" class="immagine-scuola">
+
+    <!-- Contenuto della scuola sulla destra -->
+    <div class="contenuto-scuola">
+        <!-- Qui puoi inserire le informazioni specifiche della scuola -->
+        <h2>nome scuola</h2>
+        <p>Informazioni sulla scuola...</p>
+    </div>
 </div>
 <app-image-carousel></app-image-carousel>
 <div class="components-container">
-  <app-chi-siamo></app-chi-siamo>
-  <app-info></app-info>
+    <div class="component-item"></div>
+    <app-chi-siamo></app-chi-siamo>
+    <div class="component-item"></div>
+    <app-info></app-info>
 </div>
 
-<style>
-.components-container {
-  display: flex;
-  justify-content: center; /* o flex-start, flex-end, ecc. */
-  gap: 30px; /* specificare la distanza esatta tra i componenti */
-}
-</style>
 
+<style>
+    .components-container {
+        display: flex;
+        justify-content: center;
+        /* o flex-start, flex-end, ecc. */
+        gap: 30px;
+        /* specificare la distanza esatta tra i componenti */
+    }
+</style>
