@@ -1,0 +1,20 @@
+<div class="carousel-container">
+  <!-- Freccia sinistra per navigare indietro -->
+  <button class="nav-button prev-button" (click)="prevImage()">
+    <span class="arrow-icon">&#10094;</span>
+  </button>
+
+  <!-- Contenitore delle immagini visibili -->
+  <div class="carousel-images">
+    @for (image of visibleImagesList; track $index) {
+      <div class="carousel-image">
+        <img [src]="image" alt="Immagine carosello">
+      </div>
+    }
+  </div>
+
+  <!-- Freccia destra per navigare avanti -->
+  <button class="nav-button next-button" (click)="nextImage()">
+    <span class="arrow-icon">&#10095;</span>
+  </button>
+</div>
