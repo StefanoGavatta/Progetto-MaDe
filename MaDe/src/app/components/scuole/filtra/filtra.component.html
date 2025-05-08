@@ -1,0 +1,14 @@
+<div class="button-container">
+  <button 
+    class="transparent-button" 
+    [class.active]="isActive('liceo')" 
+    (click)="filtra('liceo')">licei</button>
+  <button 
+    class="transparent-button" 
+    [class.active]="isActive('tecnico')" 
+    (click)="filtra('tecnico')">istituti tecnici</button>
+  <button 
+    class="transparent-button" 
+    [class.active]="isActive('professionale')" 
+    (click)="filtra('professionale')">professionali</button>
+</div>

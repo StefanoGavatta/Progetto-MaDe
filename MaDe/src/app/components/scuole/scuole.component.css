@@ -1,6 +1,44 @@
+/* Reset globale per rimuovere margini e padding predefiniti */
+html, body {
+  margin: 0;
+  padding: 0;
+  background-color: #f2edca;
+  height: 100%;
+  width: 100%;
+  overflow-x: hidden; /* Previene scroll orizzontale */
+}
+
+.container {
+  min-height: 100vh;
+  width: 100%;
+  padding: 20px 0;
+}
+
 .card-grid {
     display: flex;
-    flex-wrap: wrap; /* Permette alle card di andare a capo su schermi piccoli */
-    gap: 20px; /* Spazio tra le card */
-    padding: 20px; /* Spazio intorno alle card */
-  }
+    flex-wrap: wrap; 
+    gap: 20px;  
+    justify-content: center; 
+    max-width: 100%;
+    margin: 0 auto;
+}
+  
+/* Modifica per avere massimo 3 carte per riga invece di 4 */
+.card-grid app-card {
+  flex: 0 0 calc(33.333% - 20px); /* Larghezza fissa al 33.333% meno il gap */
+  max-width: 300px; /* Mantiene la larghezza massima della carta */
+  min-width: 250px; /* Imposta una larghezza minima */
+}
+
+/* Responsive per schermi più piccoli - manteniamo lo stesso */
+@media (max-width: 900px) {
+    .card-grid app-card {
+      flex: 0 0 calc(50% - 20px); /* 2 carte per riga */
+    }
+}
+  
+@media (max-width: 600px) {
+    .card-grid app-card {
+      flex: 0 0 100%; /* 1 carta per riga */
+    }
+}

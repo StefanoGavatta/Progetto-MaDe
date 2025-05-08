@@ -1,14 +1,13 @@
-
-<div class="card-grid">
-    @for(scuole of scuolaData()?.data; track $index) {
-        <div class="card" style="width: 18rem;">
-            <img src="https://api.retescuolevallagarina.it/assets/{{scuole.logo}}" class="card-img-top" alt="...">
-            <div class="card-body">
-            <h5 class="card-title">{{scuole.name}}</h5>
-            <p class="card-text">{{scuole.description}}</p>
-            </div>
-        </div>
-    }
+<div class="container">
+    <app-filtra (filtroSelezionato)="applicaFiltro($event)"></app-filtra>
+    <div class="card-grid">
+        @for(scuola of scuoleFiltrate(); track $index) {
+        <app-card 
+            [name]="scuola.name" 
+            [description]="scuola.description || ''" 
+            [logo]="scuola.logo?.id || ''"
+            [tipo]="getTipoScuola(scuola)">
+        </app-card>
+        }
+    </div>
 </div>
-
-

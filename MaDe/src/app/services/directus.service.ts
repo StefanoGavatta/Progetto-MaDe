@@ -4,6 +4,8 @@ import { HttpClient } from '@angular/common/http';
 import { inject } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Scuola } from '../interfaces/scuola';
+import { ScuolaDettagliata } from '../interfaces/scuola-dettagliata';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -18,8 +20,12 @@ private readonly apiUrl = "https://api.retescuolevallagarina.it";
 }
 
 getSchoolData(id: string): Observable<Scuola | null> {
- return this.http.get<Scuola>(`${this.apiUrl}/items/schools/${id}`);
-}
+  return this.http.get<Scuola>(`${this.apiUrl}/items/schools/${id}`);
+ }
+
+ getMoreSchoolData(): Observable<ScuolaDettagliata | null> {
+  return this.http.get<ScuolaDettagliata>(`${this.apiUrl}/items/schools?fields=%2A,%2A.%2A`);
+ }
 
   constructor(private http: HttpClient) { }
 
