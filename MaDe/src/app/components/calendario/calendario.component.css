@@ -342,3 +342,120 @@
       font-size: 1.2rem;
     }
   }
+
+
+  .event-card {
+    max-width: 600px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    font-family: 'Segoe UI', Roboto, sans-serif;
+  }
+  
+  .event-header {
+    padding: 24px;
+    background: linear-gradient(135deg, #6e8efb, #a777e3);
+    color: white;
+    position: relative;
+  }
+  
+  .event-header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+  }
+  
+  .event-logo {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid rgba(255, 255, 255, 0.2);
+  }
+  
+  .close-btn {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    padding: 8px;
+    opacity: 0.8;
+    transition: opacity 0.2s;
+  }
+  
+  .close-btn:hover {
+    opacity: 1;
+  }
+  
+  .event-title {
+    margin: 0 0 16px;
+    font-size: 28px;
+    font-weight: 700;
+  }
+  
+  .event-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .meta-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 16px;
+  }
+  
+  .meta-icon {
+    width: 18px;
+    height: 18px;
+  }
+  
+  .event-body {
+    padding: 24px;
+  }
+  
+  .event-description {
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 24px;
+    font-size: 16px;
+  }
+  
+  .event-actions {
+    display: flex;
+    gap: 12px;
+  }
+  
+  .btn {
+    padding: 12px 20px;
+    border-radius: 8px;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  
+  .btn-primary {
+    background: #6e8efb;
+    color: white;
+  }
+  
+  .btn-primary:hover {
+    background: #5a7df5;
+    transform: translateY(-2px);
+  }
+  
+  .btn-secondary {
+    background: #f0f0f0;
+    color: #333;
+  }
+  
+  .btn-secondary:hover {
+    background: #e0e0e0;
+  }
+  
+  /* Funzione per formattare la data (da implementare nel componente) */

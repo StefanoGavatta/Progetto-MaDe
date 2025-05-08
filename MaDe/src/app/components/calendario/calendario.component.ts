@@ -1,23 +1,16 @@
 import {
   Component,
-  InputSignal,
-  OnInit,
   Signal,
   WritableSignal,
   computed,
   inject,
-  input,
   signal,
 } from '@angular/core';
-
-import { DateTime, Info, Interval } from 'luxon';
 import { CommonModule } from '@angular/common';
-import { Dati, Meetings } from '../../interfaces/meetings.interface';
+import { DateTime, Info, Interval } from 'luxon';
 import { DirectusService } from '../../services/directus.service';
-import { SchoolsData } from '../../interfaces/schools-data';
 import { Scuola } from '../../interfaces/scuola';
-import { Data } from '@angular/router';
-import { NotExpr } from '@angular/compiler';
+import { Dati } from '../../interfaces/meetings.interface';
 
 @Component({
   selector: 'calendario',
@@ -26,24 +19,25 @@ import { NotExpr } from '@angular/compiler';
   imports: [CommonModule],
   standalone: true,
 })
-export class CalendarioComponent implements OnInit {
-  directusService = inject(DirectusService)
+export class CalendarioComponent {
+  directusService = inject(DirectusService);
   scuola: WritableSignal<Scuola | null> = signal(null);
   title = 'MaDe';
   bho: boolean = false;
-  meetings: WritableSignal<Meetings> = signal<Meetings>({
-  });
+  meetings: WritableSignal<Record<string, Dati[]>> = signal({});
+  giornoSelezionato: WritableSignal<Dati[] | null> = signal<Dati[] | null>(null);
+  
   today: Signal<DateTime> = signal(DateTime.local());
-
   firstDayOfActiveMonth: WritableSignal<DateTime> = signal(
-    this.today().startOf('month'),
+    this.today().startOf('month')
   );
   activeDay: WritableSignal<DateTime | null> = signal(null);
   weekDays: Signal<string[]> = signal(Info.weekdays('short'));
+  
   daysOfMonth: Signal<DateTime[]> = computed(() => {
     return Interval.fromDateTimes(
       this.firstDayOfActiveMonth().startOf('week'),
-      this.firstDayOfActiveMonth().endOf('month').endOf('week'),
+      this.firstDayOfActiveMonth().endOf('month').endOf('week')
     )
       .splitBy({ day: 1 })
       .map((d) => {
@@ -53,39 +47,32 @@ export class CalendarioComponent implements OnInit {
         return d.start;
       });
   });
+
   DATE_MED = DateTime.DATE_MED;
+  
   activeDayMeetings: Signal<Dati[]> = computed(() => {
     const activeDay = this.activeDay();
     if (activeDay === null) {
       return [];
     }
     const activeDayISO = activeDay.toISODate();
-
+    
     if (!activeDayISO) {
       return [];
     }
-
-    return this.meetings()[activeDayISO] ?? [];
+    
+    return this.meetings()[activeDayISO] || [];
   });
-
-  // Nuovo metodo per ottenere gli eventi di un giorno specifico
-  getMeetingsForDay(day: DateTime): Dati[] {
-    const dayISO = day.toISODate();
-    if (!dayISO) {
-      return [];
-    }
-    return this.meetings()[dayISO] ?? [];
-  }
 
   goToPreviousMonth(): void {
     this.firstDayOfActiveMonth.set(
-      this.firstDayOfActiveMonth().minus({ month: 1 }),
+      this.firstDayOfActiveMonth().minus({ month: 1 })
     );
   }
 
   goToNextMonth(): void {
     this.firstDayOfActiveMonth.set(
-      this.firstDayOfActiveMonth().plus({ month: 1 }),
+      this.firstDayOfActiveMonth().plus({ month: 1 })
     );
   }
 
@@ -94,41 +81,64 @@ export class CalendarioComponent implements OnInit {
   }
 
   onDayClick(day: DateTime): void {
-    // Se il giorno cliccato è già attivo, disattivalo
     if (this.activeDay()?.toISODate() === day.toISODate()) {
       this.activeDay.set(null);
     } else {
-      // Altrimenti attiva il giorno con l'animazione
       this.activeDay.set(day);
     }
-    this.bho = true
+
+    this.giornoSelezionato.set(this.meetings()[day.toISODate() ?? "bho"])
+    console.log(this.giornoSelezionato())
+    this.bho = true;
   }
+
+  getMeetingsForDay(day: DateTime): string[] {
+    const dayISO = day.toISODate();
+    
+    // Se la data non è valida o non ci sono eventi, restituisci array vuoto
+    if (!dayISO || !this.meetings()[dayISO]) {
+      return [];
+    }
+  
+    // Usa optional chaining e nullish coalescing per sicurezza
+    return this.meetings()[dayISO]?.map(incontro => incontro.dataInizio.split("T")[0]) ?? [];
+  }
+
 
   ngOnInit(): void {
     this.directusService.getEventsData().subscribe(data => {
+      const newMeetings: Record<string, Dati[]> = {};
+      
       data?.data.forEach(info => {
-        const bho: Meetings = this.meetings()
-        const nome = info.title
+        const dateKey = info.start_date.split("T")[0];
+        
         this.directusService.getSchoolData(info.school).subscribe(scuolaDati => {
-          const data = info.start_date.split("T")[0]
-          const datiCheServono : Dati = {dataFine: info.end_date,dataInizio: info.start_date,title: info.title, icona: scuolaDati?.data.logo ?? "error"}
-          datiCheServono.title = nome
-          bho[info.start_date].push(datiCheServono)
-          this.meetings.set(bho)
+          const meetingData: Dati = {
+            dataFine: info.end_date,
+            dataInizio: info.start_date,
+            title: info.title,
+            icona: scuolaDati?.data.logo ?? "error",
+            idScuola : info.school,
+            scuola: scuolaDati?.data.name ?? "No name",
+            luogo : info.location,
+            descrizione : info.description
+          };
           
+          // Aggiorna newMeetings invece di this.meetings direttamente
+          if (!newMeetings[dateKey]) {
+            newMeetings[dateKey] = [];
+          }
+          newMeetings[dateKey].push(meetingData);
+          
+          // Aggiorna il segnale una volta che tutti i dati sono pronti
+          this.meetings.update(current => ({ ...current, ...newMeetings }));
           console.log(this.meetings)
-        })
-
-
-      })
-    })
+        });
+      });
+    });
   }
-
 
   closeOverlay(): void {
     this.bho = false;
   }
-
-
-  
 }

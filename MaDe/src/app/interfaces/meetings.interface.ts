@@ -7,4 +7,8 @@ export interface Dati{
  dataFine : string, 
  title : string,
  icona : string, 
+ luogo : string,
+ idScuola : string,
+ scuola : string,
+ descrizione : string
 }
