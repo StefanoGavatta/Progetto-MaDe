@@ -1,5 +1,10 @@
 <div class="chi-siamo-container">
-  <h2>Chi Siamo</h2>
+  <div *ngIf="nome" class="scuola-header">
+    <img *ngIf="logo" src="https://api.retescuolevallagarina.it/assets/{{logo}}" alt="{{nome}}" class="scuola-logo">
+    <h2>{{nome}}</h2>
+  </div>
+  
+  <h3>Chi Siamo</h3>
   <p>
     Benvenuti nella sezione dedicata alla nostra scuola. Siamo un'istituzione educativa
     impegnata a fornire un ambiente di apprendimento stimolante dove gli studenti possono
