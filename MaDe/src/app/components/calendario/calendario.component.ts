@@ -1,16 +1,23 @@
 import {
   Component,
   InputSignal,
+  OnInit,
   Signal,
   WritableSignal,
   computed,
+  inject,
   input,
   signal,
 } from '@angular/core';
 
 import { DateTime, Info, Interval } from 'luxon';
 import { CommonModule } from '@angular/common';
-import { Meetings } from './meetings.interface';
+import { Dati, Meetings } from '../../interfaces/meetings.interface';
+import { DirectusService } from '../../services/directus.service';
+import { SchoolsData } from '../../interfaces/schools-data';
+import { Scuola } from '../../interfaces/scuola';
+import { Data } from '@angular/router';
+import { NotExpr } from '@angular/compiler';
 
 @Component({
   selector: 'calendario',
@@ -19,9 +26,15 @@ import { Meetings } from './meetings.interface';
   imports: [CommonModule],
   standalone: true,
 })
-export class CalendarioComponent {
-  meetings: InputSignal<Meetings> = input.required();
+export class CalendarioComponent implements OnInit {
+  directusService = inject(DirectusService)
+  scuola: WritableSignal<Scuola | null> = signal(null);
+  title = 'MaDe';
+  bho: boolean = false;
+  meetings: WritableSignal<Meetings> = signal<Meetings>({
+  });
   today: Signal<DateTime> = signal(DateTime.local());
+
   firstDayOfActiveMonth: WritableSignal<DateTime> = signal(
     this.today().startOf('month'),
   );
@@ -41,7 +54,7 @@ export class CalendarioComponent {
       });
   });
   DATE_MED = DateTime.DATE_MED;
-  activeDayMeetings: Signal<string[]> = computed(() => {
+  activeDayMeetings: Signal<Dati[]> = computed(() => {
     const activeDay = this.activeDay();
     if (activeDay === null) {
       return [];
@@ -56,7 +69,7 @@ export class CalendarioComponent {
   });
 
   // Nuovo metodo per ottenere gli eventi di un giorno specifico
-  getMeetingsForDay(day: DateTime): string[] {
+  getMeetingsForDay(day: DateTime): Dati[] {
     const dayISO = day.toISODate();
     if (!dayISO) {
       return [];
@@ -79,4 +92,43 @@ export class CalendarioComponent {
   goToToday(): void {
     this.firstDayOfActiveMonth.set(this.today().startOf('month'));
   }
+
+  onDayClick(day: DateTime): void {
+    // Se il giorno cliccato è già attivo, disattivalo
+    if (this.activeDay()?.toISODate() === day.toISODate()) {
+      this.activeDay.set(null);
+    } else {
+      // Altrimenti attiva il giorno con l'animazione
+      this.activeDay.set(day);
+    }
+    this.bho = true
+  }
+
+  ngOnInit(): void {
+    this.directusService.getEventsData().subscribe(data => {
+      data?.data.forEach(info => {
+        const bho: Meetings = this.meetings()
+        const nome = info.title
+        this.directusService.getSchoolData(info.school).subscribe(scuolaDati => {
+          const data = info.start_date.split("T")[0]
+          const datiCheServono : Dati = {dataFine: info.end_date,dataInizio: info.start_date,title: info.title, icona: scuolaDati?.data.logo ?? "error"}
+          datiCheServono.title = nome
+          bho[info.start_date].push(datiCheServono)
+          this.meetings.set(bho)
+          
+          console.log(this.meetings)
+        })
+
+
+      })
+    })
+  }
+
+
+  closeOverlay(): void {
+    this.bho = false;
+  }
+
+
+  
 }

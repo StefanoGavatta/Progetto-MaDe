@@ -2,7 +2,6 @@ import { Component, inject, OnInit, signal, WritableSignal, computed } from '@an
 import { CommonModule } from '@angular/common';
 import { DirectusService } from '../../services/directus.service';
 import { SchoolsData } from '../../interfaces/schools-data';
-import { CardComponent } from './card/card.component';
 
 import { CardComponent } from './card/card.component';
 import { FiltraComponent } from './filtra/filtra.component';

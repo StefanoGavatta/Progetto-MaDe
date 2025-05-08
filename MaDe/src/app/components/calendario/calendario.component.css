@@ -1,106 +1,129 @@
-.calendar-container {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap; /* Permette il wrapping su schermi piccoli */
-  width: 100%;
-}
-
-.calendar {
-  padding-right: 10px;
-  min-width: 300px;
-  width: 100%;
-  max-width: 1200px;
-}
+/* ==========================================================================
+   Contenitore principale del calendario e della schedule (se presente)
+   ========================================================================== */
+   .calendar-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: center; /* Centra orizzontalmente gli elementi figli */
+  }
   
+  /* ==========================================================================
+     Stili per il contenitore del calendario principale
+     ========================================================================== */
+  .calendar {
+    padding-right: 10px; /* Spazio a destra dal blocco del calendario */
+    min-width: 300px; /* Larghezza minima per evitare che il calendario diventi troppo stretto */
+    width: 100%; /* Inizialmente occupa tutta la larghezza del contenitore */
+    max-width: 1200px; /* Larghezza massima per evitare che il calendario diventi eccessivamente largo su schermi grandi */
+
+  }
+  
+  /* ==========================================================================
+     Intestazione del calendario: mese e controlli (navigazione)
+     ========================================================================== */
   .calendar-headline {
     display: flex;
-    margin-bottom: 10px;
-    justify-content: space-between;
-    padding: 0 20px;
+    margin-bottom: 10px; /* Spazio sotto l'intestazione */
+    justify-content: space-between; /* Distribuisce lo spazio tra il mese e i controlli */
+    padding: 0 20px; /* Spazio interno a sinistra e a destra */
   }
   
   .calendar-headline-month {
-    font-weight: 600;
+    font-weight: 600; /* Testo del mese in grassetto */
   }
   
   .calendar-headline-controls {
-    display: flex;
+    display: flex; /* Allinea i controlli orizzontalmente */
   }
   
   .calendar-headline-control {
-    cursor: pointer;
+    cursor: pointer; /* Indica che l'elemento è interattivo */
   }
   
   .calendar-headline-control:hover {
-    text-decoration: underline;
+    text-decoration: underline; /* Sottolinea al passaggio del mouse per maggiore chiarezza */
   }
   
   .calendar-headline-control-today {
-    margin: 0 10px;
+    margin: 0 10px; /* Spazio a sinistra e a destra del controllo "oggi" */
   }
   
+  /* ==========================================================================
+     Griglia dei giorni della settimana (Lun, Mar, Mer...)
+     ========================================================================== */
   .calendar-weeks-grid {
     display: grid;
-    grid-template-columns: repeat(7, minmax(0, 1fr));
+    grid-template-columns: repeat(7, minmax(0, 1fr)); /* Crea 7 colonne di uguale larghezza */
     font-size: 12px;
-    margin-bottom: 10px;
-    color: rgb(81, 81, 81);
+    margin-bottom: 10px; /* Spazio sotto la griglia dei giorni della settimana */
+    color: rgb(81, 81, 81); /* Colore del testo dei giorni della settimana */
   }
   
   .calendar-weeks-grid-cell {
-    text-align: center;
+    text-align: center; /* Allinea al centro il testo dei giorni della settimana */
   }
   
-  .calendar-grid-cell-inactive {
-    color: #9e9e9e;
-  }
-  
+  /* ==========================================================================
+     Griglia dei giorni del mese
+     ========================================================================== */
   .calendar-grid {
     display: grid;
-    grid-template-columns: repeat(7, minmax(40px, 1fr));
+    grid-template-columns: repeat(7, minmax(40px, 1fr)); /* Crea 7 colonne con una larghezza minima di 40px */
     width: 100%;
-    border-top: 1px solid rgb(190, 190, 190);
-    border-left: 1px solid rgb(190, 190, 190);
+    border-top: 1px solid rgb(190, 190, 190); /* Bordo superiore della griglia */
+    border-left: 1px solid rgb(190, 190, 190); /* Bordo sinistro della griglia */
   }
   
   .calendar-grid-cell {
-    padding: 0.5rem;
+    padding: 0.5rem; /* Spazio interno alle celle dei giorni */
     aspect-ratio: 1/1; /* Mantiene le celle quadrate */
     display: flex;
-    flex-direction: column;
-    border-bottom: 1px solid rgb(190, 190, 190);
-    border-right: 1px solid rgb(190, 190, 190);
-    cursor: pointer;
-    min-height: auto;
-    min-width: auto;
+    flex-direction: column; /* Permette di disporre numero del giorno ed eventi verticalmente */
+    border-bottom: 1px solid rgb(190, 190, 190); /* Bordo inferiore delle celle */
+    border-right: 1px solid rgb(190, 190, 190); /* Bordo destro delle celle */
+    cursor: pointer; /* Indica che la cella è interattiva */
+    min-height: auto; /* Sovrascrive eventuali altezze minime */
+    min-width: auto; /* Sovrascrive eventuali larghezze minime */
   }
   
   .calendar-grid-cell:hover {
-    background: #9ba3bf;
+    background: #9ba3bf; /* Cambia il background al passaggio del mouse */
   }
   
   .calendar-grid-cell-active {
-    background: #9ba3bf;
+    background: #9ba3bf; /* Stile per la cella del giorno attivo/selezionato */
+    position: relative; /* Necessario per lo z-index e l'ombra */
+    z-index: 10; /* Assicura che l'ombra sia sopra le celle adiacenti */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Leggera ombra per evidenziare la cella attiva */
   }
   
+  .calendar-grid-cell-inactive {
+    color: #9e9e9e; /* Stile per i giorni del mese precedente/successivo */
+  }
+  
+  /* ==========================================================================
+     Stili per il contenuto delle celle dei giorni
+     ========================================================================== */
   .day-number {
-    font-weight: bold;
-    margin-bottom: 0.2rem;
-    font-size: clamp(0.7rem, 1vw, 1rem);
+    font-weight: bold; /* Numero del giorno in grassetto */
+    margin-bottom: 0.2rem; /* Piccolo spazio sotto il numero del giorno */
+    font-size: clamp(0.7rem, 1vw, 1rem); /* Dimensione del font responsiva */
   }
   
   .day-events {
-    font-size: clamp(0.6rem, 0.8vw, 0.8rem);
+    font-size: clamp(0.6rem, 0.8vw, 0.8rem); /* Dimensione del font responsiva per gli eventi */
   }
   
   .event-item {
-    background-color: #e2e8f0;
-    border-radius: 3px;
-    padding: 2px 4px;
-    margin-bottom: 2px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    background-color: #e2e8f0; /* Sfondo chiaro per gli elementi evento */
+    border-radius: 3px; /* Angoli arrotondati per gli eventi */
+    padding: 2px 4px; /* Spazio interno agli elementi evento */
+    margin-bottom: 2px; /* Piccolo spazio sotto ogni evento */
+    white-space: nowrap; /* Evita che il testo vada a capo */
+    overflow: hidden; /* Nasconde il testo che eccede */
+    text-overflow: ellipsis; /* Aggiunge "..." se il testo è troppo lungo */
   }
   
   .event-more {
@@ -108,62 +131,214 @@
     color: #666;
     text-align: center;
     margin-top: 2px;
+    display: none; /* Nascosto di default, mostrato solo su schermi piccoli */
   }
   
+  /* ==========================================================================
+     Stili per la sezione della schedule (se presente)
+     ========================================================================== */
   .schedule {
-    margin-left: 10px;
+    margin-left: 10px; /* Spazio a sinistra della schedule */
   }
   
   .schedule-headline {
-    font-weight: 600;
-    margin-bottom: 30px;
-  }
-
-@media (max-width: 768px) {
-  .calendar-grid-cell {
-    padding: 0.25rem;
+    font-weight: 600; /* Titolo della schedule in grassetto */
+    margin-bottom: 30px; /* Spazio sotto il titolo della schedule */
   }
   
-  .day-events {
-    font-size: 9px;
+  /* ==========================================================================
+     Media Queries per il responsive design
+     ========================================================================== */
+  
+  /* Schermi più piccoli di 768px */
+  @media (max-width: 768px) {
+    .calendar-grid-cell {
+      padding: 0.25rem; /* Riduce il padding delle celle su schermi piccoli */
+    }
+  
+    .day-events {
+      font-size: 9px; /* Riduce la dimensione del font degli eventi su schermi piccoli */
+    }
+  
+    .event-item {
+      padding: 1px 2px; /* Riduce il padding degli elementi evento su schermi piccoli */
+      margin-bottom: 1px; /* Riduce il margine degli elementi evento su schermi piccoli */
+    }
   }
   
-  .event-item {
-    padding: 1px 2px;
-    margin-bottom: 1px;
-  }
-}
-
-@media (max-width: 640px) {
-  .event-item:nth-child(n+3) {
-    display: none; /* Mostra solo i primi 2 eventi su schermi piccoli */
+  /* Schermi più piccoli di 640px */
+  @media (max-width: 640px) {
+    .event-item:nth-child(n+3) {
+      display: none; /* Nasconde il terzo e gli eventi successivi */
+    }
+  
+    .event-more {
+      display: block; /* Mostra il link "altro..." */
+    }
   }
   
-  .event-more {
-    display: block;
-  }
-}
-
-@media (max-width: 480px) {
-  .calendar-container {
-    flex-direction: column;
+  /* Schermi più piccoli di 480px (tipicamente mobile) */
+  @media (max-width: 480px) {
+    .calendar-container {
+      flex-direction: column; /* Dispone calendario e schedule verticalmente */
+    }
+  
+    .schedule {
+      margin-left: 0; /* Rimuove il margine sinistro della schedule */
+      margin-top: 20px; /* Aggiunge spazio sopra la schedule quando è sotto il calendario */
+    }
+  
+    .calendar-grid {
+      grid-template-columns: repeat(7, 1fr); /* Assicura che le colonne occupino tutta la larghezza */
+    }
+  
+    .calendar-grid-cell {
+      min-height: 50px; /* Altezza minima per le celle su mobile per una migliore usabilità */
+      aspect-ratio: auto; /* Rimuove l'aspect-ratio per permettere alle celle di adattarsi al contenuto verticale */
+    }
+  
+    .event-item {
+      white-space: normal; /* Permette al testo degli eventi di andare a capo su schermi piccoli */
+    }
   }
   
-  .schedule {
-    margin-left: 0;
-    margin-top: 20px;
-  }
-
-  .calendar-grid {
-    grid-template-columns: repeat(7, 1fr);
+  /* ==========================================================================
+     Animazioni
+     ========================================================================== */
+  
+  /* Animazione di scale-up al centro */
+  .scale-up-center {
+    -webkit-animation: scale-up-center 0.4s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+    animation: scale-up-center 0.4s cubic-bezier(0.39, 0.575, 0.565, 1) both;
   }
   
-  .calendar-grid-cell {
-    min-height: 50px; /* Altezza minima su mobile */
-    aspect-ratio: auto; /* Rimuove aspect-ratio su mobile */
+  @-webkit-keyframes scale-up-center {
+    0% {
+      -webkit-transform: scale(0.95);
+      transform: scale(0.95);
+    }
+    100% {
+      -webkit-transform: scale(1);
+      transform: scale(1);
+    }
   }
   
-  .event-item {
-    white-space: normal; /* Permette il wrapping del testo */
+  @keyframes scale-up-center {
+    0% {
+      -webkit-transform: scale(0.95);
+      transform: scale(0.95);
+    }
+    100% {
+      -webkit-transform: scale(1);
+      transform: scale(1);
+    }
   }
-}
+  
+  .date-overlay {
+    position: fixed; /* O absolute, a seconda delle tue esigenze */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center; /* Centra orizzontalmente */
+    align-items: center; /* Centra verticalmente */
+    z-index: 1000; /* Assicura che sia sopra altri elementi */
+  }
+  
+  .overlay-backdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(2px); /* Effetto sfocatura dello sfondo */
+  }
+  
+  .date-detail-card {
+    /* Le proprietà per lo stile della card rimangono le stesse */
+    position: relative;
+    background: white;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 600px;
+    max-height: 90vh;
+    overflow-y: auto; /* Permette lo scrolling se il contenuto è troppo lungo */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    z-index: 1001; /* Assicura che la card sia sopra il backdrop */
+  }
+  
+  /* L'animazione fadeInUp può rimanere se la usi */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Gli stili per l'header, il container degli eventi e il footer possono rimanere */
+  .date-header {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    border-bottom: 1px solid #eee;
+    position: relative;
+  }
+  
+  .date-header .logo {
+    height: 40px;
+    margin-right: 15px;
+  }
+  
+  .date-header h2 {
+    margin: 0;
+    font-size: 1.4rem;
+    color: #333;
+  }
+  
+  .close-btn {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #666;
+  }
+  
+  .events-container {
+    padding: 20px;
+  }
+  
+  .date-footer {
+    padding: 20px;
+    text-align: center;
+    border-top: 1px solid #eee;
+  }
+  
+  .add-event-btn {
+    background: #2196f3;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+  }
+  
+  /* Responsive (può rimanere o essere modificato a seconda delle necessità) */
+  @media (max-width: 768px) {
+    .date-detail-card {
+      width: 95%;
+    }
+  
+    .date-header h2 {
+      font-size: 1.2rem;
+    }
+  }
