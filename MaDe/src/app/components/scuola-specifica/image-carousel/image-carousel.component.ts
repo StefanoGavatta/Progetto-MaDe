@@ -9,7 +9,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './image-carousel.component.css'
 })
 export class ImageCarouselComponent {
-  // Array di 6 immagini placeholder
+  // Array di 6 immagini
   images: string[] = [
     'https://placehold.co/300x200?text=Immagine+1',
     'https://placehold.co/300x200?text=Immagine+2',
@@ -19,34 +19,45 @@ export class ImageCarouselComponent {
     'https://placehold.co/300x200?text=Immagine+6'
   ];
 
-  // Indice dell'immagine corrente (la prima del gruppo visibile)
-  currentIndex = 0;
-
+  // Indice iniziale (prima immagine visibile)
+  startIndex = 0;
+  
   // Numero di immagini visibili contemporaneamente
-  visibleImages = 4;
+  readonly visibleImages = 4;
 
-  // Metodo per andare all'immagine precedente
+  // Proprietà per l'animazione di scorrimento
+  get slideTransform(): string {
+    // Calcoliamo la percentuale di spostamento in base all'indice di partenza
+    // Ogni immagine occupa il 25% della larghezza (perché mostriamo 4 immagini alla volta)
+    return `translateX(-${this.startIndex * 25}%)`;
+  }
+
+  // Controlla se il pulsante "prev" dovrebbe essere disabilitato
+  get canGoBack(): boolean {
+    return this.startIndex > 0;
+  }
+
+  // Controlla se il pulsante "next" dovrebbe essere disabilitato
+  get canGoForward(): boolean {
+    return this.startIndex < this.images.length - this.visibleImages;
+  }
+
+  // Le immagini attualmente visibili nel carosello
+  get visibleSlides(): string[] {
+    return this.images.slice(this.startIndex, this.startIndex + this.visibleImages);
+  }
+
+  // Vai all'immagine precedente
   prevImage(): void {
-    // Sottrae 1 e, se negativo, torna all'indice massimo possibile
-    this.currentIndex = (this.currentIndex - 1 + this.images.length) % this.images.length;
-  }
-
-  // Metodo per andare all'immagine successiva
-  nextImage(): void {
-    // Avanza di uno con gestione circolare
-    this.currentIndex = (this.currentIndex + 1) % this.images.length;
-  }
-
-  // Metodo per ottenere le immagini attualmente visibili con avvolgimento circolare
-  get visibleImagesList(): string[] {
-    const result: string[] = [];
-    
-    // Aggiungiamo le immagini visibili con gestione circolare
-    for (let i = 0; i < this.visibleImages; i++) {
-      const index = (this.currentIndex + i) % this.images.length;
-      result.push(this.images[index]);
+    if (this.canGoBack) {
+      this.startIndex--;
     }
-    
-    return result;
+  }
+
+  // Vai all'immagine successiva
+  nextImage(): void {
+    if (this.canGoForward) {
+      this.startIndex++;
+    }
   }
 }
