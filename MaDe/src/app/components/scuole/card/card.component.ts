@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -8,26 +8,20 @@ import { CommonModule } from '@angular/common';
   templateUrl: './card.component.html',
   styleUrl: './card.component.css'
 })
-export class CardComponent implements OnInit {
+export class CardComponent {
   @Input() name: string = '';
   @Input() description: string = '';
-  @Input() tipo: string = '';
   @Input() logo: string = '';
+  @Input() tipo: string = '';
+  @Input() id: number | string = '';
   
-  uniqueId: string;
+  @Output() cardClick = new EventEmitter<any>();
   
-  constructor() {
-    // Genera un ID univoco per ogni istanza della card
-    this.uniqueId = Math.random().toString(36).substring(2, 11);
-  }
-
-  ngOnInit(): void {
-  }
-  
-  goToDetails(){
-    console.log("Cliccato su " + this.name)
-    // Qui puoi implementare la logica per navigare alla pagina dei dettagli della scuola
-    // Ad esempio, puoi usare il router di Angular per navigare a una nuova rotta
-    // this.router.navigate(['/pagina-sito', { id: this.id }]);
+  onCardClick(): void {
+    this.cardClick.emit({
+      id: this.id,
+      name: this.name,
+      tipo: this.tipo
+    });
   }
 }

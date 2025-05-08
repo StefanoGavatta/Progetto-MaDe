@@ -5,7 +5,8 @@
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   border: 1px solid rgba(0, 0, 0, 0.125);
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  position: relative; /* Necessario per posizionare il pulsante */
+  cursor: pointer; /* Indica che è cliccabile */
+  position: relative; /* Per posizionare eventuali elementi overlay */
 }
 
 .card:hover {
