@@ -1,17 +1,17 @@
 import { Component } from '@angular/core';
 
 import { ImageCarouselComponent } from './image-carousel/image-carousel.component';
+import { ChiSiamoComponent } from './chi-siamo/chi-siamo.component';
+import { InfoComponent } from './info/info.component';
 
 @Component({
   selector: 'app-scuola-specifica',
-  imports: [ImageCarouselComponent],
+  imports: [ImageCarouselComponent,ChiSiamoComponent, InfoComponent],
   templateUrl: './scuola-specifica.component.html',
   styleUrl: './scuola-specifica.component.css'
 })
 export class ScuolaSpecificaComponent {
   scuola = {
-    nome: 'Nome Scuola',
-    immagineUrl: 'assets/images/sss.png'
-    // altre proprietà...
+
   };
 }
