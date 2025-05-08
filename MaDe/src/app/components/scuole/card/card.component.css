@@ -1,0 +1,44 @@
+.card {
+  width: 300px; /* Dimensione standard */
+  height: 380px; /* Altezza standard */
+  margin: 10px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.card-img-top {
+  height: 180px; /* Altezza standard per l'immagine */
+  object-fit: cover; /* Mantiene le proporzioni dell'immagine */
+}
+
+.card-body {
+  padding: 15px;
+}
+
+.card-title {
+  color: black; /* Cambiato da white a black */
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+.card-text {
+  color: black; /* Cambiato da #ddd a black */
+  font-size: 0.9rem;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3; /* Ridotto a 3 righe per fare spazio al tipo */
+  -webkit-box-orient: vertical;
+}
+
+.card-type {
+  color: #555;
+  font-size: 0.85rem;
+  font-style: italic;
+  margin-top: 8px;
+}

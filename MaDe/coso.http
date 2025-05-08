@@ -1,0 +1,2 @@
+###
+GET https://api.retescuolevallagarina.it/items/schools?fields=%2A,%2A.%2A
