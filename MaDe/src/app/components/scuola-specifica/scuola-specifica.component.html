@@ -13,11 +13,33 @@
 <app-image-carousel></app-image-carousel>
 
 <div class="components-row">
-    <app-chi-siamo></app-chi-siamo>
-    <app-info></app-info>
+    <app-chi-siamo class="component-item"></app-chi-siamo>
+    <app-info class="component-item"></app-info>
 </div>
+<style>
+.components-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+.component-item {
+    flex: 1 1 300px; /* This makes components stack when there's less than ~300px available for each */
+}
+@media (max-width: 768px) {
+    .components-row {
+        flex-direction: column;
+    }
+    .components-row app-info {
+        align-self: flex-start;
+    }
+}
+</style>
 <div class="components-row">
     <app-eventi></app-eventi>
 </div>
 
 <app-video></app-video>
+
+<div class="components-row">
+<app-contattaci></app-contattaci>
+</div>
