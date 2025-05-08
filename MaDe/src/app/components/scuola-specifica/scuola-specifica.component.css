@@ -14,3 +14,30 @@
 .contenuto-scuola {
   flex: 1;
 }
+
+.components-row {
+  display: flex;
+  width: 100%;
+  margin-top: 20px;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 20px;
+}
+
+.components-row app-chi-siamo {
+  flex: 1;
+  margin-right: 40px;
+  max-width: 450px;
+}
+
+.components-row app-info {
+  flex: 1;
+  margin-left: 40px;
+  max-width: 450px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
