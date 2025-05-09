@@ -6,7 +6,7 @@ import { CalendarioComponent } from './components/calendario/calendario.componen
 import { HeroSectionComponent } from './components/hero-section/hero-section.component';
 
 export const routes: Routes = [
-    { path: '', component: HeroSectionComponent },
+    { path: 'hero', component: HeroSectionComponent },
     { path: 'scuole', component: ScuoleComponent },
     { path: 'scuola/:id', component: PaginaSitoComponent},
     { path: 'maps', component: MapsComponent},
