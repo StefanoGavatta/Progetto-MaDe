@@ -13,7 +13,9 @@
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   display: flex;
   flex-direction: column;
-  padding-left: 18px; /* Aumentato da 12px a 18px per un bordo più spesso */
+  padding-left: 26px; /* Bordo sinistro più spesso (aumentato da 18px a 26px) */
+  padding-top: 26px; /* Bordo superiore più spesso (aumentato da 18px a 26px) */
+  padding-right: 10px; /* Piccolo padding sul lato destro */
 }
 
 .card:hover {
@@ -30,13 +32,14 @@
   display: flex;
   justify-content: flex-end; /* Allinea l'immagine a destra */
   overflow: hidden;
-  height: 180px; /* Dimensione ridotta */
+  height: 154px; /* Ridotta per compensare il padding superiore maggiore */
   width: 100%;
+  margin-top: -26px; /* Compenso il padding superiore aumentato */
 }
 
 .card-img-container img {
   object-fit: cover;
-  width: calc(100% - 18px); /* Larghezza ridotta considerando il padding aumentato */
+  width: calc(100% - 26px); /* Larghezza ridotta considerando il padding sinistro aumentato */
   margin-right: 0;
 }
 
