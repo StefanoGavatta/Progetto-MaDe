@@ -1,0 +1,25 @@
+<div class="carousel-container">
+  <button class="nav-button prev-button" 
+          (click)="prevImage()" 
+          [disabled]="!canGoNext"
+          aria-label="Immagine precedente">
+    <span class="arrow-icon">&#10094;</span>
+  </button>
+
+  <div class="carousel-track">
+    <div class="carousel-slides" [style.transform]="slideTransform">
+      @for (image of images; track $index) {
+        <div class="carousel-slide">
+          <img [src]="image" alt="Immagine carosello {{$index + 1}}">
+        </div>
+      }
+    </div>
+  </div>
+
+  <button class="nav-button next-button" 
+          (click)="nextImage()" 
+          [disabled]="!canGoNext"
+          aria-label="Immagine successiva">
+    <span class="arrow-icon">&#10095;</span>
+  </button>
+</div>

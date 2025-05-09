@@ -1,0 +1,50 @@
+.logo-nome-container {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Aggiungo questa proprietà per centrare orizzontalmente */
+  margin-bottom: 20px;
+  padding: 15px;
+  text-align: center; /* Aggiungo questa proprietà per centrare eventuali testi */
+  flex-wrap: wrap; /* Permette al contenuto di andare a capo su schermi piccoli */
+}
+
+.logo {
+  width: 300px;
+  height: 300px;
+  margin-right: 15px;
+  border-radius: 5px;
+  object-fit: contain;
+}
+
+h2 {
+  color: #333;
+  margin: 0;
+  font-size: 1.8em;
+  font-weight: 600;
+}
+
+/* Media query per tablet */
+@media screen and (max-width: 768px) {
+  .logo {
+    width: 200px;
+    height: 200px;
+  }
+}
+
+/* Media query per dispositivi mobili */
+@media screen and (max-width: 480px) {
+  .logo-nome-container {
+    flex-direction: column; /* Imposta il layout verticale */
+  }
+  
+  .logo {
+    width: 150px;
+    height: 150px;
+    margin-right: 0;
+    margin-bottom: 15px;
+  }
+
+  h2 {
+    font-size: 1.5em;
+  }
+}

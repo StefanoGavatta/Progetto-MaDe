@@ -1,0 +1,22 @@
+.video-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 20px;
+  height: calc(100vh - 150px);
+}
+
+.video-player {
+  width: 85%;
+  max-width: 1200px;
+  height: auto;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+}
+
+@media (max-width: 768px) {
+  .video-player {
+    width: 95%;
+  }
+}
