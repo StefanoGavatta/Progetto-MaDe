@@ -6,12 +6,13 @@ import { SchoolsData } from '../../interfaces/schools-data';
 import { CardComponent } from './card/card.component';
 import { FiltraComponent } from './filtra/filtra.component';
 import { ScuolaDettagliata } from '../../interfaces/scuola-dettagliata';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 
 
 @Component({
   selector: 'app-scuole',
   standalone: true,
-  imports: [CommonModule, CardComponent, FiltraComponent],
+  imports: [CommonModule, CardComponent, FiltraComponent,RouterLink,RouterLinkActive],
   templateUrl: './scuole.component.html',
   styleUrl: './scuole.component.css'
 })
