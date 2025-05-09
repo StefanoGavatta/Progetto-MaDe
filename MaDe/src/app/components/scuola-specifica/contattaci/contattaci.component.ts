@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-contattaci',
@@ -7,5 +7,6 @@ import { Component } from '@angular/core';
   styleUrl: './contattaci.component.css'
 })
 export class ContattaciComponent {
-
+ @Input() email: string = "";
+ @Input() numeroTelefono: string = ""; 
 }

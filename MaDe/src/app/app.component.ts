@@ -15,7 +15,7 @@ import { ScuolaSpecificaComponent } from './components/scuola-specifica/scuola-s
   selector: 'app-root',
   standalone: true,
 
-  imports: [RouterOutlet, CalendarioComponent,MapsComponent,PaginaSitoComponent,  HeaderComponent, HeroSectionComponent, HeroSection2Component, ScuoleComponent, ScuolaSpecificaComponent],
+  imports: [RouterOutlet, ScuolaSpecificaComponent,CalendarioComponent,MapsComponent,PaginaSitoComponent,  HeaderComponent, HeroSectionComponent, HeroSection2Component, ScuoleComponent, ScuolaSpecificaComponent],
 
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
