@@ -1,4 +1,4 @@
-<div class="card" (click)="onCardClick()" role="button" tabindex="0" (keydown.enter)="onCardClick()">
+<div class="card" [style.background-color]="getCardColor()" (click)="onCardClick()" role="button" tabindex="0" (keydown.enter)="onCardClick()">
   <img src="https://api.retescuolevallagarina.it/assets/{{logo}}" class="card-img-top" alt="{{name}}">
   <div class="card-body">
     <h5 class="card-title">{{name}}</h5>

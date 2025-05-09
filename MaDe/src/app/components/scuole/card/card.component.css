@@ -2,16 +2,13 @@
   width: 300px; /* Dimensione standard */
   height: 380px; /* Altezza standard */
   margin: 10px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
   border: 1px solid rgba(0, 0, 0, 0.125);
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   cursor: pointer; /* Indica che è cliccabile */
   position: relative; /* Per posizionare eventuali elementi overlay */
-}
-
-.card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  color: #000; /* Garantisce che tutto il testo sia scuro per contrasto */
+  border-radius: 8px; /* Bordi più arrotondati */
+  overflow: hidden; /* Evita che il contenuto esca fuori dalla carta */
 }
 
 .card-img-top {
@@ -25,18 +22,21 @@
 }
 
 .card-title {
-  color: black;
+  color: #000000;
   font-size: 1.2rem;
   margin-bottom: 10px;
+  padding-bottom: 10px; /* Aggiunge un po' di spazio sotto il titolo */
+  border-bottom: 1px solid #cccccc; /* Aggiunge la linea grigia divisoria */
 }
 
 .card-text {
-  color: black;
+  color: #000000;
   font-size: 0.9rem;
   overflow: hidden;
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
+  line-clamp: 3; /* Proprietà standard */
 }
 
 .card-type {
@@ -44,6 +44,10 @@
   font-size: 0.85rem;
   font-style: italic;
   margin-top: 8px;
+  background-color: #f0f0f0; /* Sfondo grigio chiaro */
+  display: inline-block; /* Fa in modo che lo sfondo copra solo il testo */
+  padding: 3px 6px; /* Padding interno per lo sfondo */
+  border-radius: 3px; /* Bordi arrotondati */
 }
 
 .card-button-container {
