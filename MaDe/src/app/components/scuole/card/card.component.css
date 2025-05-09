@@ -7,8 +7,14 @@
   cursor: pointer; /* Indica che è cliccabile */
   position: relative; /* Per posizionare eventuali elementi overlay */
   color: #000; /* Garantisce che tutto il testo sia scuro per contrasto */
-  border-radius: 8px; /* Bordi più arrotondati */
+  border-radius: 0; /* Rimuove gli angoli arrotondati e li rende spigolosi */
   overflow: hidden; /* Evita che il contenuto esca fuori dalla carta */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px); /* Solleva leggermente la carta */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); /* Aggiunge un'ombreggiatura più pronunciata */
 }
 
 .card-img-top {
@@ -47,7 +53,7 @@
   background-color: #f0f0f0; /* Sfondo grigio chiaro */
   display: inline-block; /* Fa in modo che lo sfondo copra solo il testo */
   padding: 3px 6px; /* Padding interno per lo sfondo */
-  border-radius: 3px; /* Bordi arrotondati */
+  border-radius: 0; /* Rimuove gli angoli arrotondati */
 }
 
 .card-button-container {
