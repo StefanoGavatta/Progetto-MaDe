@@ -1,6 +1,6 @@
 .card {
-  width: 280px; /* Ridotta rispetto alla dimensione standard di 300px */
-  height: 350px; /* Ridotta rispetto alla dimensione standard di 380px */
+  width: 280px; /* Dimensione ridotta */
+  height: 350px; /* Dimensione ridotta */
   margin: 10px;
   border: 1px solid rgba(0, 0, 0, 0.125);
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -13,7 +13,7 @@
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   display: flex;
   flex-direction: column;
-  padding-left: 12px; /* Mantiene lo stesso spazio a sinistra */
+  padding-left: 18px; /* Aumentato da 12px a 18px per un bordo più spesso */
 }
 
 .card:hover {
@@ -30,13 +30,13 @@
   display: flex;
   justify-content: flex-end; /* Allinea l'immagine a destra */
   overflow: hidden;
-  height: 180px; /* Ridotta proporzionalmente */
+  height: 180px; /* Dimensione ridotta */
   width: 100%;
 }
 
 .card-img-container img {
   object-fit: cover;
-  width: calc(100% - 12px); /* Larghezza ridotta per considerare il padding */
+  width: calc(100% - 18px); /* Larghezza ridotta considerando il padding aumentato */
   margin-right: 0;
 }
 
