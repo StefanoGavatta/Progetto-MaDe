@@ -8,20 +8,36 @@
 
     </div> -->
 </div>
-<app-logo-nome></app-logo-nome>
-<app-image-carousel></app-image-carousel>
+<app-logo-nome
+[logo]="scuoleDettagliate()?.data?.logo ?? ''"
+>
+</app-logo-nome>
+<app-image-carousel>
+</app-image-carousel>
 
 <div class="components-row">
     <app-chi-siamo class="component-item"></app-chi-siamo>
-    <app-info class="component-item"></app-info>
+    <app-info   
+        [numeroTelefono]="scuoleDettagliate()?.data?.school_phones?.[1]?.number ?? ''" 
+        [via]="scuoleDettagliate()?.data?.address ?? ''" 
+        [nome]="scuoleDettagliate()?.data?.responsabile_orientamento ?? ''"  
+        class="component-item">
+    </app-info>
 </div>
 
 <div class="components-row">
     <app-eventi></app-eventi>
 </div>
 
-<app-video></app-video>
+<app-video
+[video]="scuoleDettagliate()?.data?.videos?.[1]?.id ?? ''"
+></app-video>
 
 <div class="components-row">
-<app-contattaci></app-contattaci>
+<app-contattaci
+        [numeroTelefono]="scuoleDettagliate()?.data?.school_phones?.[1]?.number ?? ''" 
+        [email]="scuoleDettagliate()?.data?.email ?? ''" 
+>
+
+</app-contattaci>
 </div>

@@ -8,7 +8,9 @@
             [logo]="scuola.logo?.id || ''"
             [tipo]="getTipoScuola(scuola)"
             [index]="$index"
-            [id]="scuola.id">
+            [id]="scuola.id"
+            routerLink="{{scuola.id}}"
+            >
 
         </app-card>
         }

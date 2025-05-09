@@ -4,11 +4,12 @@ import { PaginaSitoComponent } from './components/pagina-sito/pagina-sito.compon
 import { MapsComponent } from './components/maps/maps.component';
 import { CalendarioComponent } from './components/calendario/calendario.component';
 import { HeroSectionComponent } from './components/hero-section/hero-section.component';
+import { ScuolaSpecificaComponent } from './components/scuola-specifica/scuola-specifica.component';
 
 export const routes: Routes = [
     { path: 'hero', component: HeroSectionComponent },
     { path: 'scuole', component: ScuoleComponent },
-    { path: 'scuola/:id', component: PaginaSitoComponent},
+    { path: 'scuole/:id', component: ScuolaSpecificaComponent},
     { path: 'maps', component: MapsComponent},
     { path: 'calendario', component: CalendarioComponent}
 
