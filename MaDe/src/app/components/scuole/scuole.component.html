@@ -6,7 +6,12 @@
             [name]="scuola.name" 
             [description]="scuola.description || ''" 
             [logo]="scuola.logo?.id || ''"
-            [tipo]="getTipoScuola(scuola)">
+            [tipo]="getTipoScuola(scuola)"
+            [index]="$index"
+            [id]="scuola.id"
+            routerLink="{{scuola.id}}"
+            >
+
         </app-card>
         }
     </div>

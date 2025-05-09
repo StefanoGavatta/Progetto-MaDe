@@ -94,15 +94,15 @@ export class CalendarioComponent {
   }
 
   getMeetingsForDay(day: DateTime): string[] {
+    console.log(day)
     const dayISO = day.toISODate();
-    
     // Se la data non è valida o non ci sono eventi, restituisci array vuoto
     if (!dayISO || !this.meetings()[dayISO]) {
       return [];
     }
   
     // Usa optional chaining e nullish coalescing per sicurezza
-    return this.meetings()[dayISO]?.map(incontro => incontro.dataInizio.split("T")[0]) ?? [];
+    return this.meetings()[dayISO]?.map(incontro => incontro.title) ?? [];
   }
 
 

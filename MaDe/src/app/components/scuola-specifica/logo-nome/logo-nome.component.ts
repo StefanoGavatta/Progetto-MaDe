@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ScuolaService } from '../../../services/scuola.service';
 import { Subscription } from 'rxjs';
@@ -11,8 +11,8 @@ import { Subscription } from 'rxjs';
   styleUrl: './logo-nome.component.css'
 })
 export class LogoNomeComponent implements OnInit, OnDestroy {
-  nome: string = '';
-  logo: string = '';
+  @Input() nome: string = '';
+  @Input() logo: string = '';
   private subscription: Subscription | undefined;
 
   constructor(private scuolaService: ScuolaService) {}
