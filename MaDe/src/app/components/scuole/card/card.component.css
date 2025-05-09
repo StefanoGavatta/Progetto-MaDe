@@ -12,19 +12,20 @@
   border-radius: 0; /* Rimuove gli angoli arrotondati e li rende spigolosi */
   border-top-left-radius: 15px; /* Arrotonda solo l'angolo in alto a sinistra */
   overflow: hidden; /* Evita che il contenuto esca fuori dalla carta */
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
   display: flex;
   flex-direction: column;
-  padding-left: 18px; /* Bordo sinistro spesso */
+  padding-left: 30px; /* Bordo sinistro spesso */
   padding-top: 18px; /* Aggiungo lo stesso bordo alla parte superiore */
-  padding-right: 10px; /* Piccolo padding sul lato destro */
+  padding-right: 20px; /* Piccolo padding sul lato destro */
   flex-grow: 1; /* Permette alla card di crescere in base al contenuto */
   height: 100%; /* Usa l'altezza completa disponibile */
+  will-change: transform; /* Ottimizza le animazioni */
 }
 
 .card:hover {
-  transform: translateY(-5px); /* Solleva leggermente la carta */
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); /* Aggiunge un'ombreggiatura più pronunciata */
+  transform: translateY(-10px); /* Solleva maggiormente la carta */
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2); /* Ombra più grande e intensa */
 }
 
 .card-img-top {

@@ -1,5 +1,11 @@
 
-<div class="card" [style.background-color]="getCardColor()" (click)="onCardClick()" role="button" tabindex="0" (keydown.enter)="onCardClick()">
+<div class="card animate__animated animate__fadeInUp" 
+     [style.background-color]="getCardColor()" 
+     [style.animation-delay]="getAnimationDelay()"
+     (click)="onCardClick()" 
+     role="button" 
+     tabindex="0" 
+     (keydown.enter)="onCardClick()">
   <img src="https://api.retescuolevallagarina.it/assets/{{logo}}" class="card-img-top" alt="{{name}}">
   <div class="card-body">
     <h5 class="card-title">{{name}}</h5>

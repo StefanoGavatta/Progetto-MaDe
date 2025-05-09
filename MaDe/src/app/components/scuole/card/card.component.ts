@@ -34,6 +34,11 @@ export class CardComponent {
     }
   }
   
+  getAnimationDelay(): string {
+    // Aggiunge un ritardo di 0.1s * indice per creare un effetto a cascata
+    return `${this.index * 0.1}s`;
+  }
+  
   onCardClick(): void {
     const scuola = {
       id: this.id,
