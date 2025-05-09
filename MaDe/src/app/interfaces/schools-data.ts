@@ -26,7 +26,7 @@ export interface SchoolsData {
     miur_code: string
     responsabile_orientamento: string
     short_name: string
-    position: string
+    position: Position
     sort: number
     events: [string, Events]
     admins: [string, Admins]
@@ -37,7 +37,10 @@ export interface SchoolsData {
     branch_schools: string[]
     transport_routes: [string, TransportRoutes]
   }
-  
+  export interface Position {
+    coordinates: number[]
+    type: string
+  }
   export interface Events {
     id: string
     title: string
