@@ -76,11 +76,11 @@ export class MapsComponent implements AfterViewInit, OnInit {
     this.directusService.getSchoolsData().subscribe(dati => {
       this.map = L.map('map', {
         center: [45.8895, 11.0344],
-        zoom: 14
+        zoom: 15
       });
   
       const tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 19,
+        maxZoom: 20,
         minZoom: 10,
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
       }).addTo(this.map); // Aggiungiamo subito le tiles alla mappa
@@ -89,6 +89,8 @@ export class MapsComponent implements AfterViewInit, OnInit {
       L.Routing.control({
         waypoints: [L.latLng(45.8895, 11.0344),L.latLng(45.8895, 11.0344)],
         routeWhileDragging: true,
+        fitSelectedRoutes: false, // Questo impedisce lo zoom automatico
+        addWaypoints: false // Opzionale: disabilita l'aggiunta di waypoints tramite click
       }).addTo(this.map);
 
       Marker.prototype.options.icon = this.defaultIcon;
