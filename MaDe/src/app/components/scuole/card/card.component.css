@@ -1,6 +1,6 @@
 .card {
   width: 280px; /* Dimensione ridotta */
-  height: 350px; /* Dimensione ridotta */
+  min-height: 350px; /* Altezza minima invece di fissa */
   margin: 10px;
   border: 1px solid rgba(0, 0, 0, 0.125);
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -16,6 +16,8 @@
   padding-left: 18px; /* Bordo sinistro spesso */
   padding-top: 18px; /* Aggiungo lo stesso bordo alla parte superiore */
   padding-right: 10px; /* Piccolo padding sul lato destro */
+  flex-grow: 1; /* Permette alla card di crescere in base al contenuto */
+  height: 100%; /* Usa l'altezza completa disponibile */
 }
 
 .card:hover {
@@ -46,14 +48,31 @@
 .card-body {
   padding: 10px; /* Ridotto il padding */
   padding-left: 0; /* Rimuove il padding a sinistra */
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1; /* Fa crescere il body per occupare lo spazio disponibile */
 }
 
 .card-title {
   color: #000000;
   font-size: 1.2rem;
-  margin-bottom: 10px;
-  padding-bottom: 10px; /* Aggiunge un po' di spazio sotto il titolo */
-  border-bottom: 1px solid #cccccc; /* Aggiunge la linea grigia divisoria */
+  margin-bottom: 5px; /* Ridotto il margine inferiore */
+}
+
+.divider {
+  height: 1px;
+  background-color: #cccccc;
+  width: 100%;
+  margin: 10px 0;
+}
+
+.card-type {
+  color: #555;
+  font-size: 0.85rem;
+  font-style: italic;
+  margin-bottom: 5px;
+  display: inline-block; /* Fa in modo che lo sfondo copra solo il testo */
+  padding: 0; /* Rimosso il padding */
 }
 
 .card-text {
@@ -64,17 +83,7 @@
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   line-clamp: 3; /* Proprietà standard */
-}
-
-.card-type {
-  color: #555;
-  font-size: 0.85rem;
-  font-style: italic;
-  margin-top: 8px;
-  background-color: #f0f0f0; /* Sfondo grigio chiaro */
-  display: inline-block; /* Fa in modo che lo sfondo copra solo il testo */
-  padding: 3px 6px; /* Padding interno per lo sfondo */
-  border-radius: 0; /* Rimuove gli angoli arrotondati */
+  flex-grow: 1; /* Fa crescere il testo per riempire lo spazio disponibile */
 }
 
 .card-button-container {
@@ -96,10 +105,16 @@
   background-color: #0069d9;
 }
 
-.card-grid app-card {
-  flex: 0 0 calc(33.333% - 20px); /* Larghezza fissa al 33.333% meno il gap */
-  max-width: 300px; /* Mantiene la larghezza massima della carta */
-  min-width: 250px; /* Imposta una larghezza minima */
+.card-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.card-grid .card {
+  height: 100%; /* Assicura che tutte le card nella stessa riga abbiano la stessa altezza */
+  display: flex;
+  flex-direction: column;
 }
 
 
