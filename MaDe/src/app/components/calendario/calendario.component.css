@@ -345,7 +345,7 @@
 
 
   .event-card {
-    max-width: 600px;
+    width: 400px;
     margin: 0 auto;
     background: white;
     border-radius: 12px;
@@ -355,8 +355,9 @@
   }
   
   .event-header {
+    height: 100%;
     padding: 24px;
-    background: linear-gradient(135deg, #6e8efb, #a777e3);
+    background: linear-gradient(135deg, #bcbdc2, #09e22d);
     color: white;
     position: relative;
   }
@@ -459,3 +460,42 @@
   }
   
   /* Funzione per formattare la data (da implementare nel componente) */
+.events-grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+  gap: 20px;
+  padding: 15px;
+  width: 100%;
+}
+
+/* 1 elemento - centrato verticalmente e orizzontalmente */
+.events-grid-container:has(.event-card:first-child:last-child) {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  min-height: calc(100vh - 30px); /* Opzionale: adatta all'altezza della viewport */
+}
+
+/* 2 elementi - centrati nella loro riga */
+.events-grid-container:has(.event-card:first-child:nth-last-child(2)) {
+  grid-template-columns: repeat(2, minmax(0, 500px));
+  justify-content: space-around;
+}
+
+/* 3 elementi - centrati nella loro riga */
+.events-grid-container:has(.event-card:first-child:nth-last-child(3)) {
+  grid-template-columns: repeat(3, minmax(0, 500px));
+
+  justify-content: space-around;
+}
+
+/* 4+ elementi - layout normale */
+.events-grid-container:has(.event-card:nth-child(4)) {
+  grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+  justify-content: space-around;
+}
+
+
+.event-card {
+  height: 100%;
+}

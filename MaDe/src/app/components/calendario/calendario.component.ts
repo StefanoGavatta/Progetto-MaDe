@@ -11,12 +11,13 @@ import { DateTime, Info, Interval } from 'luxon';
 import { DirectusService } from '../../services/directus.service';
 import { Scuola } from '../../interfaces/scuola';
 import { Dati } from '../../interfaces/meetings.interface';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
   selector: 'calendario',
   templateUrl: './calendario.component.html',
   styleUrls: ['./calendario.component.css'],
-  imports: [CommonModule],
+  imports: [CommonModule,RouterLink,RouterLinkActive],
   standalone: true,
 })
 export class CalendarioComponent {
@@ -117,7 +118,7 @@ export class CalendarioComponent {
             dataFine: info.end_date,
             dataInizio: info.start_date,
             title: info.title,
-            icona: scuolaDati?.data.logo ?? "error",
+            icona: `https://api.retescuolevallagarina.it/assets/${scuolaDati?.data.logo  ?? "error"}` ,
             idScuola : info.school,
             scuola: scuolaDati?.data.name ?? "No name",
             luogo : info.location,

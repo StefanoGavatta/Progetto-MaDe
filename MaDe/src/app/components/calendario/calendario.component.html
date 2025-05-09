@@ -62,7 +62,7 @@
             <div class="day-number">{{ dayOfMonth.day }}</div>
             <div class="day-events">
               @for (meeting of getMeetingsForDay(dayOfMonth); track $index) {
-                <div class="event-item" *ngIf="$index < 3">{{ meeting }}</div>
+                <div class="event-item">{{ meeting }}</div>
               }
               @if (getMeetingsForDay(dayOfMonth).length > 2) {
                 <div class="event-more">+{{ getMeetingsForDay(dayOfMonth).length - 2 }} altri</div>
@@ -80,21 +80,15 @@
   @if (bho) {
     <div class="date-overlay">
       <div class="overlay-backdrop" (click)="closeOverlay()"></div>
+      <div class="events-grid-container">
       @for (event of giornoSelezionato(); track $index) {
         <div class="event-card">
           <div class="event-header">
-            <div class="event-header-top">
+            <div class="event-header-top"  routerLink="/scuola/{{event.idScuola}}">
               <img src="{{event.icona}}" alt="Event logo" class="event-logo">
-              <button class="close-btn" (click)="closeOverlay()">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <line x1="18" y1="6" x2="6" y2="18"></line>
-                  <line x1="6" y1="6" x2="18" y2="18"></line>
-                </svg>
-              </button>
             </div>
-            
             <h1 class="event-title">{{event.title}}</h1>
-            
+            <h4>{{event.scuola}}</h4> 
             <div class="event-meta">
               <div class="meta-item">
                 <svg class="meta-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -103,7 +97,7 @@
                   <line x1="8" y1="2" x2="8" y2="6"></line>
                   <line x1="3" y1="10" x2="21" y2="10"></line>
                 </svg>
-                <span>{{event.dataInizio.split("T")[1]}} --> {{event.dataFine.split("T")[1]}}</span>
+                <span>{{event.dataInizio.split("T")[1].split(":")[0]}}:{{event.dataInizio.split("T")[1].split(":")[1]}} --> {{event.dataFine.split("T")[1].split(":")[0]}}:{{event.dataFine.split("T")[1].split(":")[1]}}</span>
               </div>
               
               <div class="meta-item">
@@ -111,18 +105,14 @@
                   <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
                   <circle cx="12" cy="10" r="3"></circle>
                 </svg>
-                <span>{{event.luogo}}</span>
+                <span>{{event.luogo}}</span>   
               </div>
-            </div>
-            <div class="event-body">
-              <p class="event-description"  innerHtml="{{event.descrizione}}"></p>
-              
-
+              <h6  innerHTML="{{event.descrizione}}"></h6>
             </div>
           </div>
-          
         </div>
     }
+      </div>
     </div>
   }
 
