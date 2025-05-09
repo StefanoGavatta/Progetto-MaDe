@@ -13,8 +13,8 @@
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   display: flex;
   flex-direction: column;
-  padding-left: 26px; /* Bordo sinistro più spesso (aumentato da 18px a 26px) */
-  padding-top: 26px; /* Bordo superiore più spesso (aumentato da 18px a 26px) */
+  padding-left: 18px; /* Bordo sinistro spesso */
+  padding-top: 18px; /* Aggiungo lo stesso bordo alla parte superiore */
   padding-right: 10px; /* Piccolo padding sul lato destro */
 }
 
@@ -32,14 +32,14 @@
   display: flex;
   justify-content: flex-end; /* Allinea l'immagine a destra */
   overflow: hidden;
-  height: 154px; /* Ridotta per compensare il padding superiore maggiore */
+  height: 162px; /* Ridotta per compensare il padding superiore */
   width: 100%;
-  margin-top: -26px; /* Compenso il padding superiore aumentato */
+  margin-top: -18px; /* Compenso il padding superiore per mantenere l'allineamento */
 }
 
 .card-img-container img {
   object-fit: cover;
-  width: calc(100% - 26px); /* Larghezza ridotta considerando il padding sinistro aumentato */
+  width: calc(100% - 18px); /* Larghezza ridotta considerando il padding */
   margin-right: 0;
 }
 
