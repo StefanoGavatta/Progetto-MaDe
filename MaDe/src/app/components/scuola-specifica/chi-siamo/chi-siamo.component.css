@@ -23,8 +23,10 @@ h2 {
 }
 
 h3 {
-  color: #555;
+  color: #000000; /* Cambiato da #555 a nero */
   margin-bottom: 15px;
+  font-size: 2.2rem; /* Aggiunto per rendere il titolo più grande */
+  font-weight: bold; /* Opzionale: rende il testo in grassetto */
 }
 
 p {
@@ -44,7 +46,7 @@ p {
 /* Stile comune per le card */
 .card {
   width: 49.5%;
-  min-height: 250px;
+  min-height: 450px; /* Aumentato da 250px per rendere le card più alte */
   border: 1px solid rgba(0, 0, 0, 0.125);
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   position: relative;
@@ -85,7 +87,7 @@ p {
 }
 
 .card-title {
-  font-size: 1.2rem;
+  font-size: 1.4rem; /* Aumentato da 1.2rem per renderlo più grande */
   margin-bottom: 5px;
   color: #000000; /* Cambiato da #FFFFFF a #000000 per migliorare leggibilità su sfondo chiaro */
 }
@@ -98,7 +100,7 @@ p {
 }
 
 .card-text {
-  font-size: 0.9rem;
+  font-size: 1.1rem; /* Aumentato da 0.9rem per renderlo più leggibile */
   line-height: 1.6;
   flex-grow: 1;
 }

@@ -1,0 +1,11 @@
+.indirizzi-container {
+  padding: 20px; /* Aumentato da 800px per dare più spazio alle card */
+  margin: 0 auto;
+}
+
+h3 {
+  color: #000000; /* Cambiato da #555 a nero */
+  margin-bottom: 15px;
+  font-size: 2.2rem; /* Aggiunto per rendere il titolo più grande */
+  font-weight: bold; /* Opzionale: rende il testo in grassetto */
+}
