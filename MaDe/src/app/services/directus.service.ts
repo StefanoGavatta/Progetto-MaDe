@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { Scuola } from '../interfaces/scuola';
 import { ScuolaDettagliata } from '../interfaces/scuola-dettagliata';
 import { EventsData } from '../interfaces/events-data';
+import { Video } from '../interfaces/scuolaMoreInformation.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -31,7 +32,21 @@ getSchoolData(id: string): Observable<Scuola | null> {
  getEventsData(): Observable<EventsData | null> {
   return this.http.get<EventsData>(`${this.apiUrl}/items/events`);
  }
-  constructor(private http: HttpClient) { }
+
+/*  getVideoUrl(): Observable
+
+ */
+ getVideoUrl(id: string): Observable<Video | null> {
+  console.log("aaaaaaaaaaaaaaa")
+  console.log(`${this.apiUrl}/items/videos/${id}`)
+   return this.http.get<Video>(`${this.apiUrl}/items/videos/${id}`);
+ }
+
+
+
+constructor(private http: HttpClient) { }
+
+
 
 }
 

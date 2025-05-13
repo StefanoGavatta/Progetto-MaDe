@@ -35,7 +35,7 @@
 
 <div class="components-row">
 <app-contattaci
-        [numeroTelefono]="scuoleDettagliate()?.data?.school_phones?.[1]?.number ?? ''" 
+        [numeroTelefono]="scuoleDettagliate()?.data?.school_phones?.[0] ?? ''" 
         [email]="scuoleDettagliate()?.data?.email ?? ''" 
 >
 
