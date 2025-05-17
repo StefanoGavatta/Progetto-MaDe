@@ -3,10 +3,8 @@ import * as L from 'leaflet';
 import { Icon, icon, Marker } from "leaflet";
 import "leaflet-routing-machine/dist/leaflet-routing-machine.css";
 import "leaflet-routing-machine";
-import { DirectusService } from '../../services/directus.service';
-import { SchoolsData } from '../../interfaces/schools-data';
-import { range } from 'rxjs';
-
+import { DirectusService } from '../../../services/directus.service';
+import { SchoolsData } from '../../../interfaces/schools-data';
 
 interface Scuola {
   lat: number;
@@ -43,9 +41,11 @@ const customMarker = new L.Icon({
   selector: 'app-maps',
   imports: [],
   templateUrl: './maps.component.html',
-  styleUrl: './maps.component.css'
+  styleUrl: './maps.component.css',
+
 })
 export class MapsComponent implements AfterViewInit, OnInit {
+
   posizioneDa!: L.LatLng;
   posizioneA!: L.LatLng;
   map: any;
@@ -165,3 +165,5 @@ export class MapsComponent implements AfterViewInit, OnInit {
     });
   }
 }
+
+
