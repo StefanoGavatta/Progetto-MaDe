@@ -30,12 +30,7 @@ const shadowUrl = 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png
 L.Marker.prototype.options.icon = iconDefault; */
 
 
-const customMarker = new L.Icon({
-  iconUrl: "https://unpkg.com/leaflet@1.5.1/dist/images/marker-icon.png",
-  iconSize: [25, 41],
-  iconAnchor: [10, 41],
-  popupAnchor: [2, -40]
-});
+
 
 @Component({
   selector: 'app-maps',
@@ -50,19 +45,24 @@ export class MapsComponent implements AfterViewInit, OnInit {
   posizioneA!: L.LatLng;
   map: any;
   scuolaData: WritableSignal<SchoolsData | null> = signal(null);
-
+ defaultIcon = new L.Icon({
+  iconUrl: "/mappa_icone.png",
+  iconSize: [25, 41],
+  iconAnchor: [10, 41],
+  popupAnchor: [2, -40]
+});
 
   private scuole : Scuola[] = [];
 
     // Aggiungi qui le coordinate delle altre scuole
 
-  private defaultIcon: Icon = icon({
+/*   private defaultIcon: Icon = icon({
     iconUrl: "https://unpkg.com/leaflet@1.5.1/dist/images/marker-icon.png"
-  });
+  }); */
 
 
   private defaultIconPuntatori: Icon = icon({
-    iconUrl: "/download.png",
+    iconUrl: "/utente_icona.png",
     iconSize: [32, 32], // Imposta la larghezza e l'altezza desiderate (es. 32x32 pixel)
     iconAnchor: [16, 32], // Imposta il punto dell'icona che corrisponde alla posizione (es. il centro inferiore)
     popupAnchor: [0, -32]  // Imposta dove si "aggancia" la popup rispetto all'icona (es. sopra il centro)
