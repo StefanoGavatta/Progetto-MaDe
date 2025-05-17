@@ -1,45 +1,50 @@
-html, body {
-  width: 100vw;
-  height: 100vh;
-  margin: 0;
-  padding: 0;
-  overflow-x: hidden; /* Nasconde la barra orizzontale */
-}
-
-
-.sfondo-animato {
-  height: 120%;
-  background-image: url('/sfondo_Calendario.png');
-  background-size: cover;
-  background-position: top; /* Sposta lo sfondo più in basso */
-  background-repeat: no-repeat;
-}
-
-.animazione {
-  position: relative;
-  width: 100%;
-  height: 80%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden; /* Nasconde tutto ciò che esce */
-}
-
-
-.img-centrale {
-  position: relative;
-  z-index: 1;
-  width: 40%;
-  height: 30%;
-  object-fit: contain;
-}
-
-.center-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 80%;
-  margin: 0 auto;
-  width: 80%;
-}
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0; /* Colore di fallback */
+    }
+    
+    .background-image {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url(/sfondo_Calendario.png);
+      background-size: cover;
+      background-position: center;
+      z-index: -1; /* Manda lo sfondo dietro a tutto */
+    }
+    
+    .content-container {
+      position: relative;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    
+    .calendar-header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    
+    .calendar-main-image {
+      max-width: 100%;
+      height: auto;
+    }
+    
+    .calendar-view {
+      background-color: rgba(255, 255, 255, 0.85);
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    .calendar-title {
+      color: #090992;
+      text-decoration: underline;
+      margin-bottom: 20px;
+      text-align: center;
+      font-size: 24px;
+    }
