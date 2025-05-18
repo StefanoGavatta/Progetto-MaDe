@@ -20,12 +20,11 @@ import { trigger,state,style, transition, animate } from '@angular/animations';
 export class PaginaCalendarioComponent{
   protected menuState: 'open' | 'closed' = 'closed'
 
-  ngOnInit() {
-    setTimeout(() => {
-      this.menuState = 'open';
-    });
-  }
-  
+
+
+  constructor() { }
+
+
 }
 bootstrapApplication(PaginaCalendarioComponent,{
   providers:[
