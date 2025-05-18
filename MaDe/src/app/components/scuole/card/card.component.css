@@ -1,7 +1,5 @@
-
-
 .card {
-  width: 280px; /* Dimensione ridotta */
+  width: 295px; /* Dimensione ridotta */
   min-height: 350px; /* Altezza minima invece di fissa */
   margin: 10px;
   border: 1px solid rgba(0, 0, 0, 0.125);
@@ -17,7 +15,7 @@
   flex-direction: column;
   padding-left: 30px; /* Bordo sinistro spesso */
   padding-top: 18px; /* Aggiungo lo stesso bordo alla parte superiore */
-  padding-right: 20px; /* Piccolo padding sul lato destro */
+  padding-right: 30px; /* Piccolo padding sul lato destro */
   flex-grow: 1; /* Permette alla card di crescere in base al contenuto */
   height: 100%; /* Usa l'altezza completa disponibile */
   will-change: transform; /* Ottimizza le animazioni */
@@ -29,23 +27,27 @@
 }
 
 .card-img-top {
-  height: 180px; /* Altezza standard per l'immagine */
-  object-fit: cover; /* Mantiene le proporzioni dell'immagine */
+  height: 250px; /* Immagine più grande */
+  width: 250px; /* Mantengo la proporzione quadrata */
+  object-fit: cover; /* Mantiene le proporzioni dell'immagine ritagliandola se necessario */
+  border-radius: 5px 0 0 5px; /* Arrotonda solo gli angoli sinistri */
 }
 
 .card-img-container {
   display: flex;
-  justify-content: flex-end; /* Allinea l'immagine a destra */
+  justify-content: flex-start; /* Allinea l'immagine a destra */
   overflow: hidden;
-  height: 162px; /* Ridotta per compensare il padding superiore */
+  height: 200px; /* Altezza aumentata */
   width: 100%;
-  margin-top: -18px; /* Compenso il padding superiore per mantenere l'allineamento */
+  margin-top: -18px; /* Mantengo lo stesso offset */
+  margin-bottom: 10px; /* Aggiungo un piccolo margine inferiore */
+  padding-right: 0; /* Rimuove il padding a destra per attaccarla al bordo */
 }
 
 .card-img-container img {
   object-fit: cover;
-  width: calc(100% - 18px); /* Larghezza ridotta considerando il padding */
-  margin-right: 0;
+  width: 200px; /* Immagine più grande */
+  height: 200px; /* Immagine più grande */
 }
 
 .card-body {

@@ -27,11 +27,17 @@ export class CardComponent {
     const colonna = this.index % 3;
     
     switch(colonna) {
-      case 0: return '#1C7C54'; // Prima colonna - verde scuro (come richiesto)
+      case 0: return '#083D77'; // Prima colonna - blu scuro (modificato da verde)
       case 1: return '#FFC84D'; // Seconda colonna - giallo/ambra (come richiesto)
       case 2: return '#F993AE'; // Terza colonna - rosa (come richiesto)
       default: return '#FFFFFF'; // Bianco come fallback
     }
+  }
+  
+  getTextColor(): string {
+    // Imposta il testo bianco solo per le carte blu (ex verdi)
+    const colonna = this.index % 3;
+    return colonna === 0 ? '#FFFFFF' : '#000000';
   }
   
   getAnimationDelay(): string {

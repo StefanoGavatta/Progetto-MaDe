@@ -1,6 +1,6 @@
-
 <div class="card animate__animated animate__fadeInUp" 
      [style.background-color]="getCardColor()" 
+     [style.color]="getTextColor()" 
      [style.animation-delay]="getAnimationDelay()"
      (click)="onCardClick()" 
      role="button" 
@@ -8,9 +8,9 @@
      (keydown.enter)="onCardClick()">
   <img src="https://api.retescuolevallagarina.it/assets/{{logo}}" class="card-img-top" alt="{{name}}">
   <div class="card-body">
-    <h5 class="card-title">{{name}}</h5>
-    <p class="card-type">Tipo di scuola: {{tipo}}</p>
+    <h5 class="card-title" [style.color]="getTextColor()">{{name}}</h5>
+    <p class="card-type" [style.color]="getTextColor()">Tipo di scuola: {{tipo}}</p>
     <div class="divider"></div>
-    <p class="card-text">{{description}}</p>
+    <p class="card-text" [style.color]="getTextColor()">{{description}}</p>
   </div>
 </div>

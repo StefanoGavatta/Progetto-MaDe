@@ -1,4 +1,9 @@
-<div class="logo-nome-container">
-  <img *ngIf="logo" [src]="'https://api.retescuolevallagarina.it/assets/' + logo" alt="{{nome}}" class="logo">
-  <h2 *ngIf="nome">{{nome}}</h2>
+<div class="logo-nome-card animate__animated animate__backInRight">
+  <div class="nome-container">
+    <h2 *ngIf="nome">{{nome}}</h2>
+  </div>
+  <div class="logo-container">
+    <img *ngIf="logo" [src]="'https://api.retescuolevallagarina.it/assets/' + logo" alt="{{nome}}" class="logo">
+  </div>
 </div>
+

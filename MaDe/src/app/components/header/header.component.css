@@ -16,3 +16,48 @@
   padding-left: 10px;
   padding-right: 10px;
 }
+
+/* Stili per le icone del menu */
+.nav-icon {
+  height: 50px;
+  width: auto;
+  vertical-align: middle;
+}
+
+/* Media queries per rendere le icone responsive */
+@media (max-width: 991.98px) {
+  .navbar-nav {
+    margin-right: 0 !important;
+    flex-direction: row !important;
+    justify-content: space-around;
+    width: 100%;
+  }
+  
+  .nav-icon {
+    height: 40px;
+  }
+  
+  .gap-5 {
+    gap: 1rem !important;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .nav-icon {
+    height: 35px;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .nav-icon {
+    height: 30px;
+  }
+  
+  .navbar-brand strong {
+    font-size: 0.9rem;
+  }
+  
+  .gap-5 {
+    gap: 0.5rem !important;
+  }
+}

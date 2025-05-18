@@ -9,8 +9,8 @@
   <div class="carousel-track">
     <div class="carousel-slides" [style.transform]="slideTransform">
       @for (image of images; track $index) {
-        <div class="carousel-slide">
-          <img [src]="image" alt="Immagine carosello {{$index + 1}}">
+        <div class="carousel-slide" [class.animate__animated]="isInitialLoad" [class.animate__fadeInUp]="isInitialLoad">
+          <img [src]="image" [alt]="'Immagine carosello ' + ($index + 1)" loading="lazy">
         </div>
       }
     </div>

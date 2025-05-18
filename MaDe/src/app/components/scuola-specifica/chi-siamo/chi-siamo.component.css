@@ -1,6 +1,6 @@
 .chi-siamo-container {
   padding: 20px;
-  max-width: 800px;
+  max-width: 950px; /* Aumentato da 800px per dare più spazio alle card */
   margin: 0 auto;
 }
 
@@ -23,11 +23,100 @@ h2 {
 }
 
 h3 {
-  color: #555;
+  color: #000000; /* Cambiato da #555 a nero */
   margin-bottom: 15px;
+  font-size: 2.2rem; /* Aggiunto per rendere il titolo più grande */
+  font-weight: bold; /* Opzionale: rende il testo in grassetto */
 }
 
 p {
   line-height: 1.6;
   margin-bottom: 15px;
+}
+
+/* Layout per le card affiancate */
+.cards-container {
+  display: flex;
+  justify-content: space-between;
+  margin: 30px 0;
+  gap: 10px; /* Ridotto ulteriormente da 15px per aumentare lo spazio disponibile */
+  width: 100%; /* Assicura che occupi tutto lo spazio disponibile */
+}
+
+/* Stile comune per le card */
+.card {
+  width: 49.5%;
+  min-height: 450px; /* Aumentato da 250px per rendere le card più alte */
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  padding: 18px 30px;
+  flex-grow: 1;
+  will-change: transform;
+  background-color: #FFC84D; /* Cambiato da #083D77 a #FFC84D (giallo) */
+  color: #000000; /* Cambiato da #FFFFFF a #000000 per migliorare leggibilità su sfondo chiaro */
+}
+
+/* Card sinistra con angolo arrotondato a sinistra */
+.card-left {
+  border-radius: 0;
+  border-top-left-radius: 15px;
+}
+
+/* Card destra con angolo arrotondato a destra (specchiata) */
+.card-right {
+  border-radius: 0;
+  border-top-right-radius: 15px;
+}
+
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+
+.card-body {
+  padding: 10px;
+  padding-left: 0;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.card-title {
+  font-size: 1.4rem; /* Aumentato da 1.2rem per renderlo più grande */
+  margin-bottom: 5px;
+  color: #000000; /* Cambiato da #FFFFFF a #000000 per migliorare leggibilità su sfondo chiaro */
+}
+
+.divider {
+  height: 1px;
+  background-color: #cccccc;
+  width: 100%;
+  margin: 10px 0;
+}
+
+.card-text {
+  font-size: 1.1rem; /* Aumentato da 0.9rem per renderlo più leggibile */
+  line-height: 1.6;
+  flex-grow: 1;
+}
+
+.additional-info {
+  margin-top: 20px;
+}
+
+/* Responsive per dispositivi mobili */
+@media (max-width: 768px) {
+  .cards-container {
+    flex-direction: column;
+  }
+  
+  .card {
+    width: 100%;
+    margin-bottom: 20px;
+  }
 }

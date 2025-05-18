@@ -7,7 +7,7 @@ import { HeroSectionComponent } from './components/hero-section/hero-section.com
 import { ScuolaSpecificaComponent } from './components/scuola-specifica/scuola-specifica.component';
 
 export const routes: Routes = [
-    { path: '', component: HeroSectionComponent },
+    { path: 'hero', component: HeroSectionComponent },
     { path: 'scuole', component: ScuoleComponent },
     { path: 'scuole/:id', component: ScuolaSpecificaComponent},
     { path: 'maps', component: MapsComponent},

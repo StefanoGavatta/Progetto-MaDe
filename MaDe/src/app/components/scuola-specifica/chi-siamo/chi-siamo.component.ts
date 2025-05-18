@@ -13,12 +13,18 @@ import { Subscription } from 'rxjs';
 export class ChiSiamoComponent implements OnInit, OnDestroy {
   private subscription: Subscription | undefined;
 
+  // Proprietà per le card
+  leftCardTitle: string = 'La Nostra Missione';
+  leftCardDescription: string = 'La nostra missione è fornire un\'istruzione di qualità che prepari gli studenti ad affrontare le sfide del futuro.';
+  
+  rightCardTitle: string = 'I Nostri Valori';
+  rightCardDescription: string = 'Ci impegniamo a promuovere l\'eccellenza, l\'innovazione e la responsabilità in ogni aspetto del nostro lavoro.';
+
   constructor(private scuolaService: ScuolaService) {}
 
   ngOnInit(): void {
-    // Manteniamo la sottoscrizione per possibili usi futuri
     this.subscription = this.scuolaService.scuolaSelezionata$.subscribe(scuola => {
-      // In futuro potremmo usare altri dati della scuola se necessario
+      // In futuro potremmo usare i dati della scuola per personalizzare le card
     });
   }
 
