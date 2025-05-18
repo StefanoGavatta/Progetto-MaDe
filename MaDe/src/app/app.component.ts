@@ -10,12 +10,13 @@ import { HeroSection2Component } from './components/hero-section-2/hero-section-
 
 import { ScuoleComponent } from './components/scuole/scuole.component';
 import { ScuolaSpecificaComponent } from './components/scuola-specifica/scuola-specifica.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
 
-  imports: [RouterOutlet, ScuolaSpecificaComponent,CalendarioComponent,MapsComponent,PaginaSitoComponent,  HeaderComponent, HeroSectionComponent, HeroSection2Component, ScuoleComponent, ScuolaSpecificaComponent],
+  imports: [RouterOutlet, ScuolaSpecificaComponent,CalendarioComponent,MapsComponent,PaginaSitoComponent,  HeaderComponent, HeroSectionComponent, HeroSection2Component, ScuoleComponent, ScuolaSpecificaComponent,FooterComponent ],
 
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'

@@ -14,9 +14,10 @@ import { SchoolsData } from '../../interfaces/schools-data';
 import { ActivatedRoute } from '@angular/router';
 import { Scuola } from '../../interfaces/scuola';
 import { IndirizziComponent } from './indirizzi/indirizzi.component';
+import { OpenDayComponent } from './open-day/open-day.component';
 @Component({
   selector: 'app-scuola-specifica',
-  imports: [ImageCarouselComponent,IndirizziComponent,ChiSiamoComponent, InfoComponent, EventiComponent, VideoComponent, ContattaciComponent, LogoNomeComponent],
+  imports: [ImageCarouselComponent,IndirizziComponent,ChiSiamoComponent, InfoComponent, EventiComponent, VideoComponent, ContattaciComponent, LogoNomeComponent, OpenDayComponent],
   templateUrl: './scuola-specifica.component.html',
   styleUrl: './scuola-specifica.component.css'
 })

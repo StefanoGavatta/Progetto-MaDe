@@ -1,14 +1,16 @@
+/* Stili copiati da indirizzi.component.css per mantenere la stessa griglia e aspetto */
 .indirizzi-container {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 40px;
 }
 
 h3 {
-  color: #000000; /* Cambiato da #555 a nero */
+  color: #000000;
   margin-bottom: 15px;
-  font-size: 2.2rem; /* Aggiunto per rendere il titolo più grande */
-  font-weight: bold; /* Opzionale: rende il testo in grassetto */
+  font-size: 2.2rem;
+  font-weight: bold;
 }
 
 .indirizzi-grid {
@@ -37,7 +39,6 @@ h3 {
 }
 
 .indirizzo-box {
-  /* background: #f7f7f7; */
   border-radius: 12px;
   padding: 18px 20px;
   min-height: 120px;
@@ -48,7 +49,6 @@ h3 {
   max-width: 500px;
   width: 100%;
   margin: 0 auto;
-  /* box-shadow: 0 2px 8px rgba(0,0,0,0.07); */
   opacity: 0;
   transform: translateY(20px);
   transition: opacity 0.8s ease, transform 0.8s ease;
@@ -79,4 +79,39 @@ h3 {
   font-size: 1rem;
   text-align: left;
   word-break: break-word;
+}
+
+.mano-img {
+  width: 90px;
+  height: auto;
+  margin: 0 18px;
+  flex-shrink: 0;
+}
+
+.mano-sx {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+}
+.mano-dx {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: flex-start;
+}
+
+.testo-indirizzo {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (max-width: 700px) {
+  .mano-sx, .mano-dx {
+    flex-direction: column !important;
+    align-items: center;
+  }
+  .mano-img {
+    margin: 0 0 10px 0;
+    width: 70px;
+  }
 }

@@ -1,12 +1,12 @@
 import { Component, AfterViewInit, Renderer2, ElementRef } from '@angular/core';
 
 @Component({
-  selector: 'app-indirizzi',
+  selector: 'app-open-day',
   imports: [],
-  templateUrl: './indirizzi.component.html',
-  styleUrl: './indirizzi.component.css'
+  templateUrl: './open-day.component.html',
+  styleUrl: './open-day.component.css'
 })
-export class IndirizziComponent implements AfterViewInit {
+export class OpenDayComponent implements AfterViewInit {
   constructor(private renderer: Renderer2, private el: ElementRef) {}
 
   ngAfterViewInit() {
