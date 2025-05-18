@@ -1,0 +1,81 @@
+/* Stili copiati da indirizzi.component.css per mantenere la stessa griglia e aspetto */
+.indirizzi-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h3 {
+  color: #000000;
+  margin-bottom: 15px;
+  font-size: 2.2rem;
+  font-weight: bold;
+}
+
+.indirizzi-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: repeat(3, auto);
+  gap: 24px 32px;
+  margin-top: 24px;
+  justify-content: center;
+}
+
+@media (max-width: 700px) {
+  .indirizzi-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .indirizzo-box {
+    max-width: 100%;
+    width: 100%;
+    display: block;
+  }
+  .indirizzo-box.empty {
+    display: none;
+  }
+}
+
+.indirizzo-box {
+  border-radius: 12px;
+  padding: 18px 20px;
+  min-height: 120px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  max-width: 500px;
+  width: 100%;
+  margin: 0 auto;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.indirizzo-box.visible {
+  opacity: 1;
+  transform: translateY(0);
+  animation: none;
+}
+
+.indirizzo-box.empty {
+  background: transparent;
+  box-shadow: none;
+}
+
+.indirizzo-box h4 {
+  margin: 0 0 8px 0;
+  font-size: 1.1rem;
+  color: #2a2a2a;
+  font-weight: 600;
+  text-align: left;
+}
+
+.indirizzo-box p {
+  margin: 0;
+  color: #444;
+  font-size: 1rem;
+  text-align: left;
+  word-break: break-word;
+}
