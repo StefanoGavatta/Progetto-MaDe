@@ -3,6 +3,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 40px;
 }
 
 h3 {
@@ -78,4 +79,39 @@ h3 {
   font-size: 1rem;
   text-align: left;
   word-break: break-word;
+}
+
+.mano-img {
+  width: 90px;
+  height: auto;
+  margin: 0 18px;
+  flex-shrink: 0;
+}
+
+.mano-sx {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+}
+.mano-dx {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: flex-start;
+}
+
+.testo-indirizzo {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (max-width: 700px) {
+  .mano-sx, .mano-dx {
+    flex-direction: column !important;
+    align-items: center;
+  }
+  .mano-img {
+    margin: 0 0 10px 0;
+    width: 70px;
+  }
 }
