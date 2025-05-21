@@ -1,13 +1,80 @@
+/* Definizione delle animazioni di fade-in */
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+@keyframes slideFromTop {
+    0% { 
+        opacity: 0; 
+        transform: translateY(-50px);
+    }
+    100% { 
+        opacity: 1; 
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideFromBottom {
+    0% { 
+        opacity: 0; 
+        transform: translateY(50px);
+    }
+    100% { 
+        opacity: 1; 
+        transform: translateY(0);
+    }
+}
+
+@keyframes scaleIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
 #sfondo {
-    background-image: url('https://esempio.com/immagine.jpg'); /* Sostituisci con l'URL della tua immagine */
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
+    position: relative;
     height: 100vh; /* Occupa l'altezza completa della viewport */
     width: 100%; /* Occupa la larghezza completa */
     margin: 0;
     padding: 0;
-    position: relative;
+    overflow: hidden; /* Impedisce che le immagini fuoriescano dal contenitore */
+    animation: fadeIn 1.5s ease-out forwards;
+}
+
+#sfondo::before, 
+#sfondo::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    opacity: 0; /* Inizia con opacità 0 per l'animazione */
+}
+
+#sfondo::before {
+    background-image: url('/prendi_verde.png');
+    z-index: 1;
+    background-size: contain; /* Modificato per mantenere le proporzioni dell'immagine */
+    background-position: top center; /* Posiziona l'immagine in alto al centro */
+    animation: slideFromTop 1.2s ease-out 0.3s forwards; /* Animazione con ritardo di 0.3s */
+}
+
+#sfondo::after {
+    background-image: url('/futuro_rosa.png');
+    z-index: 2;
+    background-size: contain; /* Modificato per mantenere le proporzioni dell'immagine */
+    background-position: bottom center; /* Posiziona l'immagine in basso al centro */
+    animation: slideFromBottom 1.2s ease-out 0.6s forwards; /* Animazione con ritardo di 0.6s */
 }
 
 /* Assicurati che non ci siano margini esterni che interferiscano */
@@ -15,6 +82,19 @@
     display: block;
     margin: 0;
     padding: 0;
+}
+
+.content-container {
+    position: relative;
+    z-index: 3;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    opacity: 0; /* Inizia con opacità 0 */
+    animation: fadeIn 1s ease-out 1s forwards; /* Appare dopo le immagini */
 }
 
 /* Stili per le card circolari */
@@ -67,4 +147,88 @@
 .card i {
     font-size: 2.5rem;
     margin-bottom: 15px;
+}
+
+/* Classi per animare elementi interni */
+.fade-in-element {
+    opacity: 0;
+    animation: fadeIn 1s ease-out forwards;
+}
+
+.fade-in-delay-1 {
+    animation-delay: 1.2s;
+}
+
+.fade-in-delay-2 {
+    animation-delay: 1.5s;
+}
+
+.fade-in-delay-3 {
+    animation-delay: 1.8s;
+}
+
+/* Animazione per titoli o testi importanti */
+.title-animation {
+    opacity: 0;
+    animation: slideFromTop 1s ease-out 1.2s forwards;
+}
+
+/* Animazione per pulsanti o call-to-action */
+.button-animation {
+    opacity: 0;
+    transform: scale(0.8);
+    animation: scaleIn 0.8s ease-out 1.5s forwards;
+}
+
+/* Stili per i nuovi elementi dimostrativi */
+.content-container h1 {
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: #fff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.content-container p {
+    font-size: 1.5rem;
+    color: #fff;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+    margin-bottom: 2rem;
+    text-align: center;
+    max-width: 80%;
+}
+
+.content-container button {
+    padding: 12px 30px;
+    font-size: 1.2rem;
+    background-color: #3a77ff;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.content-container button:hover {
+    background-color: #2855b9;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Responsive design per schermi piccoli */
+@media (max-width: 768px) {
+    .content-container h1 {
+        font-size: 2.5rem;
+    }
+    
+    .content-container p {
+        font-size: 1.2rem;
+    }
+    
+    .content-container button {
+        padding: 10px 25px;
+        font-size: 1rem;
+    }
 }
