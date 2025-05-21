@@ -37,6 +37,18 @@
     }
 }
 
+/* Animazione per le icone */
+@keyframes iconScaleIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
 #sfondo {
     position: relative;
     height: 100vh; /* Occupa l'altezza completa della viewport */
@@ -219,6 +231,143 @@
     background-color: #2855b9;
     transform: translateY(-3px);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Stili per la sezione delle icone */
+.icons-section {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 80px 0;
+    margin-top: 120px; /* Aumentiamo ulteriormente il margine superiore per abbassare le icone */
+    position: relative;
+    z-index: 10;
+}
+
+.icons-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 150px; /* Aumentiamo significativamente lo spazio tra le icone */
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 0 30px; /* Aumentiamo il padding sui lati per dispositivi mobili */
+}
+
+.icon-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    animation: iconScaleIn 0.6s ease-in-out forwards;
+    cursor: pointer; /* Indica che l'elemento è cliccabile */
+    transition: all 0.3s ease;
+    padding: 15px;
+    border-radius: 15px;
+}
+
+.icon-item img {
+    width: 180px;
+    height: 180px;
+    object-fit: contain;
+    margin-bottom: 20px;
+    transition: transform 0.3s ease;
+}
+
+.icon-item h3 {
+    margin-top: 15px;
+    font-size: 28px;
+    color: #333;
+    font-weight: bold;
+}
+
+/* Effetto hover sulle icone */
+.icon-item:hover {
+    background-color: rgba(244, 244, 244, 0.7);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.icon-item:hover img {
+    transform: scale(1.15);
+    filter: drop-shadow(0 10px 15px rgba(0,0,0,0.15));
+}
+
+/* Responsive per diversi dispositivi */
+@media (max-width: 1600px) {
+    .icons-container {
+        gap: 120px;
+    }
+}
+
+@media (max-width: 1400px) {
+    .icons-container {
+        gap: 100px;
+    }
+}
+
+@media (max-width: 1200px) {
+    .icons-container {
+        gap: 80px;
+    }
+    
+    .icon-item img {
+        width: 150px;
+        height: 150px;
+    }
+    
+    .icon-item h3 {
+        font-size: 24px;
+    }
+}
+
+@media (max-width: 992px) {
+    .icons-section {
+        margin-top: 60px;
+        padding: 40px 0;
+    }
+    
+    .icons-container {
+        gap: 60px;
+    }
+    
+    .icon-item img {
+        width: 130px;
+        height: 130px;
+    }
+}
+
+@media (max-width: 768px) {
+    .icons-container {
+        flex-direction: column;
+        gap: 70px;
+        justify-content: center;
+    }
+    
+    .icon-item img {
+        width: 160px;
+        height: 160px;
+    }
+}
+
+@media (max-width: 576px) {
+    .icons-container {
+        flex-direction: column;
+        gap: 60px;
+    }
+    
+    .icon-item {
+        width: 100%;
+    }
+    
+    .icon-item img {
+        width: 140px;
+        height: 140px;
+    }
+    
+    .icons-section {
+        margin-top: 40px;
+    }
 }
 
 /* Responsive design per schermi piccoli */
