@@ -51,11 +51,11 @@
 
 #sfondo {
     position: relative;
-    height: 100vh; /* Occupa l'altezza completa della viewport */
-    min-height: 500px; /* Altezza minima per dispositivi piccoli */
     width: 100%; /* Occupa la larghezza completa */
+    min-height: 70vh; /* Modifica: usiamo una percentuale della viewport height */
+    max-height: 900px; /* Limitiamo l'altezza massima per monitor molto grandi */
     margin: 0;
-    padding: 0;
+    padding: 0; /* Rimuoviamo il padding per coprire l'intera larghezza */
     overflow: hidden; /* Impedisce che le immagini fuoriescano dal contenitore */
     animation: fadeIn 1.5s ease-out forwards;
     display: flex;
@@ -80,16 +80,16 @@
 #sfondo::before {
     background-image: url('/prendi_verde.png');
     z-index: 1;
-    background-size: contain; /* Mantiene le proporzioni dell'immagine */
-    background-position: center 30%; /* Posiziona l'immagine al 30% dall'alto */
+    background-size: cover; /* Modifica: usiamo cover per coprire l'intero spazio */
+    background-position: center; /* Modifica: centrato orizzontalmente e verticalmente */
     animation: slideFromTop 1.2s ease-out 0.3s forwards; /* Animazione con ritardo di 0.3s */
 }
 
 #sfondo::after {
     background-image: url('/futuro_rosa.png');
     z-index: 2;
-    background-size: contain; /* Mantiene le proporzioni dell'immagine */
-    background-position: center 70%; /* Posiziona l'immagine al 70% dall'alto */
+    background-size: cover; /* Modifica: usiamo cover per coprire l'intero spazio */
+    background-position: center; /* Modifica: centrato orizzontalmente e verticalmente */
     animation: slideFromBottom 1.2s ease-out 0.6s forwards; /* Animazione con ritardo di 0.6s */
 }
 
@@ -238,8 +238,8 @@
     width: 100%;
     display: flex;
     justify-content: center;
-    padding: 80px 0;
-    margin-top: 120px; /* Aumentiamo ulteriormente il margine superiore per abbassare le icone */
+    padding: 80px 0 100px; /* Aumentiamo il padding inferiore */
+    margin-top: 30px; /* Riduciamo il margine superiore */
     position: relative;
     z-index: 10;
 }
@@ -248,10 +248,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 150px; /* Aumentiamo significativamente lo spazio tra le icone */
+    gap: 150px; /* Aumentiamo lo spazio tra le icone per desktop */
     max-width: 1600px;
     margin: 0 auto;
-    padding: 0 30px; /* Aumentiamo il padding sui lati per dispositivi mobili */
+    padding: 0 30px;
 }
 
 .icon-item {
@@ -267,8 +267,8 @@
 }
 
 .icon-item img {
-    width: 180px;
-    height: 180px;
+    width: 250px; /* Dimensione aumentata per desktop */
+    height: 250px;
     object-fit: contain;
     margin-bottom: 20px;
     transition: transform 0.3s ease;
@@ -298,11 +298,21 @@
     .icons-container {
         gap: 120px;
     }
+    
+    .icon-item img {
+        width: 220px;
+        height: 220px;
+    }
 }
 
 @media (max-width: 1400px) {
     .icons-container {
         gap: 100px;
+    }
+    
+    .icon-item img {
+        width: 200px;
+        height: 200px;
     }
 }
 
@@ -312,8 +322,8 @@
     }
     
     .icon-item img {
-        width: 150px;
-        height: 150px;
+        width: 180px;
+        height: 180px;
     }
     
     .icon-item h3 {
@@ -322,8 +332,13 @@
 }
 
 @media (max-width: 992px) {
+    #sfondo {
+        min-height: 400px;
+        padding: 60px 0;
+    }
+    
     .icons-section {
-        margin-top: 60px;
+        margin-top: 50px;
         padding: 40px 0;
     }
     
@@ -332,28 +347,43 @@
     }
     
     .icon-item img {
-        width: 130px;
-        height: 130px;
-    }
-}
-
-@media (max-width: 768px) {
-    .icons-container {
-        flex-direction: column;
-        gap: 70px;
-        justify-content: center;
-    }
-    
-    .icon-item img {
         width: 160px;
         height: 160px;
     }
 }
 
-@media (max-width: 576px) {
+@media (max-width: 768px) {
+    #sfondo {
+        min-height: 350px;
+        padding: 50px 0;
+    }
+    
     .icons-container {
         flex-direction: column;
-        gap: 60px;
+        gap: 50px; /* Aumentiamo un po' lo spazio tra le icone in visualizzazione mobile */
+        justify-content: center;
+    }
+    
+    .icon-item img {
+        width: 160px; /* Aumentiamo rispetto alla versione precedente */
+        height: 160px;
+    }
+    
+    .icons-section {
+        margin-top: 40px; /* Aumentiamo leggermente il margine superiore */
+        padding: 30px 0;
+    }
+}
+
+@media (max-width: 576px) {
+    #sfondo {
+        min-height: 300px;
+        padding: 40px 0;
+    }
+    
+    .icons-container {
+        flex-direction: column;
+        gap: 40px; /* Manteniamo uno spazio adeguato per schermi piccoli */
     }
     
     .icon-item {
@@ -361,12 +391,13 @@
     }
     
     .icon-item img {
-        width: 140px;
+        width: 140px; /* Aumentiamo la dimensione per mantenere proporzioni adeguate */
         height: 140px;
     }
     
     .icons-section {
-        margin-top: 40px;
+        margin-top: 30px; 
+        padding: 20px 0;
     }
 }
 
@@ -387,59 +418,70 @@
 }
 
 /* Media queries per schermi di diverse dimensioni */
+@media (max-width: 1600px) {
+    #sfondo {
+        min-height: 65vh;
+    }
+}
+
 @media (max-width: 1200px) {
-    #sfondo::before {
-        background-position: center 35%;
+    #sfondo {
+        min-height: 60vh;
     }
     
+    #sfondo::before, 
     #sfondo::after {
-        background-position: center 65%;
+        background-size: cover;
     }
 }
 
 @media (max-width: 992px) {
-    #sfondo::before {
-        background-position: center 40%;
-        background-size: 80% auto; /* Riduce un po' la dimensione proporzionalmente */
-    }
-    
-    #sfondo::after {
-        background-position: center 60%;
-        background-size: 80% auto; /* Riduce un po' la dimensione proporzionalmente */
+    #sfondo {
+        min-height: 55vh;
     }
 }
 
 @media (max-width: 768px) {
-    #sfondo::before {
-        background-position: center 45%;
-        background-size: 90% auto;
+    #sfondo {
+        min-height: 50vh;
     }
     
+    /* Torniamo a contain per schermi più piccoli per evitare distorsioni */
+    #sfondo::before, 
     #sfondo::after {
-        background-position: center 55%;
-        background-size: 90% auto;
+        background-size: contain;
+        background-position: center;
     }
 }
 
 @media (max-width: 576px) {
-    #sfondo::before, 
-    #sfondo::after {
-        background-size: 95% auto;
-    }
-    
-    #sfondo::before {
-        background-position: center 48%;
-    }
-    
-    #sfondo::after {
-        background-position: center 52%;
+    #sfondo {
+        min-height: 45vh;
     }
 }
 
 /* Stile per dispositivi molto piccoli */
 @media (max-height: 500px) {
-    #sfondo::before, 
-    #sfondo::after {
-        background-size: 70% auto;
+    #sfondo {
+        min-height: 90vh; /* Usiamo quasi tutta l'altezza disponibile */
+    }
+    
+    .icons-section {
+        padding: 20px 0 30px;
+        margin-top: 10px;
+    }
+    
+    .icons-container {
+        gap: 50px;
+    }
+    
+    .icon-item img {
+        width: 100px;
+        height: 100px;
+        margin-bottom: 10px;
+    }
+    
+    .icon-item h3 {
+        font-size: 16px;
     }
 }
