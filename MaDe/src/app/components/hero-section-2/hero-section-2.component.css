@@ -40,11 +40,15 @@
 #sfondo {
     position: relative;
     height: 100vh; /* Occupa l'altezza completa della viewport */
+    min-height: 500px; /* Altezza minima per dispositivi piccoli */
     width: 100%; /* Occupa la larghezza completa */
     margin: 0;
     padding: 0;
     overflow: hidden; /* Impedisce che le immagini fuoriescano dal contenitore */
     animation: fadeIn 1.5s ease-out forwards;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 #sfondo::before, 
@@ -64,16 +68,16 @@
 #sfondo::before {
     background-image: url('/prendi_verde.png');
     z-index: 1;
-    background-size: contain; /* Modificato per mantenere le proporzioni dell'immagine */
-    background-position: top center; /* Posiziona l'immagine in alto al centro */
+    background-size: contain; /* Mantiene le proporzioni dell'immagine */
+    background-position: center 30%; /* Posiziona l'immagine al 30% dall'alto */
     animation: slideFromTop 1.2s ease-out 0.3s forwards; /* Animazione con ritardo di 0.3s */
 }
 
 #sfondo::after {
     background-image: url('/futuro_rosa.png');
     z-index: 2;
-    background-size: contain; /* Modificato per mantenere le proporzioni dell'immagine */
-    background-position: bottom center; /* Posiziona l'immagine in basso al centro */
+    background-size: contain; /* Mantiene le proporzioni dell'immagine */
+    background-position: center 70%; /* Posiziona l'immagine al 70% dall'alto */
     animation: slideFromBottom 1.2s ease-out 0.6s forwards; /* Animazione con ritardo di 0.6s */
 }
 
@@ -230,5 +234,63 @@
     .content-container button {
         padding: 10px 25px;
         font-size: 1rem;
+    }
+}
+
+/* Media queries per schermi di diverse dimensioni */
+@media (max-width: 1200px) {
+    #sfondo::before {
+        background-position: center 35%;
+    }
+    
+    #sfondo::after {
+        background-position: center 65%;
+    }
+}
+
+@media (max-width: 992px) {
+    #sfondo::before {
+        background-position: center 40%;
+        background-size: 80% auto; /* Riduce un po' la dimensione proporzionalmente */
+    }
+    
+    #sfondo::after {
+        background-position: center 60%;
+        background-size: 80% auto; /* Riduce un po' la dimensione proporzionalmente */
+    }
+}
+
+@media (max-width: 768px) {
+    #sfondo::before {
+        background-position: center 45%;
+        background-size: 90% auto;
+    }
+    
+    #sfondo::after {
+        background-position: center 55%;
+        background-size: 90% auto;
+    }
+}
+
+@media (max-width: 576px) {
+    #sfondo::before, 
+    #sfondo::after {
+        background-size: 95% auto;
+    }
+    
+    #sfondo::before {
+        background-position: center 48%;
+    }
+    
+    #sfondo::after {
+        background-position: center 52%;
+    }
+}
+
+/* Stile per dispositivi molto piccoli */
+@media (max-height: 500px) {
+    #sfondo::before, 
+    #sfondo::after {
+        background-size: 70% auto;
     }
 }
