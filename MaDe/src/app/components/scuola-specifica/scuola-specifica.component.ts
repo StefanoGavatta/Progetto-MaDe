@@ -14,13 +14,13 @@ import { SchoolsData } from '../../interfaces/schools-data';
 import { ActivatedRoute } from '@angular/router';
 import { Scuola } from '../../interfaces/scuola';
 import { IndirizziComponent } from './indirizzi/indirizzi.component';
-import { OpenDayComponent } from './open-day/open-day.component';
 import { EducationalPathsData, EducationalPath } from '../../interfaces/educational-paths';
 import { switchMap } from 'rxjs/operators';
+import { OpenDaysComponent } from './open-days/open-days.component';
 
 @Component({
   selector: 'app-scuola-specifica',
-  imports: [ImageCarouselComponent,IndirizziComponent,ChiSiamoComponent, InfoComponent, EventiComponent, VideoComponent, ContattaciComponent, LogoNomeComponent, OpenDayComponent],
+  imports: [ImageCarouselComponent,IndirizziComponent,ChiSiamoComponent, InfoComponent, EventiComponent, VideoComponent, ContattaciComponent, LogoNomeComponent, OpenDaysComponent],
   templateUrl: './scuola-specifica.component.html',
   styleUrl: './scuola-specifica.component.css'
 })

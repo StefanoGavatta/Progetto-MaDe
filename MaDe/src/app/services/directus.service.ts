@@ -32,7 +32,11 @@ getSchoolData(id: string): Observable<Scuola | null> {
 
  getEventsData(): Observable<EventsData | null> {
   return this.http.get<EventsData>(`${this.apiUrl}/items/events`);
- }
+}
+
+getEventsForSchool(schoolId: string): Observable<EventsData | null> {
+  return this.http.get<EventsData>(`${this.apiUrl}/items/events?filter[school][_eq]=${schoolId}`);
+}
 
 /*  getVideoUrl(): Observable
 

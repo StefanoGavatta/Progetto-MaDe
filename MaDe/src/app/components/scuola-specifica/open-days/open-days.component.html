@@ -1,0 +1,79 @@
+<div class="open-days-container">
+  <h3>Open Days</h3>
+  
+  <div *ngIf="isLoading" class="loading-container">
+    <div class="loading-spinner"></div>
+    <p>Caricamento open days in corso...</p>
+  </div>
+  
+  <div *ngIf="!isLoading && errorMessage" class="error-message">
+    <p>{{ errorMessage }}</p>
+  </div>
+  
+  <div *ngIf="!isLoading && events.length === 0" class="no-data-message">
+    <p>Nessun open day disponibile per questa scuola.</p>
+  </div>
+  
+  <div *ngIf="!isLoading && events.length > 0" class="events-grid">
+    <!-- Visualizziamo gli open days in modo alternato -->
+    @for (event of events; track event.id; let i = $index) {
+      @if (i % 2 === 0) {
+        <div class="event-box">
+          <div class="event-header">
+            <h4>{{ event.title }}</h4>
+          </div>
+          <div class="event-content">
+            <div class="event-datetime">
+              <p><strong>Data inizio:</strong> {{ formatDate(event.start_date) }}</p>
+              <p><strong>Data fine:</strong> {{ formatDate(event.end_date) }}</p>
+            </div>
+            <div class="event-location">
+              <p><strong>Luogo:</strong> {{ event.location }}</p>
+              @if (event.is_online && event.online_link) {
+                <p class="online-event">
+                  <strong>Evento online:</strong> 
+                  <a href="{{ event.online_link }}" target="_blank" rel="noopener noreferrer">Partecipa all'evento online</a>
+                </p>
+              }
+            </div>
+            <p [innerHTML]="event.description"></p>
+            @if (event.image) {
+              <div class="event-image">
+                <img [src]="event.image" alt="{{ event.title }}" />
+              </div>
+            }
+          </div>
+        </div>
+        <div class="event-box empty"></div>
+      } @else {
+        <div class="event-box empty"></div>
+        <div class="event-box">
+          <div class="event-header">
+            <h4>{{ event.title }}</h4>
+          </div>
+          <div class="event-content">
+            <div class="event-datetime">
+              <p><strong>Data inizio:</strong> {{ formatDate(event.start_date) }}</p>
+              <p><strong>Data fine:</strong> {{ formatDate(event.end_date) }}</p>
+            </div>
+            <div class="event-location">
+              <p><strong>Luogo:</strong> {{ event.location }}</p>
+              @if (event.is_online && event.online_link) {
+                <p class="online-event">
+                  <strong>Evento online:</strong> 
+                  <a href="{{ event.online_link }}" target="_blank" rel="noopener noreferrer">Partecipa all'evento online</a>
+                </p>
+              }
+            </div>
+            <p [innerHTML]="event.description"></p>
+            @if (event.image) {
+              <div class="event-image">
+                <img [src]="event.image" alt="{{ event.title }}" />
+              </div>
+            }
+          </div>
+        </div>
+      }
+    }
+  </div>
+</div>

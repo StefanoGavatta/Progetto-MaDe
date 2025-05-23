@@ -1,0 +1,207 @@
+.open-days-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h3 {
+  color: #000000;
+  margin-bottom: 15px;
+  font-size: 2.2rem;
+  font-weight: bold;
+}
+
+.events-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: repeat(3, auto);
+  gap: 24px 32px;
+  margin-top: 24px;
+  justify-content: center;
+  width: 100%;
+  max-width: 1200px;
+}
+
+@media (max-width: 700px) {
+  .events-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .event-box {
+    max-width: 100%;
+    width: 100%;
+    display: block;
+  }
+  .event-box.empty {
+    display: none;
+  }
+}
+
+.event-box {
+  border-radius: 12px;
+  padding: 0;
+  min-height: 120px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  max-width: 500px;
+  width: 100%;
+  margin: 0 auto;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease, transform 0.8s ease, box-shadow 0.3s ease, transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  overflow: hidden;
+  background-color: #ffffff;
+  will-change: transform, box-shadow;
+}
+
+.event-box.visible {
+  opacity: 1;
+  transform: translateY(0);
+  animation: none;
+}
+
+.event-box:not(.empty):hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  z-index: 1;
+}
+
+.event-box.empty {
+  background: transparent;
+  box-shadow: none;
+}
+
+.event-header {
+  background-color: #FFC84D;
+  padding: 15px 20px;
+  width: 100%;
+  transition: background-color 0.3s ease;
+}
+
+.event-box:hover .event-header {
+  background-color: #ffc022;
+}
+
+.event-header h4 {
+  margin: 0;
+  font-size: 1.2rem;
+  color: #1a1a1a;
+  font-weight: 600;
+  transition: transform 0.2s ease;
+}
+
+.event-box:hover .event-header h4 {
+  transform: translateX(3px);
+}
+
+.event-content {
+  padding: 18px 20px;
+}
+
+.event-box p {
+  margin: 0 0 10px 0;
+  font-size: 0.95rem;
+  color: #555555;
+  line-height: 1.5;
+}
+
+.event-datetime {
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.event-location {
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.online-event a {
+  color: #1a73e8;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  font-weight: 500;
+  padding: 2px 5px;
+  border-radius: 4px;
+  position: relative;
+  display: inline-block;
+}
+
+.online-event a:hover {
+  color: #0d47a1;
+  background-color: rgba(26, 115, 232, 0.1);
+  transform: translateX(2px);
+}
+
+.online-event a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 5px;
+  width: 0;
+  height: 1px;
+  background-color: #0d47a1;
+  transition: width 0.3s ease;
+}
+
+.online-event a:hover::after {
+  width: calc(100% - 10px);
+}
+
+.event-image {
+  margin-top: 15px;
+  width: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.event-image img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.event-box:hover .event-image img {
+  transform: scale(1.05);
+}
+
+/* Stili per i messaggi di caricamento, errore e nessun dato */
+.loading-container, .error-message, .no-data-message {
+  padding: 20px;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.loading-spinner {
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-left-color: #FFC84D;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 15px auto;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.error-message {
+  color: #D8000C;
+  background-color: #FFD2D2;
+  border-radius: 8px;
+  padding: 10px 20px;
+}
+
+.no-data-message {
+  color: #555;
+  font-style: italic;
+}
