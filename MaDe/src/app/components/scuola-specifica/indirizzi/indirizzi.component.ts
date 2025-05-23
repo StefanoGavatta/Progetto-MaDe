@@ -95,7 +95,26 @@ export class IndirizziComponent implements AfterViewInit, OnInit {
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
+            // Rendi visibile la card
             this.renderer.addClass(entry.target, 'visible');
+            
+            // Verifica se è una card a sinistra o a destra
+            // Box dispari (indice 0, 2, 4...) sono nella colonna sinistra
+            // Box pari (indice 1, 3, 5...) sono nella colonna destra
+            const boxIndex = Array.from(boxes).indexOf(entry.target as Element);
+            const isLeftColumn = boxIndex % 2 === 0; // Se è nella colonna di sinistra
+            
+            // Aggiungi le classi di animazione di Animate.css
+            this.renderer.addClass(entry.target, 'animate__animated');
+            
+            if (isLeftColumn) {
+              // Per le card sulla colonna sinistra (prima colonna)
+              this.renderer.addClass(entry.target, 'animate__slideInLeft');
+            } else {
+              // Per le card sulla colonna destra (seconda colonna)
+              this.renderer.addClass(entry.target, 'animate__slideInRight');
+            }
+            
             observer.unobserve(entry.target);
           }
         });

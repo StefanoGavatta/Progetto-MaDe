@@ -1,3 +1,5 @@
+@import 'animate.css';
+
 .indirizzi-container {
   display: flex;
   flex-direction: column;
@@ -49,23 +51,26 @@ h3 {
   max-width: 500px;
   width: 100%;
   margin: 0 auto;
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.8s ease, transform 0.8s ease, box-shadow 0.3s ease, transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  opacity: 0; /* Inizialmente nascosto, sarà mostrato dall'observer */
+  /* Rimuoviamo transform: translateY(20px) per evitare conflitti con le animazioni slideIn */
+  /* transform: translateY(20px); */
+  transition: opacity 0.8s ease, box-shadow 0.3s ease;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
   overflow: hidden;
   background-color: #ffffff;
-  will-change: transform, box-shadow;
+  will-change: transform, opacity, box-shadow;
 }
 
 .indirizzo-box.visible {
   opacity: 1;
-  transform: translateY(0);
-  animation: none;
+  /* Rimuoviamo transform: translateY(0) poiché sarà gestito dalle animazioni slideIn */
+  /* transform: translateY(0); */
+  /* Rimuoviamo animation: none; per permettere alle animazioni di Animate.css di funzionare */
+  /* animation: none; */
 }
 
 .indirizzo-box:not(.empty):hover {
-  transform: translateY(-10px) scale(1.02);
+  transform: translateY(-10px) scale(1.02) !important; /* Usiamo !important per sovrascrivere le trasformazioni delle animazioni */
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
   cursor: pointer;
   z-index: 1;
@@ -197,4 +202,20 @@ h3 {
 
 .links-container a:hover::after {
   width: calc(100% - 10px);
+}
+
+/* Personalizzazione delle animazioni */
+.animate__slideInLeft {
+  animation-duration: 0.8s !important; /* Durata personalizzata */
+  animation-delay: 0.2s; /* Ritardo prima dell'inizio dell'animazione */
+}
+
+.animate__slideInRight {
+  animation-duration: 0.8s !important; /* Durata personalizzata */
+  animation-delay: 0.2s; /* Ritardo prima dell'inizio dell'animazione */
+}
+
+/* Assicuriamo che durante le animazioni le card mantengano l'opacità 1 */
+.animate__animated.indirizzo-box {
+  opacity: 1 !important;
 }

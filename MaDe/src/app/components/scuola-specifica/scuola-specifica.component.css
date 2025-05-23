@@ -50,6 +50,13 @@
   flex: 1 1 300px; /* This makes components stack when there's less than ~300px available for each */
 }
 
+.separator {
+  height: 1px;
+  background-color: #ccc;
+  width: 80%;
+  margin: 30px auto;
+}
+
 @media (max-width: 768px) {
   .components-row {
       flex-direction: column;
