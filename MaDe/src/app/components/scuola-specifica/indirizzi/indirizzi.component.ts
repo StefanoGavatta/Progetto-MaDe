@@ -98,9 +98,51 @@ export class IndirizziComponent implements AfterViewInit, OnInit {
     }, 500);
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     if (this.subscription) {
       this.subscription.unsubscribe();
     }
+  }
+
+  loadExampleEducationalPaths() {
+    // Dati di esempio per la demo se l'API non restituisce risultati
+    this.educationalPaths = [
+      {
+        id: 'example-1',
+        name: 'Indirizzo Tecnico Informatico',
+        description: 'L\'indirizzo tecnico informatico forma professionisti in grado di sviluppare software, amministrare reti e gestire sistemi informatici. Il percorso include corsi di programmazione, basi di dati, reti e sicurezza informatica.',
+        links: [
+          { url: 'https://www.example.com/info-it', name: 'Dettagli del corso' },
+          { url: 'https://www.example.com/lab-it', name: 'Laboratori disponibili' }
+        ]
+      },
+      {
+        id: 'example-2',
+        name: 'Indirizzo Economico Aziendale',
+        description: 'L\'indirizzo economico aziendale prepara gli studenti nella gestione amministrativa e finanziaria delle imprese. Gli studenti studieranno economia, diritto, contabilità e marketing.',
+        links: [
+          { url: 'https://www.example.com/info-business', name: 'Piano di studi' },
+          { url: 'https://www.example.com/opportunities', name: 'Sbocchi professionali' }
+        ]
+      },
+      {
+        id: 'example-3',
+        name: 'Indirizzo Linguistico',
+        description: 'L\'indirizzo linguistico offre una formazione approfondita nelle lingue straniere (inglese, francese, tedesco, spagnolo) e nelle relative culture. Comprende studio della letteratura, conversazione e certificazioni linguistiche.',
+        links: [
+          { url: 'https://www.example.com/lang-programs', name: 'Programma dettagliato' }
+        ]
+      },
+      {
+        id: 'example-4',
+        name: 'Indirizzo Scientifico',
+        description: 'L\'indirizzo scientifico fornisce una solida preparazione in matematica, fisica, chimica e biologia. Adatto a studenti interessati a carriere scientifiche o ingegneristiche.',
+        links: [
+          { url: 'https://www.example.com/science-lab', name: 'Attività laboratoriali' },
+          { url: 'https://www.example.com/science-projects', name: 'Progetti scientifici' }
+        ]
+      }
+    ];
+    console.log('Caricati indirizzi di esempio:', this.educationalPaths.length);
   }
 }
