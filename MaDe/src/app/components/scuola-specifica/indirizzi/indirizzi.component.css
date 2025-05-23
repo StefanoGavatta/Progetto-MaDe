@@ -101,11 +101,6 @@ h3 {
 
 .indirizzo-content {
   padding: 18px 20px;
-  transition: padding 0.3s ease;
-}
-
-.indirizzo-box:hover .indirizzo-content {
-  padding-left: 23px;
 }
 
 .indirizzo-box p {
@@ -113,11 +108,6 @@ h3 {
   font-size: 0.95rem;
   color: #555555;
   line-height: 1.5;
-  transition: color 0.3s ease;
-}
-
-.indirizzo-box:hover p {
-  color: #333333;
 }
 
 /* Stili per i messaggi di caricamento, errore e nessun dato */
