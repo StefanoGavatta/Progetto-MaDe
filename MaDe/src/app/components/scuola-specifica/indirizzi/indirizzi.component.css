@@ -51,16 +51,24 @@ h3 {
   margin: 0 auto;
   opacity: 0;
   transform: translateY(20px);
-  transition: opacity 0.8s ease, transform 0.8s ease;
+  transition: opacity 0.8s ease, transform 0.8s ease, box-shadow 0.3s ease, transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
   overflow: hidden;
   background-color: #ffffff;
+  will-change: transform, box-shadow;
 }
 
 .indirizzo-box.visible {
   opacity: 1;
   transform: translateY(0);
   animation: none;
+}
+
+.indirizzo-box:not(.empty):hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  z-index: 1;
 }
 
 .indirizzo-box.empty {
@@ -72,6 +80,11 @@ h3 {
   background-color: #FFC84D;
   padding: 15px 20px;
   width: 100%;
+  transition: background-color 0.3s ease;
+}
+
+.indirizzo-box:hover .indirizzo-header {
+  background-color: #ffc022;
 }
 
 .indirizzo-header h4 {
@@ -79,10 +92,20 @@ h3 {
   font-size: 1.2rem;
   color: #1a1a1a;
   font-weight: 600;
+  transition: transform 0.2s ease;
+}
+
+.indirizzo-box:hover .indirizzo-header h4 {
+  transform: translateX(3px);
 }
 
 .indirizzo-content {
   padding: 18px 20px;
+  transition: padding 0.3s ease;
+}
+
+.indirizzo-box:hover .indirizzo-content {
+  padding-left: 23px;
 }
 
 .indirizzo-box p {
@@ -90,6 +113,11 @@ h3 {
   font-size: 0.95rem;
   color: #555555;
   line-height: 1.5;
+  transition: color 0.3s ease;
+}
+
+.indirizzo-box:hover p {
+  color: #333333;
 }
 
 /* Stili per i messaggi di caricamento, errore e nessun dato */
@@ -152,11 +180,31 @@ h3 {
 .links-container a {
   color: #1a73e8;
   text-decoration: none;
-  transition: color 0.2s ease;
+  transition: all 0.2s ease;
   font-weight: 500;
+  padding: 2px 5px;
+  border-radius: 4px;
+  position: relative;
+  display: inline-block;
 }
 
 .links-container a:hover {
   color: #0d47a1;
-  text-decoration: underline;
+  background-color: rgba(26, 115, 232, 0.1);
+  transform: translateX(2px);
+}
+
+.links-container a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 5px;
+  width: 0;
+  height: 1px;
+  background-color: #0d47a1;
+  transition: width 0.3s ease;
+}
+
+.links-container a:hover::after {
+  width: calc(100% - 10px);
 }

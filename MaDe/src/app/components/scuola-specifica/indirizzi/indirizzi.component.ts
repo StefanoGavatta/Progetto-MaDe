@@ -47,12 +47,18 @@ export class IndirizziComponent implements AfterViewInit, OnInit {
           response.data.edu_links.forEach((link: any) => {
             console.log('Elaborazione link:', link);
             if (link.name) {
+              // Estrai informazioni dall'educational_path se disponibili
+              const eduPathData = link.educational_path || {};
+              
               // Usiamo il nome dell'edu_link come nome del percorso se non abbiamo info sull'educational_path
               if (!pathsMap.has(link.name)) {
                 pathsMap.set(link.name, {
                   id: link.id,
                   name: link.name,
-                  description: link.link_url || 'Nessuna descrizione disponibile',
+                  // Usa la descrizione dell'educational path se disponibile, altrimenti usa un testo predefinito
+                  description: eduPathData.description || 
+                              'Questo è un indirizzo formativo offerto dalla scuola. ' +
+                              'Per maggiori informazioni, consultare i link forniti.',
                   links: []
                 });
               }
