@@ -54,7 +54,7 @@ h3 {
   opacity: 0; /* Inizialmente nascosto, sarà mostrato dall'observer */
   /* Rimuoviamo transform: translateY(20px) per evitare conflitti con le animazioni slideIn */
   /* transform: translateY(20px); */
-  transition: opacity 0.8s ease, box-shadow 0.3s ease;
+  transition: opacity 0.5s ease, box-shadow 0.15s ease-out;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
   overflow: hidden;
   background-color: #ffffff;
@@ -85,7 +85,7 @@ h3 {
   background-color: #FFC84D;
   padding: 15px 20px;
   width: 100%;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.15s ease-out;
 }
 
 .event-box:hover .event-header {
@@ -97,7 +97,7 @@ h3 {
   font-size: 1.2rem;
   color: #1a1a1a;
   font-weight: 600;
-  transition: transform 0.2s ease;
+  transition: transform 0.15s ease-out;
 }
 
 .event-box:hover .event-header h4 {
@@ -130,7 +130,7 @@ h3 {
 .online-event a {
   color: #1a73e8;
   text-decoration: none;
-  transition: all 0.2s ease;
+  transition: all 0.15s ease-out;
   font-weight: 500;
   padding: 2px 5px;
   border-radius: 4px;
@@ -152,7 +152,7 @@ h3 {
   width: 0;
   height: 1px;
   background-color: #0d47a1;
-  transition: width 0.3s ease;
+  transition: width 0.15s ease-out;
 }
 
 .online-event a:hover::after {
