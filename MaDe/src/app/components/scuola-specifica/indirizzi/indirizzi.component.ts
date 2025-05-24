@@ -1,24 +1,168 @@
-import { Component, AfterViewInit, Renderer2, ElementRef } from '@angular/core';
+import { Component, AfterViewInit, Renderer2, ElementRef, OnInit, inject } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { DirectusService } from '../../../services/directus.service';
+import { EducationalPathsData, EducationalPath } from '../../../interfaces/educational-paths';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-indirizzi',
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './indirizzi.component.html',
-  styleUrl: './indirizzi.component.css'
+  styleUrl: './indirizzi.component.css',
+  standalone: true
 })
-export class IndirizziComponent implements AfterViewInit {
+export class IndirizziComponent implements AfterViewInit, OnInit {
+  directusService = inject(DirectusService);
+  educationalPaths: EducationalPath[] = [];
+  isLoading = true;
+  errorMessage = '';
+  private subscription: Subscription | null = null;
+  private currentSchoolId: string = '';
+
   constructor(private renderer: Renderer2, private el: ElementRef) {}
 
-  ngAfterViewInit() {
-    const boxes = this.el.nativeElement.querySelectorAll('.indirizzo-box:not(.empty)');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          this.renderer.addClass(entry.target, 'visible');
-          observer.unobserve(entry.target);
+  ngOnInit() {
+    // Otteniamo l'ID della scuola dalla URL
+    const pathParts = window.location.pathname.split('/');
+    const schoolId = pathParts[pathParts.length - 1];
+    
+    if (schoolId) {
+      this.currentSchoolId = schoolId;
+      this.loadEducationalPaths(schoolId);
+    }
+  }
+
+  loadEducationalPaths(schoolId: string) {
+    this.isLoading = true;
+    console.log('Caricamento indirizzi per la scuola ID:', schoolId);
+    
+    this.subscription = this.directusService.getEduLinksForSchool(schoolId).subscribe({
+      next: (response) => {
+        console.log('Risposta completa dall\'API:', response);
+        
+        if (response && response.data && response.data.edu_links && response.data.edu_links.length > 0) {
+          // Estrai le informazioni dagli edu_links
+          const pathsMap = new Map();
+          
+          response.data.edu_links.forEach((link: any) => {
+            console.log('Elaborazione link:', link);
+            if (link.name) {
+              // Estrai informazioni dall'educational_path se disponibili
+              const eduPathData = link.educational_path || {};
+              
+              // Usiamo il nome dell'edu_link come nome del percorso se non abbiamo info sull'educational_path
+              if (!pathsMap.has(link.name)) {
+                pathsMap.set(link.name, {
+                  id: link.id,
+                  name: link.name,
+                  // Usa la descrizione dell'educational path se disponibile, altrimenti usa un testo predefinito
+                  description: eduPathData.description || 
+                              'Questo è un indirizzo formativo offerto dalla scuola. ' +
+                              'Per maggiori informazioni, consultare i link forniti.',
+                  links: []
+                });
+              }
+              
+              // Aggiungi il link all'elenco dei link per questo percorso
+              pathsMap.get(link.name).links.push({
+                url: link.link_url,
+                name: link.name
+              });
+            }
+          });
+          
+          // Converti la mappa in un array
+          this.educationalPaths = Array.from(pathsMap.values());
+          console.log('Educational paths elaborati:', this.educationalPaths);
+        } else {
+          console.log('Nessun educational path trovato nella risposta, caricamento dati di esempio');
+          // In assenza di dati reali, carica dati di esempio per la demo
+          this.loadExampleEducationalPaths();
         }
-      });
-    }, { threshold: 0.2 });
-    boxes.forEach((box: Element) => observer.observe(box));
+        this.isLoading = false;
+      },
+      error: (error) => {
+        console.error('Errore nel caricamento degli educational paths:', error);
+        this.errorMessage = 'Errore nel caricamento degli indirizzi di studio. Riprova più tardi.';
+        this.isLoading = false;
+      }
+    });
+  }
+
+  ngAfterViewInit() {
+    setTimeout(() => {
+      const boxes = this.el.nativeElement.querySelectorAll('.indirizzo-box:not(.empty)');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            // Rendi visibile la card
+            this.renderer.addClass(entry.target, 'visible');
+            
+            // Verifica se è una card a sinistra o a destra
+            // Box dispari (indice 0, 2, 4...) sono nella colonna sinistra
+            // Box pari (indice 1, 3, 5...) sono nella colonna destra
+            const boxIndex = Array.from(boxes).indexOf(entry.target as Element);
+            const isLeftColumn = boxIndex % 2 === 0; // Se è nella colonna di sinistra
+            
+            // Aggiungi le classi di animazione di Animate.css
+            this.renderer.addClass(entry.target, 'animate__animated');
+            
+            // Utilizziamo animate__slideInUp per tutte le card indipendentemente dalla posizione
+            this.renderer.addClass(entry.target, 'animate__slideInUp');
+            
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.2 });
+      boxes.forEach((box: Element) => observer.observe(box));
+    }, 500);
+  }
+
+  ngOnDestroy(): void {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
+  }
+
+  loadExampleEducationalPaths() {
+    // Dati di esempio per la demo se l'API non restituisce risultati
+    this.educationalPaths = [
+      {
+        id: 'example-1',
+        name: 'Indirizzo Tecnico Informatico',
+        description: 'L\'indirizzo tecnico informatico forma professionisti in grado di sviluppare software, amministrare reti e gestire sistemi informatici. Il percorso include corsi di programmazione, basi di dati, reti e sicurezza informatica.',
+        links: [
+          { url: 'https://www.example.com/info-it', name: 'Dettagli del corso' },
+          { url: 'https://www.example.com/lab-it', name: 'Laboratori disponibili' }
+        ]
+      },
+      {
+        id: 'example-2',
+        name: 'Indirizzo Economico Aziendale',
+        description: 'L\'indirizzo economico aziendale prepara gli studenti nella gestione amministrativa e finanziaria delle imprese. Gli studenti studieranno economia, diritto, contabilità e marketing.',
+        links: [
+          { url: 'https://www.example.com/info-business', name: 'Piano di studi' },
+          { url: 'https://www.example.com/opportunities', name: 'Sbocchi professionali' }
+        ]
+      },
+      {
+        id: 'example-3',
+        name: 'Indirizzo Linguistico',
+        description: 'L\'indirizzo linguistico offre una formazione approfondita nelle lingue straniere (inglese, francese, tedesco, spagnolo) e nelle relative culture. Comprende studio della letteratura, conversazione e certificazioni linguistiche.',
+        links: [
+          { url: 'https://www.example.com/lang-programs', name: 'Programma dettagliato' }
+        ]
+      },
+      {
+        id: 'example-4',
+        name: 'Indirizzo Scientifico',
+        description: 'L\'indirizzo scientifico fornisce una solida preparazione in matematica, fisica, chimica e biologia. Adatto a studenti interessati a carriere scientifiche o ingegneristiche.',
+        links: [
+          { url: 'https://www.example.com/science-lab', name: 'Attività laboratoriali' },
+          { url: 'https://www.example.com/science-projects', name: 'Progetti scientifici' }
+        ]
+      }
+    ];
+    console.log('Caricati indirizzi di esempio:', this.educationalPaths.length);
   }
 }

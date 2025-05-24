@@ -64,7 +64,7 @@
 .contact-text a {
   color: white;
   text-decoration: none;
-  transition: color 0.2s;
+  transition: color 0.15s ease-out;
 }
 
 .contact-text a:hover {
@@ -86,7 +86,7 @@
   color: white;
   text-decoration: none;
   font-size: 18px;
-  transition: color 0.2s, transform 0.2s;
+  transition: color 0.15s ease-out, transform 0.15s ease-out;
   display: inline-block;
 }
 
@@ -111,7 +111,7 @@
   background-color: rgba(255,255,255,0.2);
   color: white;
   text-decoration: none;
-  transition: background-color 0.3s, transform 0.2s;
+  transition: background-color 0.15s ease-out, transform 0.15s ease-out;
 }
 
 .social-icon:hover {

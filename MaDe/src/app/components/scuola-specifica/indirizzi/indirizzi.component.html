@@ -1,26 +1,63 @@
 <div class="indirizzi-container">
   <h3>Indirizzi</h3>
-  <div class="indirizzi-grid">
-    <!-- Riga 1 -->
-    <div class="indirizzo-box">
-      <h4>Sottotitolo 1</h4>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Suspendisse potenti. Etiam euismod, urna eu tincidunt consectetur, nisi nisl aliquam enim, nec dictum ex nulla eu urna.</p>
-      <p>Aliquam erat volutpat. Mauris euismod, sapien eu commodo cursus, enim urna facilisis massa, nec laoreet enim erat non urna. Proin dictum, enim at cursus dictum, urna erat dictum urna, nec dictum urna erat nec urna.</p>
-    </div>
-    <div class="indirizzo-box empty"></div>
-    <!-- Riga 2 -->
-    <div class="indirizzo-box empty"></div>
-    <div class="indirizzo-box">
-      <h4>Sottotitolo 2</h4>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p>
-      <p>Curabitur blandit tempus porttitor. Nullam quis risus eget urna mollis ornare vel eu leo. Vestibulum id ligula porta felis euismod semper.</p>
-    </div>
-    <!-- Riga 3 -->
-    <div class="indirizzo-box">
-      <h4>Sottotitolo 3</h4>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque euismod, nisi eu consectetur consectetur, nisl nisl aliquam nisl, eu aliquam nisl nisl eu nisl.</p>
-      <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Donec ullamcorper nulla non metus auctor fringilla.</p>
-    </div>
-    <div class="indirizzo-box empty"></div>
+  
+  <div *ngIf="isLoading" class="loading-container">
+    <div class="loading-spinner"></div>
+    <p>Caricamento indirizzi in corso...</p>
+  </div>
+  
+  <div *ngIf="!isLoading && errorMessage" class="error-message">
+    <p>{{ errorMessage }}</p>
+  </div>
+  
+  <div *ngIf="!isLoading && educationalPaths.length === 0" class="no-data-message">
+    <p>Nessun indirizzo di studio disponibile per questa scuola.</p>
+  </div>
+  
+  <div *ngIf="!isLoading && educationalPaths.length > 0" class="indirizzi-grid">
+    <!-- Visualizziamo gli indirizzi in modo alternato -->
+    @for (path of educationalPaths; track path.id; let i = $index) {
+      @if (i % 2 === 0) {
+        <div class="indirizzo-box">
+          <div class="indirizzo-header">
+            <h4>{{ path.name }}</h4>
+          </div>
+          <div class="indirizzo-content">
+            <p [innerHTML]="path.description"></p>
+            @if (path.links && path.links.length > 0) {
+              <div class="links-container">
+                <strong>Link utili:</strong>
+                <ul>
+                  @for (link of path.links; track $index) {
+                    <li><a href="{{ link.url }}" target="_blank" rel="noopener noreferrer">{{ link.name || 'Visita il link' }}</a></li>
+                  }
+                </ul>
+              </div>
+            }
+          </div>
+        </div>
+        <div class="indirizzo-box empty"></div>
+      } @else {
+        <div class="indirizzo-box empty"></div>
+        <div class="indirizzo-box">
+          <div class="indirizzo-header">
+            <h4>{{ path.name }}</h4>
+          </div>
+          <div class="indirizzo-content">
+            <p [innerHTML]="path.description"></p>
+            @if (path.links && path.links.length > 0) {
+              <div class="links-container">
+                <strong>Link utili:</strong>
+                <ul>
+                  @for (link of path.links; track $index) {
+                    <li><a href="{{ link.url }}" target="_blank" rel="noopener noreferrer">{{ link.name || 'Visita il link' }}</a></li>
+                  }
+                </ul>
+              </div>
+            }
+          </div>
+        </div>
+      }
+    }
   </div>
 </div>
