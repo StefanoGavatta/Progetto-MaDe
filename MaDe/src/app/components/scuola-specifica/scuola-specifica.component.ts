@@ -32,7 +32,6 @@ export class ScuolaSpecificaComponent implements OnInit {
   filtroAttivo: WritableSignal<string | null> = signal(null);
   educationalPaths: WritableSignal<EducationalPath[]> = signal([]);
   currentSchoolId: WritableSignal<string> = signal('');
-  // Scuole filtrate in base al tipo selezionato
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(parametriNellaURL => {
@@ -50,18 +49,60 @@ export class ScuolaSpecificaComponent implements OnInit {
     });
   }
 
-  loadEducationalPaths(schoolId: string): void {
-    this.directusService.getEduLinksForSchool(schoolId).subscribe({
-      next: (response) => {
-        if (response && response.data && response.data.edu_links && response.data.edu_links.length > 0) {
-          // Estrai i dati dagli edu_links per il componente
-          console.log("Edu links caricati:", response.data.edu_links);
+  // Metodo per ottenere l'ID del video in modo sicuro
+  getVideoId(): string {
+    const scuola = this.scuoleDettagliate();
+    if (!scuola || !scuola.data || !scuola.data.videos) {
+      return '';
+    }
+    
+    // Accesso sicuro alla proprietà videos trattandola come any
+    // per evitare problemi di tipo con la struttura dei dati
+    const videos = scuola.data.videos as any;
+    
+    try {
+      // Se è un array e contiene elementi
+      if (Array.isArray(videos) && videos.length > 0) {
+        // Controlla il primo elemento
+        const firstItem = videos[0];
+        if (typeof firstItem === 'string') {
+          return firstItem; // Se è una stringa, è l'ID
+        } else if (firstItem && typeof firstItem === 'object' && 'id' in firstItem) {
+          return firstItem.id; // Se è un oggetto con proprietà id
         }
-      },
-      error: (error) => {
-        console.error("Errore nel caricamento degli edu links:", error);
+        
+        // Controlla il secondo elemento se esiste
+        if (videos.length > 1) {
+          const secondItem = videos[1];
+          if (typeof secondItem === 'string') {
+            return secondItem;
+          } else if (secondItem && typeof secondItem === 'object' && 'id' in secondItem) {
+            return secondItem.id;
+          }
+        }
       }
-    });
+    } catch (err) {
+      console.error('Errore nell\'accesso ai dati del video:', err);
+    }
+    
+    return '';
   }
 
+  loadEducationalPaths(schoolId: string): void {
+    this.directusService.getAllEducationalPaths().subscribe(
+      paths => {
+        if (paths && paths.data) {
+          // Filtra i percorsi educativi per la scuola corrente
+          const schoolPaths = paths.data.filter(path => {
+            // Verifica se la proprietà school esiste ed è uguale all'ID della scuola
+            return path.school === schoolId;
+          });
+          
+          this.educationalPaths.set(schoolPaths);
+          console.log("Percorsi educativi filtrati per scuola:", schoolPaths);
+        }
+      },
+      error => console.error('Errore nel caricamento dei percorsi educativi:', error)
+    );
+  }
 }

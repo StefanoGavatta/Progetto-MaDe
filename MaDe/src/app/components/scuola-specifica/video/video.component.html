@@ -1,6 +1,31 @@
 <div class="video-container">
-  <video class="video-player" controls autoplay>
-    <source src="https://api.retescuolevallagarina.it/assets/{{this.videoId}}" type="video/mp4">
-    Il tuo browser non supporta la riproduzione video.
-  </video>
+  <div *ngIf="isLoading" class="loading-container">
+    <p>Caricamento video in corso...</p>
+  </div>
+
+  <div *ngIf="!isLoading && hasError" class="error-container">
+    <p>Impossibile caricare il video. Il video potrebbe non essere disponibile.</p>
+  </div>
+
+  <div *ngIf="!isLoading && !hasError">
+    <!-- Titolo del video se disponibile -->
+    <h3 *ngIf="videoTitle" class="video-title">{{videoTitle}}</h3>
+
+    <!-- Player per video locale -->
+    <video *ngIf="videoId && !youtubeId" class="video-player" controls>
+      <source src="https://api.retescuolevallagarina.it/assets/{{videoId}}" type="video/mp4">
+      <source src="https://api.retescuolevallagarina.it/assets/{{videoId}}" type="video/webm">
+      <source src="https://api.retescuolevallagarina.it/assets/{{videoId}}" type="video/ogg">
+      <p>Il tuo browser non supporta la riproduzione video.</p>
+    </video>
+
+    <!-- Player per video YouTube -->
+    <iframe *ngIf="youtubeId" 
+      class="youtube-player"
+      [src]="'https://www.youtube.com/embed/' + youtubeId | safeResourceUrl" 
+      frameborder="0" 
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+      allowfullscreen>
+    </iframe>
+  </div>
 </div>
