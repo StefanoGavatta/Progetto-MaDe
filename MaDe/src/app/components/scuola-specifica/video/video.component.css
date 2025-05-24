@@ -5,6 +5,7 @@
   align-items: center;
   width: 100%;
   padding: 20px;
+  margin: 0 auto;
 }
 
 .video-title {
@@ -20,10 +21,14 @@
   height: auto;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
   border-radius: 8px;
+  margin: 0 auto;
+  display: block;
 }
 
 .youtube-player {
   aspect-ratio: 16/9;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .loading-container, .error-container {
@@ -45,5 +50,7 @@
 @media (max-width: 768px) {
   .video-player, .youtube-player {
     width: 95%;
+    margin-left: auto;
+    margin-right: auto;
   }
 }
