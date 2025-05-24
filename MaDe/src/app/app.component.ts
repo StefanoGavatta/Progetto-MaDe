@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { CalendarioComponent } from './components/calendario/calendario.component';
-import { MapsComponent } from './components/maps/maps.component';
+import { CalendarioComponent } from './components/pagina-calendario/calendario/calendario.component';
+import { MapsComponent } from './components/pagina-mappa/maps/maps.component';
 import { PaginaSitoComponent } from './components/pagina-sito/pagina-sito.component';
 
 import { HeaderComponent } from './components/header/header.component';
@@ -10,13 +10,11 @@ import { HeroSection2Component } from './components/hero-section-2/hero-section-
 
 import { ScuoleComponent } from './components/scuole/scuole.component';
 import { ScuolaSpecificaComponent } from './components/scuola-specifica/scuola-specifica.component';
-import { FooterComponent } from './components/footer/footer.component';
-
 @Component({
   selector: 'app-root',
   standalone: true,
 
-  imports: [RouterOutlet, ScuolaSpecificaComponent,CalendarioComponent,MapsComponent,PaginaSitoComponent,  HeaderComponent, HeroSectionComponent, HeroSection2Component, ScuoleComponent, ScuolaSpecificaComponent,FooterComponent],
+  imports: [RouterOutlet, ScuolaSpecificaComponent,CalendarioComponent,MapsComponent,PaginaSitoComponent,  HeaderComponent, HeroSectionComponent, HeroSection2Component, ScuoleComponent],
 
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'

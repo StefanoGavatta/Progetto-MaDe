@@ -1,0 +1,111 @@
+.hero-wrapper {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+}
+
+.side-panel {
+  background-color: white;
+  flex: 1;
+}
+
+.hero-container {
+  width: 100%;
+  min-height: 200vh;
+  background-image: url('/sfondo_Calendario.png');
+  background-size: cover;
+  background-position: calc(100% + 500px) 0; /* 500px fuori dal bordo destro, 100px dall'alto */
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-x: hidden;
+  position: relative;
+  max-width: 100%;
+  margin: 0 auto;
+  transition: background-position 2.5s cubic-bezier(0.77,0,0.175,1);
+}
+
+.hero-container.bg-animate {
+  background-position: center 0; /* entra al centro, stessa altezza */
+}
+
+.calendar-header {
+  /* Imposta una larghezza massima per il contenitore */
+  padding-top: 20%;
+  max-width: 500px; /* Puoi regolare questo valore */
+  padding-bottom: 30%;
+}
+
+.calendar-main-image {
+  /* Rendi l'immagine responsive all'interno del suo contenitore */
+  width: 100%;
+  height: auto; /* Mantiene le proporzioni dell'immagine */
+  display: block; /* Rimuove lo spazio extra sotto l'immagine */
+}
+/* Desktop (dispositivi larghi) */
+@media (min-width: 1917px) {
+  .side-panel {
+    display: block;
+  }
+
+
+
+  .calendar-header {
+  /* Imposta una larghezza massima per il contenitore */
+  padding-top: 20%;
+  max-width: 1000px; /* Puoi regolare questo valore */
+}
+}
+
+/* Tablet (dispositivi medi) */
+@media (min-width: 577px) and (max-width: 1916px) {
+  .hero-wrapper {
+    flex-direction: column;
+  }
+
+  .side-panel {
+    display: none;
+  }
+  
+  .hero-container {
+    width: 100%;
+    min-height: 150vh;
+    background-image: url('/sfondo_Calendario.png'), linear-gradient(to bottom, #f5f5f5, #f5f5f5);
+    background-size: 100% auto, 100% 100%;
+    background-position: calc(100% + 0) 0; /* 500px fuori dal bordo destro, 100px dall'alto */
+    background-repeat: no-repeat, no-repeat;
+    transition: background-position 2.5s cubic-bezier(0.77,0,0.175,1);
+
+  }
+}
+
+/* Telefoni (dispositivi piccoli) */
+@media (max-width: 576px) {
+  .hero-wrapper {
+    flex-direction: column;
+  }
+
+  .calendar-header {
+  /* Imposta una larghezza massima per il contenitore */
+  padding-top: 50%;
+  max-width: 400px; /* Puoi regolare questo valore */
+  padding-bottom: 30%;
+}
+
+  .side-panel {
+    display: none;
+  }
+  
+  .hero-container {
+    width: 100%;
+    min-height: 100vh;
+    background-image: url('/sfondo_Calendario.png'), linear-gradient(to bottom, #f5f5f5, #f5f5f5);
+    background-position: calc(100% + 500px) 0; /* 500px fuori dal bordo destro, 100px dall'alto */
+    background-position: right center, center;
+    background-repeat: no-repeat, no-repeat;
+    transition: background-position 2.5s cubic-bezier(0.77,0,0.175,1);
+
+  }
+}
+
