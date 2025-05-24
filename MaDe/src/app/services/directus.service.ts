@@ -38,14 +38,23 @@ getEventsForSchool(schoolId: string): Observable<EventsData | null> {
   return this.http.get<EventsData>(`${this.apiUrl}/items/events?filter[school][_eq]=${schoolId}`);
 }
 
-/*  getVideoUrl(): Observable
-
+/**
+ * Recupera i dati di un video specifico dall'API
+ * @param id ID del video da recuperare
+ * @returns Dati completi del video
  */
- getVideoUrl(id: string): Observable<Video | null> {
-  console.log("aaaaaaaaaaaaaaa")
-  console.log(`${this.apiUrl}/items/videos/${id}`)
-   return this.http.get<Video>(`${this.apiUrl}/items/videos/${id}`);
- }
+getVideoUrl(id: string): Observable<any> {
+  if (!id) {
+    console.error('ID video non fornito');
+    return new Observable(observer => {
+      observer.error('ID video non fornito');
+      observer.complete();
+    });
+  }
+  
+  console.log(`Recupero video con ID: ${id}`);
+  return this.http.get<any>(`${this.apiUrl}/items/videos/${id}`);
+}
 
  // Metodi per ottenere gli Educational Paths
  getAllEducationalPaths(): Observable<EducationalPathsData | null> {

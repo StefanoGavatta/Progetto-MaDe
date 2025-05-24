@@ -13,7 +13,10 @@
 [logo]="scuoleDettagliate()?.data?.logo ?? ''"
 >
 </app-logo-nome>
-<app-image-carousel>
+<app-image-carousel
+  [schoolId]="currentSchoolId()"
+  [schoolName]="scuoleDettagliate()?.data?.name ?? ''"
+>
 </app-image-carousel>
 
 <div class="components-row">
@@ -30,9 +33,11 @@
     <app-eventi></app-eventi>
 </div> -->
 
-<app-video
-[video]="scuoleDettagliate()?.data?.videos?.[1]?.id ?? ''"
-></app-video>
+<div class="video-wrapper">
+  <app-video
+    [video]="getVideoId()"
+  ></app-video>
+</div>
 
 <app-indirizzi></app-indirizzi>
 

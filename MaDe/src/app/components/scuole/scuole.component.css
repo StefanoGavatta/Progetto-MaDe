@@ -1,4 +1,33 @@
 
+/* Definizione delle animazioni di fade-in */
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+/* Stile per il banner delle scuole */
+#banner-scuole {
+  position: relative;
+  width: 100%;
+  min-height: 40vh;
+  max-height: 600px;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#banner-scuole img {
+  width: 100%;
+  height: auto;
+  max-width: 1400px;
+  object-fit: contain;
+  animation: fadeIn 1.2s ease-out forwards;
+  transform: translateY(75px); /* Trasla l'immagine di 75px verso il basso */
+}
+
 html, body {
   margin: 0;
   padding: 0;
