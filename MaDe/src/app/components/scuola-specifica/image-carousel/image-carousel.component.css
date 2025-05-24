@@ -1,11 +1,14 @@
+@import 'animate.css';
+
 .carousel-container {
   position: relative;
   width: 100%;
-  max-width: 1200px;
-  margin: 40px auto;
-  padding: 0 20px;
+  max-width: 100%;
+  margin: 30px 0; /* Aggiunto margine sopra e sotto */
+  padding: 30px 20px;
   overflow: hidden;
-  border-radius: 8px;
+  border-radius: 0;
+  background-color: #FFC84D;
 }
 
 .carousel-track {
@@ -16,23 +19,32 @@
 
 .carousel-slides {
   display: flex;
-  transition: transform 0.5s ease-in-out; /* Animazione di scorrimento più fluida */
+  transition: transform 0.5s ease-in-out;
   width: 100%;
 }
 
 .carousel-slide {
-  flex: 0 0 25%; /* Esattamente 4 immagini per riga (100% ÷ 4) */
-  padding: 0 8px;
+  flex: 0 0 25%;
+  padding: 0 20px;
   box-sizing: border-box;
-  min-width: 25%; /* Assicura che la larghezza rimanga fissa anche durante l'animazione */
+  min-width: 25%;
 }
+
+/* Ritardo personalizzato per le animazioni in sequenza */
+.carousel-slide:nth-child(1) { animation-delay: 0.1s; }
+.carousel-slide:nth-child(2) { animation-delay: 0.2s; }
+.carousel-slide:nth-child(3) { animation-delay: 0.3s; }
+.carousel-slide:nth-child(4) { animation-delay: 0.4s; }
+.carousel-slide:nth-child(5) { animation-delay: 0.5s; }
+.carousel-slide:nth-child(6) { animation-delay: 0.6s; }
 
 .carousel-slide img {
   width: 100%;
-  height: 250px; /* Aumentato da 180px a 250px */
+  height: 30vh;
   object-fit: cover;
-  border-radius: 8px;
-  transition: transform 0.3s ease;
+  border-radius: 12px;
+  transition: transform 0.15s ease-out;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .carousel-slide img:hover {
@@ -52,7 +64,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.3s ease;
+  transition: all 0.15s ease-out;
   z-index: 10;
 }
 
@@ -83,10 +95,11 @@
   .carousel-slide {
     flex: 0 0 33.33%;
     min-width: 33.33%;
+    padding: 0 15px;
   }
   
   .carousel-slide img {
-    height: 220px; /* Aumentato per schermi medi */
+    height: 25vh;
   }
 }
 
@@ -94,10 +107,11 @@
   .carousel-slide {
     flex: 0 0 50%;
     min-width: 50%;
+    padding: 0 12px;
   }
   
   .carousel-slide img {
-    height: 200px; /* Aumentato per tablet */
+    height: 22vh;
   }
 }
 
@@ -105,9 +119,10 @@
   .carousel-slide {
     flex: 0 0 100%;
     min-width: 100%;
+    padding: 0 10px;
   }
   
   .carousel-slide img {
-    height: 280px; /* Aumentato per mobile */
+    height: 35vh;
   }
 }

@@ -9,6 +9,7 @@
     </div> -->
 </div>
 <app-logo-nome
+[nome]="scuoleDettagliate()?.data?.name ?? ''"
 [logo]="scuoleDettagliate()?.data?.logo ?? ''"
 >
 </app-logo-nome>
@@ -17,25 +18,30 @@
 
 <div class="components-row">
     <app-chi-siamo class="component-item"></app-chi-siamo>
-    <app-info   
+<!--     <app-info   
         [numeroTelefono]="scuoleDettagliate()?.data?.school_phones?.[1]?.number ?? ''" 
         [via]="scuoleDettagliate()?.data?.address ?? ''" 
         [nome]="scuoleDettagliate()?.data?.responsabile_orientamento ?? ''"  
         class="component-item">
-    </app-info>
+    </app-info> -->
 </div>
-
+<!-- 
 <div class="components-row">
     <app-eventi></app-eventi>
-</div>
+</div> -->
 
 <app-video
 [video]="scuoleDettagliate()?.data?.videos?.[1]?.id ?? ''"
 ></app-video>
 
+<app-indirizzi></app-indirizzi>
+
+<div class="separator"></div>
+
+<app-open-days></app-open-days>
 <div class="components-row">
 <app-contattaci
-        [numeroTelefono]="scuoleDettagliate()?.data?.school_phones?.[1]?.number ?? ''" 
+        [numeroTelefono]="scuoleDettagliate()?.data?.school_phones?.[0] ?? ''" 
         [email]="scuoleDettagliate()?.data?.email ?? ''" 
 >
 

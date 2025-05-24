@@ -6,6 +6,8 @@ import { Observable } from 'rxjs';
 import { Scuola } from '../interfaces/scuola';
 import { ScuolaDettagliata } from '../interfaces/scuola-dettagliata';
 import { EventsData } from '../interfaces/events-data';
+import { Video } from '../interfaces/scuolaMoreInformation.interface';
+import { EducationalPathsData, EducationalPath } from '../interfaces/educational-paths';
 
 @Injectable({
   providedIn: 'root'
@@ -30,8 +32,44 @@ getSchoolData(id: string): Observable<Scuola | null> {
 
  getEventsData(): Observable<EventsData | null> {
   return this.http.get<EventsData>(`${this.apiUrl}/items/events`);
+}
+
+getEventsForSchool(schoolId: string): Observable<EventsData | null> {
+  return this.http.get<EventsData>(`${this.apiUrl}/items/events?filter[school][_eq]=${schoolId}`);
+}
+
+/*  getVideoUrl(): Observable
+
+ */
+ getVideoUrl(id: string): Observable<Video | null> {
+  console.log("aaaaaaaaaaaaaaa")
+  console.log(`${this.apiUrl}/items/videos/${id}`)
+   return this.http.get<Video>(`${this.apiUrl}/items/videos/${id}`);
  }
-  constructor(private http: HttpClient) { }
+
+ // Metodi per ottenere gli Educational Paths
+ getAllEducationalPaths(): Observable<EducationalPathsData | null> {
+  return this.http.get<EducationalPathsData>(`${this.apiUrl}/items/educational_paths`);
+ }
+
+ getEducationalPath(id: string): Observable<EducationalPath | null> {
+  return this.http.get<EducationalPath>(`${this.apiUrl}/items/educational_paths/${id}`);
+ }
+
+ getEduLinksForSchool(schoolId: string): Observable<any> {
+  // Ottieni i link educativi direttamente dalla scuola
+  return this.http.get<any>(`${this.apiUrl}/items/schools/${schoolId}?fields=edu_links.*,edu_links.educational_path.*`);
+ }
+
+ getEducationalPathsByIds(ids: string[]): Observable<EducationalPathsData | null> {
+  const filter = ids.map(id => `filter[id][_eq]=${id}`).join('&');
+  return this.http.get<EducationalPathsData>(`${this.apiUrl}/items/educational_paths?${filter}`);
+ }
+
+
+constructor(private http: HttpClient) { }
+
+
 
 }
 

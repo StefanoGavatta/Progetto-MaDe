@@ -1,13 +1,96 @@
+/* Definizione delle animazioni di fade-in */
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+@keyframes slideFromTop {
+    0% { 
+        opacity: 0; 
+        transform: translateY(-50px);
+    }
+    100% { 
+        opacity: 1; 
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideFromBottom {
+    0% { 
+        opacity: 0; 
+        transform: translateY(50px);
+    }
+    100% { 
+        opacity: 1; 
+        transform: translateY(0);
+    }
+}
+
+@keyframes scaleIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Animazione per le icone */
+@keyframes iconScaleIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
 #sfondo {
-    background-image: url('https://esempio.com/immagine.jpg'); /* Sostituisci con l'URL della tua immagine */
+    position: relative;
+    width: 100%; /* Occupa la larghezza completa */
+    min-height: 70vh; /* Modifica: usiamo una percentuale della viewport height */
+    max-height: 900px; /* Limitiamo l'altezza massima per monitor molto grandi */
+    margin: 0;
+    padding: 0; /* Rimuoviamo il padding per coprire l'intera larghezza */
+    overflow: hidden; /* Impedisce che le immagini fuoriescano dal contenitore */
+    animation: fadeIn 1.5s ease-out forwards;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#sfondo::before, 
+#sfondo::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-    height: 100vh; /* Occupa l'altezza completa della viewport */
-    width: 100%; /* Occupa la larghezza completa */
-    margin: 0;
-    padding: 0;
-    position: relative;
+    opacity: 0; /* Inizia con opacità 0 per l'animazione */
+}
+
+#sfondo::before {
+    background-image: url('/prendi_verde.png');
+    z-index: 1;
+    background-size: cover; /* Modifica: usiamo cover per coprire l'intero spazio */
+    background-position: center; /* Modifica: centrato orizzontalmente e verticalmente */
+    animation: slideFromTop 1.2s ease-out 0.3s forwards; /* Animazione con ritardo di 0.3s */
+}
+
+#sfondo::after {
+    background-image: url('/futuro_rosa.png');
+    z-index: 2;
+    background-size: cover; /* Modifica: usiamo cover per coprire l'intero spazio */
+    background-position: center; /* Modifica: centrato orizzontalmente e verticalmente */
+    animation: slideFromBottom 1.2s ease-out 0.6s forwards; /* Animazione con ritardo di 0.6s */
 }
 
 /* Assicurati che non ci siano margini esterni che interferiscano */
@@ -15,6 +98,19 @@
     display: block;
     margin: 0;
     padding: 0;
+}
+
+.content-container {
+    position: relative;
+    z-index: 3;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    opacity: 0; /* Inizia con opacità 0 */
+    animation: fadeIn 1s ease-out 1s forwards; /* Appare dopo le immagini */
 }
 
 /* Stili per le card circolari */
@@ -67,4 +163,325 @@
 .card i {
     font-size: 2.5rem;
     margin-bottom: 15px;
+}
+
+/* Classi per animare elementi interni */
+.fade-in-element {
+    opacity: 0;
+    animation: fadeIn 1s ease-out forwards;
+}
+
+.fade-in-delay-1 {
+    animation-delay: 1.2s;
+}
+
+.fade-in-delay-2 {
+    animation-delay: 1.5s;
+}
+
+.fade-in-delay-3 {
+    animation-delay: 1.8s;
+}
+
+/* Animazione per titoli o testi importanti */
+.title-animation {
+    opacity: 0;
+    animation: slideFromTop 1s ease-out 1.2s forwards;
+}
+
+/* Animazione per pulsanti o call-to-action */
+.button-animation {
+    opacity: 0;
+    transform: scale(0.8);
+    animation: scaleIn 0.8s ease-out 1.5s forwards;
+}
+
+/* Stili per i nuovi elementi dimostrativi */
+.content-container h1 {
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: #fff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.content-container p {
+    font-size: 1.5rem;
+    color: #fff;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+    margin-bottom: 2rem;
+    text-align: center;
+    max-width: 80%;
+}
+
+.content-container button {
+    padding: 12px 30px;
+    font-size: 1.2rem;
+    background-color: #3a77ff;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.content-container button:hover {
+    background-color: #2855b9;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Stili per la sezione delle icone */
+.icons-section {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 80px 0 100px; /* Aumentiamo il padding inferiore */
+    margin-top: 30px; /* Riduciamo il margine superiore */
+    position: relative;
+    z-index: 10;
+}
+
+.icons-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 150px; /* Aumentiamo lo spazio tra le icone per desktop */
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 0 30px;
+}
+
+.icon-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    animation: iconScaleIn 0.6s ease-in-out forwards;
+    cursor: pointer; /* Indica che l'elemento è cliccabile */
+    transition: all 0.3s ease;
+    padding: 15px;
+    border-radius: 15px;
+}
+
+.icon-item img {
+    width: 250px; /* Dimensione aumentata per desktop */
+    height: 250px;
+    object-fit: contain;
+    margin-bottom: 20px;
+    transition: transform 0.3s ease;
+}
+
+.icon-item h3 {
+    margin-top: 15px;
+    font-size: 28px;
+    color: #333;
+    font-weight: bold;
+}
+
+/* Effetto hover sulle icone */
+.icon-item:hover {
+    background-color: rgba(244, 244, 244, 0.7);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.icon-item:hover img {
+    transform: scale(1.15);
+    filter: drop-shadow(0 10px 15px rgba(0,0,0,0.15));
+}
+
+/* Responsive per diversi dispositivi */
+@media (max-width: 1600px) {
+    .icons-container {
+        gap: 120px;
+    }
+    
+    .icon-item img {
+        width: 220px;
+        height: 220px;
+    }
+}
+
+@media (max-width: 1400px) {
+    .icons-container {
+        gap: 100px;
+    }
+    
+    .icon-item img {
+        width: 200px;
+        height: 200px;
+    }
+}
+
+@media (max-width: 1200px) {
+    .icons-container {
+        gap: 80px;
+    }
+    
+    .icon-item img {
+        width: 180px;
+        height: 180px;
+    }
+    
+    .icon-item h3 {
+        font-size: 24px;
+    }
+}
+
+@media (max-width: 992px) {
+    #sfondo {
+        min-height: 400px;
+        padding: 60px 0;
+    }
+    
+    .icons-section {
+        margin-top: 50px;
+        padding: 40px 0;
+    }
+    
+    .icons-container {
+        gap: 60px;
+    }
+    
+    .icon-item img {
+        width: 160px;
+        height: 160px;
+    }
+}
+
+@media (max-width: 768px) {
+    #sfondo {
+        min-height: 350px;
+        padding: 50px 0;
+    }
+    
+    .icons-container {
+        flex-direction: column;
+        gap: 50px; /* Aumentiamo un po' lo spazio tra le icone in visualizzazione mobile */
+        justify-content: center;
+    }
+    
+    .icon-item img {
+        width: 160px; /* Aumentiamo rispetto alla versione precedente */
+        height: 160px;
+    }
+    
+    .icons-section {
+        margin-top: 40px; /* Aumentiamo leggermente il margine superiore */
+        padding: 30px 0;
+    }
+}
+
+@media (max-width: 576px) {
+    #sfondo {
+        min-height: 300px;
+        padding: 40px 0;
+    }
+    
+    .icons-container {
+        flex-direction: column;
+        gap: 40px; /* Manteniamo uno spazio adeguato per schermi piccoli */
+    }
+    
+    .icon-item {
+        width: 100%;
+    }
+    
+    .icon-item img {
+        width: 140px; /* Aumentiamo la dimensione per mantenere proporzioni adeguate */
+        height: 140px;
+    }
+    
+    .icons-section {
+        margin-top: 30px; 
+        padding: 20px 0;
+    }
+}
+
+/* Responsive design per schermi piccoli */
+@media (max-width: 768px) {
+    .content-container h1 {
+        font-size: 2.5rem;
+    }
+    
+    .content-container p {
+        font-size: 1.2rem;
+    }
+    
+    .content-container button {
+        padding: 10px 25px;
+        font-size: 1rem;
+    }
+}
+
+/* Media queries per schermi di diverse dimensioni */
+@media (max-width: 1600px) {
+    #sfondo {
+        min-height: 65vh;
+    }
+}
+
+@media (max-width: 1200px) {
+    #sfondo {
+        min-height: 60vh;
+    }
+    
+    #sfondo::before, 
+    #sfondo::after {
+        background-size: cover;
+    }
+}
+
+@media (max-width: 992px) {
+    #sfondo {
+        min-height: 55vh;
+    }
+}
+
+@media (max-width: 768px) {
+    #sfondo {
+        min-height: 50vh;
+    }
+    
+    /* Torniamo a contain per schermi più piccoli per evitare distorsioni */
+    #sfondo::before, 
+    #sfondo::after {
+        background-size: contain;
+        background-position: center;
+    }
+}
+
+@media (max-width: 576px) {
+    #sfondo {
+        min-height: 45vh;
+    }
+}
+
+/* Stile per dispositivi molto piccoli */
+@media (max-height: 500px) {
+    #sfondo {
+        min-height: 90vh; /* Usiamo quasi tutta l'altezza disponibile */
+    }
+    
+    .icons-section {
+        padding: 20px 0 30px;
+        margin-top: 10px;
+    }
+    
+    .icons-container {
+        gap: 50px;
+    }
+    
+    .icon-item img {
+        width: 100px;
+        height: 100px;
+        margin-bottom: 10px;
+    }
+    
+    .icon-item h3 {
+        font-size: 16px;
+    }
 }

@@ -1,0 +1,216 @@
+@import 'animate.css';
+
+.indirizzi-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h3 {
+  color: #000000; /* Cambiato da #555 a nero */
+  margin-bottom: 15px;
+  font-size: 2.2rem; /* Aggiunto per rendere il titolo più grande */
+  font-weight: bold; /* Opzionale: rende il testo in grassetto */
+}
+
+.indirizzi-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: repeat(3, auto);
+  gap: 24px 32px;
+  margin-top: 24px;
+  justify-content: center;
+  width: 100%;
+  max-width: 1200px;
+}
+
+@media (max-width: 700px) {
+  .indirizzi-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .indirizzo-box {
+    max-width: 100%;
+    width: 100%;
+    display: block;
+  }
+  .indirizzo-box.empty {
+    display: none;
+  }
+}
+
+.indirizzo-box {
+  border-radius: 12px;
+  padding: 0;
+  min-height: 120px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  max-width: 500px;
+  width: 100%;
+  margin: 0 auto;
+  opacity: 0; /* Inizialmente nascosto, sarà mostrato dall'observer */
+  /* Rimuoviamo transform: translateY(20px) per evitare conflitti con le animazioni slideIn */
+  /* transform: translateY(20px); */
+  transition: opacity 0.8s ease, box-shadow 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  overflow: hidden;
+  background-color: #ffffff;
+  will-change: transform, opacity, box-shadow;
+}
+
+.indirizzo-box.visible {
+  opacity: 1;
+  /* Rimuoviamo transform: translateY(0) poiché sarà gestito dalle animazioni slideIn */
+  /* transform: translateY(0); */
+  /* Rimuoviamo animation: none; per permettere alle animazioni di Animate.css di funzionare */
+  /* animation: none; */
+}
+
+.indirizzo-box:not(.empty):hover {
+  transform: translateY(-10px) scale(1.02) !important; /* Usiamo !important per sovrascrivere le trasformazioni delle animazioni */
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  z-index: 1;
+}
+
+.indirizzo-box.empty {
+  background: transparent;
+  box-shadow: none;
+}
+
+.indirizzo-header {
+  background-color: #FFC84D;
+  padding: 15px 20px;
+  width: 100%;
+  transition: background-color 0.3s ease;
+}
+
+.indirizzo-box:hover .indirizzo-header {
+  background-color: #ffc022;
+}
+
+.indirizzo-header h4 {
+  margin: 0;
+  font-size: 1.2rem;
+  color: #1a1a1a;
+  font-weight: 600;
+  transition: transform 0.2s ease;
+}
+
+.indirizzo-box:hover .indirizzo-header h4 {
+  transform: translateX(3px);
+}
+
+.indirizzo-content {
+  padding: 18px 20px;
+}
+
+.indirizzo-box p {
+  margin: 0 0 10px 0;
+  font-size: 0.95rem;
+  color: #555555;
+  line-height: 1.5;
+}
+
+/* Stili per i messaggi di caricamento, errore e nessun dato */
+.loading-container, .error-message, .no-data-message {
+  padding: 20px;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.loading-spinner {
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-left-color: #FFC84D;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 15px auto;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.error-message {
+  color: #D8000C;
+  background-color: #FFD2D2;
+  border-radius: 8px;
+  padding: 10px 20px;
+}
+
+.no-data-message {
+  color: #555;
+  font-style: italic;
+}
+
+.links-container {
+  margin-top: 16px;
+  border-top: 1px dashed #e0e0e0;
+  padding-top: 14px;
+}
+
+.links-container strong {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #2a2a2a;
+}
+
+.links-container ul {
+  margin: 5px 0 0 0;
+  padding-left: 20px;
+  list-style-type: square;
+}
+
+.links-container li {
+  margin-bottom: 7px;
+}
+
+.links-container a {
+  color: #1a73e8;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  font-weight: 500;
+  padding: 2px 5px;
+  border-radius: 4px;
+  position: relative;
+  display: inline-block;
+}
+
+.links-container a:hover {
+  color: #0d47a1;
+  background-color: rgba(26, 115, 232, 0.1);
+  transform: translateX(2px);
+}
+
+.links-container a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 5px;
+  width: 0;
+  height: 1px;
+  background-color: #0d47a1;
+  transition: width 0.3s ease;
+}
+
+.links-container a:hover::after {
+  width: calc(100% - 10px);
+}
+
+/* Personalizzazione delle animazioni */
+.animate__slideInUp {
+  animation-duration: 0.8s !important; /* Durata personalizzata */
+  animation-delay: 0.2s; /* Ritardo prima dell'inizio dell'animazione */
+}
+
+/* Assicuriamo che durante le animazioni le card mantengano l'opacità 1 */
+.animate__animated.indirizzo-box {
+  opacity: 1 !important;
+}
