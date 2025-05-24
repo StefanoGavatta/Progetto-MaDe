@@ -205,12 +205,7 @@ h3 {
 }
 
 /* Personalizzazione delle animazioni */
-.animate__slideInLeft {
-  animation-duration: 0.8s !important; /* Durata personalizzata */
-  animation-delay: 0.2s; /* Ritardo prima dell'inizio dell'animazione */
-}
-
-.animate__slideInRight {
+.animate__slideInUp {
   animation-duration: 0.8s !important; /* Durata personalizzata */
   animation-delay: 0.2s; /* Ritardo prima dell'inizio dell'animazione */
 }

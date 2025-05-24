@@ -78,13 +78,8 @@ export class OpenDaysComponent implements AfterViewInit, OnInit {
             // Aggiungi le classi di animazione di Animate.css
             this.renderer.addClass(entry.target, 'animate__animated');
             
-            if (isLeftColumn) {
-              // Per le card sulla colonna sinistra (prima colonna)
-              this.renderer.addClass(entry.target, 'animate__slideInLeft');
-            } else {
-              // Per le card sulla colonna destra (seconda colonna)
-              this.renderer.addClass(entry.target, 'animate__slideInRight');
-            }
+            // Utilizziamo animate__slideInUp per tutte le card indipendentemente dalla posizione
+            this.renderer.addClass(entry.target, 'animate__slideInUp');
             
             observer.unobserve(entry.target);
           }
