@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, HostListener, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -8,8 +8,11 @@ import { CommonModule } from '@angular/common';
   templateUrl: './image-carousel.component.html',
   styleUrl: './image-carousel.component.css'
 })
-export class ImageCarouselComponent implements OnInit {
-  // Array di 6 immagini
+export class ImageCarouselComponent implements OnInit, OnChanges {
+  @Input() schoolId: string = '';
+  @Input() schoolName: string = '';
+  
+  // Array di 6 immagini (placeholder predefiniti)
   images: string[] = [
     'https://placehold.co/1200x800?text=Immagine+1',  // Immagini più grandi per il display a schermo intero
     'https://placehold.co/1200x800?text=Immagine+2',
@@ -18,6 +21,16 @@ export class ImageCarouselComponent implements OnInit {
     'https://placehold.co/1200x800?text=Immagine+5',
     'https://placehold.co/1200x800?text=Immagine+6'
   ];
+  
+  // Proprietà per il modal/lightbox
+  modalVisible: boolean = false;
+  selectedImageIndex: number = -1;
+  
+  ngOnChanges(changes: SimpleChanges): void {
+    if ((changes['schoolId'] || changes['schoolName']) && this.schoolName) {
+      this.updateImagesBasedOnSchool();
+    }
+  }
 
   // Indice iniziale (prima immagine visibile)
   startIndex = 0;
@@ -34,8 +47,82 @@ export class ImageCarouselComponent implements OnInit {
 
   ngOnInit() {
     this.updateVisibleImages();
+    this.updateImagesBasedOnSchool();
     // Aggiungiamo un listener iniziale per assicurarsi che il carousel si adatti subito alla dimensione dello schermo
     window.dispatchEvent(new Event('resize'));
+  }
+  
+  // Metodo per aprire il modal con l'immagine ingrandita
+  openModal(index: number): void {
+    this.selectedImageIndex = index;
+    this.modalVisible = true;
+    // Aggiungiamo una classe al body per prevenire lo scrolling quando il modal è aperto
+    document.body.classList.add('no-scroll');
+  }
+  
+  // Metodo per chiudere il modal
+  closeModal(event?: Event): void {
+    if (event) {
+      event.stopPropagation();
+    }
+    this.modalVisible = false;
+    document.body.classList.remove('no-scroll');
+  }
+  
+  // Funzioni per navigare tra le immagini nel modal
+  
+  nextModalImage(event?: Event): void {
+    if (event) {
+      event.stopPropagation();
+    }
+    if (this.selectedImageIndex < this.images.length - 1) {
+      this.selectedImageIndex++;
+    } else {
+      this.selectedImageIndex = 0; // Torna al primo
+    }
+  }
+  
+  prevModalImage(event?: Event): void {
+    if (event) {
+      event.stopPropagation();
+    }
+    if (this.selectedImageIndex > 0) {
+      this.selectedImageIndex--;
+    } else {
+      this.selectedImageIndex = this.images.length - 1; // Vai all'ultimo
+    }
+  }
+  
+  updateImagesBasedOnSchool(): void {
+    console.log('Aggiornamento immagini basato sulla scuola:', this.schoolName);
+    
+    // Verifica se la scuola è Istituto Tecnico Tecnologico 'G. Marconi'
+    if (this.schoolName && (
+        this.schoolName.includes('Marconi') || 
+        this.schoolName.includes("Istituto Tecnico Tecnologico 'G. Marconi'") ||
+        this.schoolName === "Istituto Tecnico Tecnologico 'G. Marconi'"
+      )) {
+      console.log('Trovata scuola Marconi, caricamento immagini specifiche.');
+      // Caricamento delle immagini dalla cartella marconi
+      this.images = [
+        '/marconi/download.jpeg',
+        '/marconi/download (1).jpeg',
+        '/marconi/download (2).jpeg',
+        '/marconi/download (3).jpeg',
+        '/marconi/download (4).jpeg',
+        '/marconi/download (5).jpeg'
+      ];
+    } else {
+      // Ripristino dei placeholder per le altre scuole
+      this.images = [
+        'https://placehold.co/1200x800?text=Immagine+1',
+        'https://placehold.co/1200x800?text=Immagine+2',
+        'https://placehold.co/1200x800?text=Immagine+3',
+        'https://placehold.co/1200x800?text=Immagine+4',
+        'https://placehold.co/1200x800?text=Immagine+5',
+        'https://placehold.co/1200x800?text=Immagine+6'
+      ];
+    }
   }
 
   @HostListener('window:resize')

@@ -13,7 +13,10 @@
 [logo]="scuoleDettagliate()?.data?.logo ?? ''"
 >
 </app-logo-nome>
-<app-image-carousel>
+<app-image-carousel
+  [schoolId]="currentSchoolId()"
+  [schoolName]="scuoleDettagliate()?.data?.name ?? ''"
+>
 </app-image-carousel>
 
 <div class="components-row">
