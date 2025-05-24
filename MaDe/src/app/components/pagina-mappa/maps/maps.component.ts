@@ -46,8 +46,8 @@ export class MapsComponent implements AfterViewInit, OnInit {
   map: any;
   scuolaData: WritableSignal<SchoolsData | null> = signal(null);
  defaultIcon = new L.Icon({
-  iconUrl: "/mappa_icone.png",
-  iconSize: [25, 41],
+  iconUrl: "/verde.png",
+  iconSize: [80, 41],
   iconAnchor: [10, 41],
   popupAnchor: [2, -40]
 });
@@ -62,8 +62,8 @@ export class MapsComponent implements AfterViewInit, OnInit {
 
 
   private defaultIconPuntatori: Icon = icon({
-    iconUrl: "/utente_icona.png",
-    iconSize: [32, 32], // Imposta la larghezza e l'altezza desiderate (es. 32x32 pixel)
+    iconUrl: "/blue.png",
+    iconSize: [20, 30], // Imposta la larghezza e l'altezza desiderate (es. 32x32 pixel)
     iconAnchor: [16, 32], // Imposta il punto dell'icona che corrisponde alla posizione (es. il centro inferiore)
     popupAnchor: [0, -32]  // Imposta dove si "aggancia" la popup rispetto all'icona (es. sopra il centro)
   });
