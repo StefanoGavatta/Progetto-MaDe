@@ -11,6 +11,7 @@ interface Scuola {
   lng: number;
   nome: string;
   logo: string;
+  id: string
 }
 
 
@@ -102,7 +103,8 @@ export class MapsComponent implements AfterViewInit, OnInit {
             lat: data[i].position.coordinates[1],
             lng: data[i].position.coordinates[0],
             nome: data[i].name,
-            logo:` https://api.retescuolevallagarina.it/assets/${data[i].logo}   `
+            logo:` https://api.retescuolevallagarina.it/assets/${data[i].logo}`,
+            id: data[i].id
           })
         }
 
@@ -115,7 +117,7 @@ export class MapsComponent implements AfterViewInit, OnInit {
         this.scuole.forEach(scuola => {
           L.marker([scuola.lat, scuola.lng], { icon: this.defaultIcon })
             .addTo(this.map)
-            .bindPopup(`<b>${scuola.nome}</b><br><img src="${scuola.logo}" alt="${scuola.nome} logo" style="width:50px;height:auto;">`);
+            .bindPopup(`<b><a href="/scuole/${scuola.id}" style="color:#3a5cff; text-decoration:underline;">${scuola.nome}</a><br><img src="${scuola.logo}" alt="${scuola.nome} logo" style="width:50px;height:auto;">`);
         });       
         
         Marker.prototype.options.icon = this.defaultIconPuntatori;
