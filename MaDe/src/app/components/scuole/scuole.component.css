@@ -5,73 +5,27 @@
   100% { opacity: 1; }
 }
 
-@keyframes slideFromTop {
-  0% { 
-      opacity: 0; 
-      transform: translateY(20px) translateY(-10px);
-  }
-  100% { 
-      opacity: 1; 
-      transform: translateY(85px);
-  }
-}
-
-@keyframes slideFromBottom {
-  0% { 
-      opacity: 0; 
-      transform: translateY(20px) translateY(1px);
-  }
-  100% { 
-      opacity: 1; 
-      transform: translateY(-35px);
-  }
-}
-
-/* Stile per la sezione con le immagini sovrapposte */
-#sfondo {
+/* Stile per il banner delle scuole */
+#banner-scuole {
   position: relative;
   width: 100%;
-  min-height: 85vh; /* Aumentato da 50vh a 70vh per dare più spazio alle immagini */
-  max-height: 900px; /* Aumentato da 700px a 900px */
+  min-height: 40vh;
+  max-height: 600px;
   margin: 0;
   padding: 0;
   overflow: hidden;
-  animation: fadeIn 1.5s ease-out forwards;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-#sfondo::before, 
-#sfondo::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
+#banner-scuole img {
   width: 100%;
-  height: 100%;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-  opacity: 0;
-}
-
-#sfondo::before {
-  background-image: url('/mano_verde1.png');
-  z-index: 1;
-  background-size: cover;
-  background-position: center;
-  transform: translateY(-10px); /* Trasla l'immagine di 10px verso l'alto */
-  animation: slideFromTop 1.2s ease-out 0.3s forwards;
-}
-
-#sfondo::after {
-  background-image: url('/mano_verde2.png');
-  z-index: 2;
-  background-size: cover;
-  background-position: center;
-  transform: translateY(10px); /* Trasla l'immagine di 10px verso il basso */
-  animation: slideFromBottom 1.2s ease-out 0.6s forwards;
+  height: auto;
+  max-width: 1400px;
+  object-fit: contain;
+  animation: fadeIn 1.2s ease-out forwards;
+  transform: translateY(75px); /* Trasla l'immagine di 75px verso il basso */
 }
 
 html, body {
