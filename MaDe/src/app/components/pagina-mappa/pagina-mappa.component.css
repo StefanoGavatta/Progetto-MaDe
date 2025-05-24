@@ -1,0 +1,63 @@
+.animation-overlay {
+  top: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10%; /* Spazio tra le mani */
+  background-color: white;
+  opacity: 1;
+  pointer-events: none;
+  width: 100%;
+  height: 50vh;
+  margin: auto;
+  position: relative;
+  z-index: 100;
+  background-image: url("/solo_mappa.png");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.mano {
+  width: 20vw; /* Dimensione più gestibile */
+  height: auto;
+  z-index: 102;
+  opacity: 1;
+  position: absolute; /* Fondamentale per animare left/right */
+  top: 50%;
+  transform: translateY(-50%);
+  transition: left 1.5s, right 1.5s, opacity 1.5s;
+}
+
+
+
+.mano {
+  width: 20vw;
+  height: auto;
+  z-index: 102;
+  opacity: 1;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: left 1.5s, right 1.5s, opacity 1.5s;
+}
+
+
+
+/* Stili per il contenuto della pagina che apparirà sotto l'overlay */
+.center-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding-top: 20%; /* Spazio per il tuo h2 e la mappa di app-maps */
+  position: relative;
+  z-index: 1; /* Assicurati che sia sotto l'overlay quando è attivo */
+}
+
+/* Header e Footer: Assicurati che abbiano un z-index più alto dell'overlay */
+/* Esempio (da adattare al tuo HTML): */
+/* header, footer {
+  z-index: 200;
+  position: relative;
+} */

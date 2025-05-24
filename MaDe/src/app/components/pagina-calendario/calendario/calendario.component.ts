@@ -8,9 +8,9 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DateTime, Info, Interval } from 'luxon';
-import { DirectusService } from '../../services/directus.service';
-import { Scuola } from '../../interfaces/scuola';
-import { Dati } from '../../interfaces/meetings.interface';
+import { DirectusService } from '../../../services/directus.service';
+import { Scuola } from '../../../interfaces/scuola';
+import { Dati } from '../../../interfaces/meetings.interface';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
