@@ -33,24 +33,37 @@
   <div class="image-modal-overlay" (click)="closeModal($event)">
     <div class="modal-container" (click)="$event.stopPropagation()">
       <div class="image-modal-content">
+        <!-- Indicatore di caricamento -->
+        @if (isImageLoading) {
+          <div class="loading-spinner">
+            <div class="spinner"></div>
+          </div>
+        }
+        
         <img [src]="images[selectedImageIndex]" 
              [alt]="'Immagine ' + schoolName + ' ' + (selectedImageIndex + 1)" 
-             class="modal-img">
+             class="modal-img enlarged"
+             [class.loading]="isImageLoading"
+             (click)="$event.stopPropagation()"
+             (load)="isImageLoading = false">
       </div>
-      
-      <button type="button" class="modal-close-btn" (click)="closeModal($event)" aria-label="Chiudi">✕</button>
-      
-      <button type="button" class="modal-nav-btn modal-prev-btn" 
-              (click)="prevModalImage($event)" 
-              aria-label="Immagine precedente">
-        &#10094;
-      </button>
-      
-      <button type="button" class="modal-nav-btn modal-next-btn" 
-              (click)="nextModalImage($event)" 
-              aria-label="Immagine successiva">
-        &#10095;
-      </button>
+         <button type="button" class="modal-close-btn" (click)="closeModal($event)" aria-label="Chiudi">✕</button>
+    
+    <button type="button" class="modal-nav-btn modal-prev-btn" 
+            (click)="prevModalImage($event)" 
+            aria-label="Immagine precedente">
+      &#10094;
+    </button>
+    
+    <button type="button" class="modal-nav-btn modal-next-btn" 
+            (click)="nextModalImage($event)" 
+            aria-label="Immagine successiva">
+      &#10095;
+    </button>
+    
+    <div class="image-counter">
+      {{ selectedImageIndex + 1 }} / {{ images.length }}
+    </div>
     </div>
   </div>
 }

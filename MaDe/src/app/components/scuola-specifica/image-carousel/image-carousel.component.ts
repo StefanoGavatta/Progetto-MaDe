@@ -25,6 +25,7 @@ export class ImageCarouselComponent implements OnInit, OnChanges {
   // Proprietà per il modal/lightbox
   modalVisible: boolean = false;
   selectedImageIndex: number = -1;
+  isImageLoading: boolean = true; // Flag per indicare se l'immagine è in caricamento
   
   ngOnChanges(changes: SimpleChanges): void {
     if ((changes['schoolId'] || changes['schoolName']) && this.schoolName) {
@@ -56,8 +57,26 @@ export class ImageCarouselComponent implements OnInit, OnChanges {
   openModal(index: number): void {
     this.selectedImageIndex = index;
     this.modalVisible = true;
+    this.isImageLoading = true; // Attiva l'indicatore di caricamento
+    
     // Aggiungiamo una classe al body per prevenire lo scrolling quando il modal è aperto
     document.body.classList.add('no-scroll');
+    
+    // Precarica l'immagine per garantire la dimensione corretta
+    const preloadImg = new Image();
+    preloadImg.src = this.images[index];
+    
+    // Quando l'immagine è caricata, disattiva l'indicatore di caricamento
+    preloadImg.onload = () => {
+      if (this.modalVisible) {
+        this.isImageLoading = false;
+      }
+    };
+    
+    preloadImg.onerror = () => {
+      this.isImageLoading = false;
+      console.error(`Errore nel caricare l'immagine: ${this.images[index]}`);
+    };
   }
   
   // Metodo per chiudere il modal
@@ -75,22 +94,51 @@ export class ImageCarouselComponent implements OnInit, OnChanges {
     if (event) {
       event.stopPropagation();
     }
+    
+    // Attiva l'indicatore di caricamento
+    this.isImageLoading = true;
+    
     if (this.selectedImageIndex < this.images.length - 1) {
       this.selectedImageIndex++;
     } else {
       this.selectedImageIndex = 0; // Torna al primo
     }
+    
+    // Precarica la nuova immagine
+    const preloadImg = new Image();
+    preloadImg.src = this.images[this.selectedImageIndex];
+    preloadImg.onload = () => {
+      if (this.modalVisible) {
+        this.isImageLoading = false;
+      }
+    };
   }
   
   prevModalImage(event?: Event): void {
     if (event) {
       event.stopPropagation();
     }
+    
+    // Attiva l'indicatore di caricamento
+    this.isImageLoading = true;
+    
+    // Attiva l'indicatore di caricamento
+    this.isImageLoading = true;
+    
     if (this.selectedImageIndex > 0) {
       this.selectedImageIndex--;
     } else {
       this.selectedImageIndex = this.images.length - 1; // Vai all'ultimo
     }
+    
+    // Precarica la nuova immagine
+    const preloadImg = new Image();
+    preloadImg.src = this.images[this.selectedImageIndex];
+    preloadImg.onload = () => {
+      if (this.modalVisible) {
+        this.isImageLoading = false;
+      }
+    };
   }
   
   updateImagesBasedOnSchool(): void {
@@ -104,7 +152,7 @@ export class ImageCarouselComponent implements OnInit, OnChanges {
       )) {
       console.log('Trovata scuola Marconi, caricamento immagini specifiche.');
       // Caricamento delle immagini dalla cartella marconi
-      this.images = [
+      const marconiImages = [
         '/marconi/download.jpeg',
         '/marconi/download (1).jpeg',
         '/marconi/download (2).jpeg',
@@ -112,6 +160,12 @@ export class ImageCarouselComponent implements OnInit, OnChanges {
         '/marconi/download (4).jpeg',
         '/marconi/download (5).jpeg'
       ];
+      
+      // Precarica le immagini per assicurarsi che vengano caricate correttamente
+      this.preloadImages(marconiImages);
+      
+      // Imposta le immagini
+      this.images = marconiImages;
     } else {
       // Ripristino dei placeholder per le altre scuole
       this.images = [
@@ -123,6 +177,20 @@ export class ImageCarouselComponent implements OnInit, OnChanges {
         'https://placehold.co/1200x800?text=Immagine+6'
       ];
     }
+  }
+  
+  // Metodo per precaricare le immagini
+  preloadImages(imageUrls: string[]): void {
+    imageUrls.forEach(url => {
+      const img = new Image();
+      img.src = url;
+      img.onload = () => {
+        console.log(`Immagine precaricata: ${url}, dimensioni: ${img.width}x${img.height}`);
+      };
+      img.onerror = () => {
+        console.error(`Errore nel caricare l'immagine: ${url}`);
+      };
+    });
   }
 
   @HostListener('window:resize')
@@ -205,5 +273,27 @@ export class ImageCarouselComponent implements OnInit, OnChanges {
 
   get canGoNext(): boolean {
     return this.images.length > this.visibleImages;
+  }
+  
+
+
+    // Gestione degli eventi da tastiera quando il modal è aperto
+  @HostListener('window:keydown', ['$event'])
+  handleKeyboardEvent(event: KeyboardEvent): void {
+    if (!this.modalVisible) return;
+    
+    switch (event.key) {
+      case 'ArrowLeft':
+        this.prevModalImage();
+        break;
+      case 'ArrowRight':
+        this.nextModalImage();
+        break;
+      case 'Escape':
+        this.closeModal();
+        break;
+      default:
+        break;
+    }
   }
 }
