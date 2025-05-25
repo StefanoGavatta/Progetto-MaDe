@@ -1,4 +1,6 @@
-
+body {
+  color: #083D77;
+}
 
 .hero-wrapper {
   display: flex;

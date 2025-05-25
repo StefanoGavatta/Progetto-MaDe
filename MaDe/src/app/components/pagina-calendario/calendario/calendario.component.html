@@ -45,43 +45,86 @@
   </div>
 
 
-
-  @if (bho) {
-    <div class="date-overlay">
-      <div class="overlay-backdrop" (click)="closeOverlay()"></div>
-      <div class="events-grid-container">
-      @for (event of giornoSelezionato(); track $index) {
-        <div class="event-card">
-          <div class="event-header">
-            <div class="event-header-top"  routerLink="/scuola/{{event.idScuola}}">
-              <img src="{{event.icona}}" alt="Event logo" class="event-logo">
-            </div>
-            <h1 class="event-title">{{event.title}}</h1>
-            <h4>{{event.scuola}}</h4> 
-            <div class="event-meta">
-              <div class="meta-item">
-                <svg class="meta-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-                  <line x1="16" y1="2" x2="16" y2="6"></line>
-                  <line x1="8" y1="2" x2="8" y2="6"></line>
-                  <line x1="3" y1="10" x2="21" y2="10"></line>
-                </svg>
-                <span>{{event.dataInizio.split("T")[1].split(":")[0]}}:{{event.dataInizio.split("T")[1].split(":")[1]}} --> {{event.dataFine.split("T")[1].split(":")[0]}}:{{event.dataFine.split("T")[1].split(":")[1]}}</span>
+<!-- @if (bho) {
+  <div class="date-overlay" [ngClass]="'events-count-' + ((giornoSelezionato() ?? []).length)">
+    <div class="overlay-backdrop" (click)="closeOverlay()">
+      <div class="overlay-content">
+        <div class="events-grid-container">
+          @for (event of giornoSelezionato(); track $index) {
+            <div class="event-card">
+              <div class="event-header" routerLink="/scuola/{{event.idScuola}}">
+                <div class="event-header-top">
+                  <img [src]="event.icona" [alt]="event.scuola" class="event-logo">
+                  <button class="close-btn" (click)="closeOverlay()">×</button>
+                </div>
+                <h2 class="event-title">{{event.title}}</h2>
+                <h4 class="event-subtitle">{{event.scuola}}</h4>
+                
+                <div class="event-meta">
+                  <div class="meta-item">
+                    <svg class="meta-icon" viewBox="0 0 24 24">
+                      <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                      <line x1="16" y1="2" x2="16" y2="6"></line>
+                      <line x1="8" y1="2" x2="8" y2="6"></line>
+                      <line x1="3" y1="10" x2="21" y2="10"></line>
+                    </svg>
+                    <span>{{event.dataInizio.split("T")[1].split(":")[0]}}:{{event.dataInizio.split("T")[1].split(":")[1]}} 
+                          → {{event.dataFine.split("T")[1].split(":")[0]}}:{{event.dataFine.split("T")[1].split(":")[1]}}</span>
+                  </div>
+                  
+                  <div class="meta-item">
+                    <svg class="meta-icon" viewBox="0 0 24 24">
+                      <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                      <circle cx="12" cy="10" r="3"></circle>
+                    </svg>
+                    <span>{{event.luogo}}</span>
+                  </div>
+                </div>
+                
+                <div class="event-description" [innerHTML]="event.descrizione"></div>
               </div>
-              
-              <div class="meta-item">
-                <svg class="meta-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                  <circle cx="12" cy="10" r="3"></circle>
-                </svg>
-                <span>{{event.luogo}}</span>   
-              </div>
-              <h6  innerHTML="{{event.descrizione}}"></h6>
             </div>
-          </div>
+          }
         </div>
-    }
       </div>
     </div>
-  }
+  </div>
+} -->
 
+@if (bho) {
+  <div class="date-overlay">
+    <div class="overlay-backdrop" (click)="closeOverlay()">
+      <div class="events-container">
+        @for (event of giornoSelezionato(); track $index) {
+          <div class="event-popup" [ngClass]="'event-type-' + ($index + 1)">
+            <img [src]="event.icona" [alt]="event.scuola" class="event-icon">
+            <div class="event-content">
+              <h2>{{event.title}}</h2>
+              <h4>{{event.scuola}}</h4>
+              <div class="event-details">
+                <div class="detail-row">
+                  <svg viewBox="0 0 24 24">
+                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                    <line x1="16" y1="2" x2="16" y2="6"></line>
+                    <line x1="8" y1="2" x2="8" y2="6"></line>
+                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                  </svg>
+                  <span >{{event.dataInizio.split("T")[1].split(":")[0]}}:{{event.dataInizio.split("T")[1].split(":")[1]}} 
+                    → {{event.dataFine.split("T")[1].split(":")[0]}}:{{event.dataFine.split("T")[1].split(":")[1]}}</span>
+                </div>
+                <div class="detail-row">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                    <circle cx="12" cy="10" r="3"></circle>
+                  </svg>
+                  <span>{{event.luogo}}</span>
+                </div>
+              </div>
+              <p class="event-description" [innerHTML]="event.descrizione"></p>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+}
