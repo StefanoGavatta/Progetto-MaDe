@@ -17,6 +17,7 @@
             [tipo]="getTipoScuola(scuola)"
             [index]="$index"
             [id]="scuola.id"
+            [isLastCard]="$index === scuoleFiltrate().length - 1"
             routerLink="{{scuola.id}}"
             >
 
