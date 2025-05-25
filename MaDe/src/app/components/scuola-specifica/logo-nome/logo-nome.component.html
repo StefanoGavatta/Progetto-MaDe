@@ -22,6 +22,23 @@
           <strong>Responsabile Orientamento:</strong> {{responsabileOrientamento}}
         </p>
       </div>
+      <div class="email-container">
+        <div *ngIf="isLoadingEmail" class="email-loading">
+          <p><strong>Email:</strong> Caricamento in corso...</p>
+        </div>
+        <div *ngIf="!isLoadingEmail && schoolEmail" class="email-text">
+          <p>
+            <strong>Email:</strong> 
+            <a [href]="'mailto:' + schoolEmail" class="email-link">{{schoolEmail}}</a>
+          </p>
+        </div>
+        <div *ngIf="!isLoadingEmail && !schoolEmail && !emailError" class="email-unavailable">
+          <p class="email-text"><strong>Email:</strong> Non disponibile</p>
+        </div>
+        <div *ngIf="emailError" class="email-error">
+          <p class="error-text">{{emailError}}</p>
+        </div>
+      </div>
     </div>
     <div class="logo-container">
       <img *ngIf="logo" [src]="'https://api.retescuolevallagarina.it/assets/' + logo" alt="{{nome}}" class="logo">

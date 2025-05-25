@@ -70,6 +70,11 @@ getVideoUrl(id: string): Observable<any> {
   return this.http.get<any>(`${this.apiUrl}/items/schools/${schoolId}?fields=edu_links.*,edu_links.educational_path.*`);
  }
 
+ getSchoolEmails(schoolId: string): Observable<any> {
+  // Ottieni tutte le email per una specifica scuola dall'endpoint school_emails
+  return this.http.get<any>(`${this.apiUrl}/items/school_emails?filter[school][_eq]=${schoolId}`);
+ }
+
  getEducationalPathsByIds(ids: string[]): Observable<EducationalPathsData | null> {
   const filter = ids.map(id => `filter[id][_eq]=${id}`).join('&');
   return this.http.get<EducationalPathsData>(`${this.apiUrl}/items/educational_paths?${filter}`);

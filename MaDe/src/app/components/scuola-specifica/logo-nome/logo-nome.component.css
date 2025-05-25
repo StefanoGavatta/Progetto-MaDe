@@ -228,15 +228,83 @@ h2 {
   font-weight: 600;
 }
 
-/* Responsive per indirizzo e responsabile */
+/* Stili per il container dell'email */
+.email-container {
+  margin-top: 15px;
+}
+
+.email-text {
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #333;
+  margin: 0;
+  word-wrap: break-word;
+}
+
+.email-text strong {
+  color: #2c3e50;
+  font-weight: 600;
+}
+
+.email-link {
+  color: #007bff;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  padding: 2px 4px;
+  border-radius: 4px;
+}
+
+.email-link:hover {
+  color: #0056b3;
+  background-color: rgba(0, 123, 255, 0.1);
+  text-decoration: underline;
+}
+
+.email-link:focus {
+  outline: 2px solid #007bff;
+  outline-offset: 2px;
+}
+
+.email-loading {
+  font-size: 1rem;
+  color: #666;
+  font-style: italic;
+}
+
+.email-unavailable {
+  font-size: 1rem;
+  color: #888;
+  font-style: italic;
+}
+
+.email-error {
+  font-size: 1rem;
+  color: #dc3545;
+  font-weight: 500;
+}
+
+.error-text {
+  margin: 0;
+}
+
+/* Responsive per indirizzo, responsabile ed email */
 @media screen and (max-width: 768px) {
   .address-container,
-  .responsabile-container {
+  .responsabile-container,
+  .email-container {
     text-align: center;
   }
   
   .address-text,
-  .responsabile-text {
+  .responsabile-text,
+  .email-text,
+  .email-loading,
+  .email-unavailable,
+  .email-error {
     text-align: center;
+  }
+  
+  .email-link {
+    word-break: break-all;
   }
 }
