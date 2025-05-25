@@ -1,11 +1,13 @@
 <div class="calendar-container">
+  <div class="sistemo">
     <div class="calendar">
       <div class="calendar-headline">
         <div class="calendar-headline-month">
-          {{ firstDayOfActiveMonth().monthShort }},
+          {{ firstDayOfActiveMonth().monthLong }}
           {{ firstDayOfActiveMonth().year }}
         </div>
-        <div class="calendar-headline-controls">
+
+<!--         <div class="calendar-headline-controls">
           <div class="calendar-headline-control" (click)="goToPreviousMonth()">
             «
           </div>
@@ -16,13 +18,13 @@
             OGGI
           </div>
           <div class="calendar-headline-control" (click)="goToNextMonth()">»</div>
-        </div>
+        </div> -->
       </div>
-      <div class="calendar-weeks-grid">
+<!--       <div class="calendar-weeks-grid">
         @for (weekDay of weekDays(); track $index) {
           <div class="calendar-weeks-grid-cell">{{ weekDay }}</div>
         }
-      </div>
+      </div> -->
 
       <div class="calendar-grid">
 
@@ -49,7 +51,7 @@
         }
       </div>
     </div>
-
+  </div>
   </div>
 
 

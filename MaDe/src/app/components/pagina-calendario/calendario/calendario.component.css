@@ -4,25 +4,31 @@
 .calendar-container {
   display: flex;
   flex-direction: column;
-  width: 90%; /* Ridotto la larghezza */
-  max-width: 900px; /* Ridotto la larghezza massima */
+  width: 40%;           /* Da 90% a 100% */
   margin: 0 auto;
   padding: 0 10px; /* Ridotto il padding laterale */
   padding-top: 1.2%; /* Aggiunto padding superiore */
   box-sizing: border-box;
+ background-image: url('/web_Verde.png');
+  background-size: contain;         /* Mantiene le proporzioni del PNG */
+  background-position: center;      /* Centra l'immagine */
+  background-repeat: no-repeat;     /* Non ripete l'immagine */
+
 }
 
 /* ==========================================================================
    Stili per il contenitore del calendario principale
    ========================================================================== */
 .calendar {
-  width: 100%;
-  height: 100%;
-  background-color: #fff;
-  border-radius: 8px; /* Leggermente ridotto il raggio del bordo */
+  margin-top: 20%;
+  width: 80%;           /* Riduci la larghezza */
+  margin-left: 10%;     /* Sposta il calendario verso destra */
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.08); /* Ombra più leggera */
   overflow: hidden;
   padding: 15px; /* Ridotto il padding interno */
+  font-size: 1.2rem;     /* Ingrandisce testo interno */
+  right: 0;
+  margin-bottom: 20%;
 }
 
 /* ==========================================================================
@@ -37,16 +43,18 @@
 }
 
 .calendar-headline-month {
-  font-weight: 600;
-  font-size: 1.1rem; /* Ridotto la dimensione del font */
-  color: #2d3748;
+  font-weight: 800;      /* Extra bold */
+  font-size: 150%; /* Ridotto la dimensione del font */
+  color: white;
   margin: 0;
+
+
 }
 
 .calendar-headline-controls {
   display: flex;
   align-items: center;
-  gap: 8px; /* Ridotto il gap tra i controlli */
+  gap: 7.9999px; /* Ridotto il gap tra i controlli */
 }
 
 .calendar-headline-control {
@@ -55,7 +63,7 @@
   border-radius: 4px; /* Ridotto il raggio del bordo */
   transition: all 0.15s ease-out;
   font-size: 0.9rem; /* Ridotto la dimensione del font */
-  color: #4a5568;
+  color: white;
   user-select: none;
   border: 1px solid transparent;
 }
@@ -86,7 +94,7 @@
   margin-bottom: 8px; /* Ridotto il margine inferiore */
   font-size: 0.8rem; /* Ridotto la dimensione del font */
   font-weight: 500;
-  color: #4a5568;
+  color: white;
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
@@ -108,16 +116,19 @@
 }
 
 .calendar-grid-cell {
-  padding: 0.3rem; /* Ridotto lo spazio interno alle celle dei giorni */
-  aspect-ratio: 1/1; /* Mantiene le celle quadrate */
+  background: #fff;              /* Celle bianche */
+  color: #003672;                /* Testo blu scuro */
+  padding: 0.3rem;
+  aspect-ratio: 1/1;
   display: flex;
-  flex-direction: column; /* Permette di disporre numero del giorno ed eventi verticalmente */
-  border-bottom: 1px solid rgb(190, 190, 190); /* Bordo inferiore delle celle */
-  border-right: 1px solid rgb(190, 190, 190); /* Bordo destro delle celle */
-  cursor: pointer; /* Indica che la cella è interattiva */
-  min-height: auto; /* Sovrascrive eventuali altezze minime */
-  min-width: auto; /* Sovrascrive eventuali larghezze minime */
+  flex-direction: column;
+  border-bottom: 1px solid rgb(190, 190, 190);
+  border-right: 1px solid rgb(190, 190, 190);
+  cursor: pointer;
+  min-height: auto;
+  min-width: auto;
 }
+
 
 .calendar-grid-cell:hover {
   background: #9ba3bf; /* Cambia il background al passaggio del mouse */
