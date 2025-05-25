@@ -5,11 +5,14 @@ import { importProvidersFrom } from '@angular/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { provideRouter } from '@angular/router';
 import { routes } from './app/app.routes';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { provideAnimations } from '@angular/platform-browser/animations';
 
 bootstrapApplication(AppComponent,  {
   providers: [
     importProvidersFrom(HttpClientModule),
-    provideRouter(routes) // Se utilizzi il routing
+    provideRouter(routes), // Se utilizzi il routing,
+    provideAnimations()
     // Aggiungi qui altri providers specifici della tua applicazione
   ]
 }).catch(err => console.error(err));

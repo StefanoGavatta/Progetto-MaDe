@@ -3,7 +3,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 10%; /* Spazio tra le mani */
   background-color: white;
   opacity: 1;
   pointer-events: none;
@@ -13,36 +12,34 @@
   position: relative;
   z-index: 100;
   background-image: url("/solo_mappa.png");
-  background-size: contain;
+
+  background-size: 40%;
   background-position: center;
   background-repeat: no-repeat;
 }
-
-.mano {
-  width: 20vw; /* Dimensione più gestibile */
+.mano-sinistra {
+  left:  -3.3%; /* Stato iniziale: fuori schermo */
+  opacity: 1;   /* Stato iniziale: invisibile */
+  width: 50%;
   height: auto;
   z-index: 102;
-  opacity: 1;
-  position: absolute; /* Fondamentale per animare left/right */
-  top: 50%;
-  transform: translateY(-50%);
-  transition: left 1.5s, right 1.5s, opacity 1.5s;
-}
-
-
-
-.mano {
-  width: 20vw;
-  height: auto;
-  z-index: 102;
-  opacity: 1;
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  transition: left 1.5s, right 1.5s, opacity 1.5s;
+  transition: left 1.5s, opacity 1.5s;
 }
 
-
+.mano-destra {
+  right: -3.4%; /* Stato iniziale: fuori schermo */
+  opacity: 1;    /* Stato iniziale: invisibile */
+  width: 50%;
+  height: auto;
+  z-index: 102;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: right 1.5s, opacity 1.5s;
+}
 
 /* Stili per il contenuto della pagina che apparirà sotto l'overlay */
 .center-content {
@@ -53,6 +50,8 @@
   padding-top: 20%; /* Spazio per il tuo h2 e la mappa di app-maps */
   position: relative;
   z-index: 1; /* Assicurati che sia sotto l'overlay quando è attivo */
+  padding-bottom: 15%; /* Spazio per il tuo h2 e la mappa di app-maps */
+
 }
 
 /* Header e Footer: Assicurati che abbiano un z-index più alto dell'overlay */
@@ -61,3 +60,24 @@
   z-index: 200;
   position: relative;
 } */
+
+
+
+
+
+/* Altezza più bassa su schermi piccoli */
+@media (max-width: 600px) {
+  .animation-overlay { 
+
+    top: 0;
+
+    height: 30vh;
+  }
+}
+
+/* Altezza più alta su schermi molto grandi */
+@media (min-width: 1200px) {
+  .animation-overlay {
+    height: 60vh;
+  }
+}
