@@ -8,8 +8,8 @@
         <p class="description-text" [style.white-space]="'pre-line'">{{description}}</p>
       </div>
       <div class="website-container" *ngIf="websiteUrl">
-        <a [href]="websiteUrl" target="_blank" rel="noopener noreferrer" class="website-link">
-          Visita il sito web della scuola
+        <a [href]="websiteUrl">
+          {{ websiteUrl }}
         </a>
       </div>
       <div class="address-container" *ngIf="address">
