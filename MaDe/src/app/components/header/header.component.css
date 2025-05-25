@@ -19,9 +19,15 @@
 
 /* Stili per le icone del menu */
 .nav-icon {
-  height: 50px;
+  height: 75px;
   width: auto;
   vertical-align: middle;
+}
+
+/* Spaziatura specifica per il logo */
+.logo-icon {
+  margin-left: 150px;
+  margin-right: 10px;
 }
 
 /* Media queries per rendere le icone responsive */
@@ -35,6 +41,10 @@
   
   .nav-icon {
     height: 40px;
+  }
+  
+  .logo-icon {
+    margin-left: 10px;
   }
   
   .gap-5 {

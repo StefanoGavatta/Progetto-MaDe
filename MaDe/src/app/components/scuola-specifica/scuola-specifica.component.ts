@@ -17,10 +17,11 @@ import { IndirizziComponent } from './indirizzi/indirizzi.component';
 import { EducationalPathsData, EducationalPath } from '../../interfaces/educational-paths';
 import { switchMap } from 'rxjs/operators';
 import { OpenDaysComponent } from './open-days/open-days.component';
+import { ScuolaFooterComponent } from './scuola-footer/scuola-footer.component';
 
 @Component({
   selector: 'app-scuola-specifica',
-  imports: [ImageCarouselComponent,IndirizziComponent,ChiSiamoComponent, InfoComponent, EventiComponent, VideoComponent, ContattaciComponent, LogoNomeComponent, OpenDaysComponent],
+  imports: [ImageCarouselComponent,IndirizziComponent,ChiSiamoComponent, InfoComponent, EventiComponent, VideoComponent, ContattaciComponent, LogoNomeComponent, OpenDaysComponent, ScuolaFooterComponent],
   templateUrl: './scuola-specifica.component.html',
   styleUrl: './scuola-specifica.component.css'
 })

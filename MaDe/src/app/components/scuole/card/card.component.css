@@ -6,9 +6,9 @@
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   cursor: pointer; /* Indica che è cliccabile */
   position: relative; /* Per posizionare eventuali elementi overlay */
-  color: #000; /* Garantisce che tutto il testo sia scuro per contrasto */
+  color: #083D77; /* Colore del testo aggiornato */
   border-radius: 0; /* Rimuove gli angoli arrotondati e li rende spigolosi */
-  border-top-left-radius: 15px; /* Arrotonda solo l'angolo in alto a sinistra */
+  border-top-left-radius: 70px; /* Arrotonda solo l'angolo in alto a sinistra */
   overflow: hidden; /* Evita che il contenuto esca fuori dalla carta */
   transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
   display: flex;
@@ -19,6 +19,33 @@
   flex-grow: 1; /* Permette alla card di crescere in base al contenuto */
   height: 100%; /* Usa l'altezza completa disponibile */
   will-change: transform; /* Ottimizza le animazioni */
+}
+
+.card-content-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.green-hand-img {
+  position: absolute;
+  right: -20px; /* Sposta a destra invece che a sinistra */
+  top: calc(50% + 15px); /* Centra verticalmente e sposta 15px più in basso */
+  transform: translateY(-50%) scaleX(-1); /* Centra esattamente sull'asse Y e specchia orizzontalmente */
+  width: 60px; /* Dimensione dell'immagine */
+  height: auto;
+  z-index: 10; /* Z-index alto per essere sopra tutto */
+  opacity: 0.8; /* Leggera trasparenza per non disturbare troppo */
+}
+
+.card-main-content {
+  position: relative;
+  z-index: 2; /* Sopra l'immagine della mano */
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
 }
 
 .card:hover {
@@ -59,7 +86,7 @@
 }
 
 .card-title {
-  color: #000000;
+  color: #083D77;
   font-size: 1.2rem;
   margin-bottom: 5px; /* Ridotto il margine inferiore */
 }
@@ -72,7 +99,7 @@
 }
 
 .card-type {
-  color: #555;
+  color: #083D77;
   font-size: 0.85rem;
   font-style: italic;
   margin-bottom: 5px;
@@ -81,7 +108,7 @@
 }
 
 .card-text {
-  color: #000000;
+  color: #083D77;
   font-size: 0.9rem;
   overflow: hidden;
   display: -webkit-box;
@@ -99,7 +126,7 @@
 
 .btn-details {
   background-color: #007bff;
-  color: white;
+  color: #083D77;
   font-size: 0.9rem;
   padding: 5px 15px;
   border-radius: 4px;

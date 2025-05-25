@@ -1,9 +1,66 @@
 <div class="logo-nome-card animate__animated animate__backInRight">
-  <div class="nome-container">
-    <h2 *ngIf="nome">{{nome}}</h2>
-  </div>
-  <div class="logo-container">
-    <img *ngIf="logo" [src]="'https://api.retescuolevallagarina.it/assets/' + logo" alt="{{nome}}" class="logo">
+  <div class="content-wrapper">
+    <div class="text-section">
+      <div class="nome-container">
+        <h2 *ngIf="nome">{{nome}}</h2>
+      </div>
+      <div class="description-container" *ngIf="description">
+        <p class="description-text" [style.white-space]="'pre-line'">{{description}}</p>
+      </div>
+      <div class="website-container" *ngIf="websiteUrl">
+        <img src="/web_icona.png" alt="Website" class="website-icon" style="width: 46px; height: 46px; margin-right: 5px;">
+        <a [href]="websiteUrl">
+          sito web
+        </a>
+      </div>
+ <!--      <div class="address-container" *ngIf="address">
+        <p class="address-text">
+          <strong>Indirizzo:</strong> {{address}}
+        </p>
+      </div>
+      <div class="responsabile-container" *ngIf="responsabileOrientamento">
+        <p class="responsabile-text">
+          <strong>Responsabile Orientamento:</strong> {{responsabileOrientamento}}
+        </p>
+      </div> -->
+      <!-- <div class="email-container">
+        <div *ngIf="isLoadingEmail" class="email-loading">
+          <p><strong>Email:</strong> Caricamento in corso...</p>
+        </div>
+        <div *ngIf="!isLoadingEmail && schoolEmail" class="email-text">
+          <p>
+            <strong>Email:</strong> 
+            <a [href]="'mailto:' + schoolEmail" class="email-link">{{schoolEmail}}</a>
+          </p>
+        </div>
+        <div *ngIf="!isLoadingEmail && !schoolEmail && !emailError" class="email-unavailable">
+          <p class="email-text"><strong>Email:</strong> Non disponibile</p>
+        </div>
+        <div *ngIf="emailError" class="email-error">
+          <p class="error-text">{{emailError}}</p>
+        </div>
+      </div>
+      <div class="phone-container">
+        <div *ngIf="isLoadingPhone" class="phone-loading">
+          <p><strong>Telefono:</strong> Caricamento in corso...</p>
+        </div>
+        <div *ngIf="!isLoadingPhone && schoolPhone" class="phone-text">
+          <p>
+            <strong>Telefono:</strong> 
+            <a [href]="'tel:' + schoolPhone" class="phone-link">{{schoolPhone}}</a>
+          </p>
+        </div>
+        <div *ngIf="!isLoadingPhone && !schoolPhone && !phoneError" class="phone-unavailable">
+          <p class="phone-text"><strong>Telefono:</strong> Non disponibile</p>
+        </div> -->
+  <!--       <div *ngIf="phoneError" class="phone-error">
+          <p class="error-text">{{phoneError}}</p>
+        </div> -->
+<!--       </div> -->
+    </div>
+    <div class="logo-container">
+      <img *ngIf="logo" [src]="'https://api.retescuolevallagarina.it/assets/' + logo" alt="{{nome}}" class="logo">
+    </div>
   </div>
 </div>
 

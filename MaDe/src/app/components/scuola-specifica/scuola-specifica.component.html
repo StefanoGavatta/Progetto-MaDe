@@ -11,6 +11,11 @@
 <app-logo-nome
 [nome]="scuoleDettagliate()?.data?.name ?? ''"
 [logo]="scuoleDettagliate()?.data?.logo ?? ''"
+[description]="scuoleDettagliate()?.data?.description ?? ''"
+[websiteUrl]="scuoleDettagliate()?.data?.website_url ?? ''"
+[address]="scuoleDettagliate()?.data?.address ?? ''"
+[responsabileOrientamento]="scuoleDettagliate()?.data?.responsabile_orientamento ?? ''"
+[schoolId]="currentSchoolId()"
 >
 </app-logo-nome>
 <app-image-carousel
@@ -44,7 +49,7 @@
 <div class="separator"></div>
 
 <app-open-days></app-open-days>
-<div class="components-row">
+<div class="components-row" style="margin-bottom: 40px;">
 <app-contattaci
         [numeroTelefono]="scuoleDettagliate()?.data?.school_phones?.[0] ?? ''" 
         [email]="scuoleDettagliate()?.data?.email ?? ''" 
@@ -52,3 +57,7 @@
 
 </app-contattaci>
 </div>
+
+<app-scuola-footer
+  [schoolId]="currentSchoolId()"
+></app-scuola-footer>

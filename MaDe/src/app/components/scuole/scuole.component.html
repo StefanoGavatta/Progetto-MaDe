@@ -1,6 +1,9 @@
 <!-- Sezione con banner scuole -->
 <div id="banner-scuole">
-    <img src="/mano_verde2 (1).png" alt="Banner Scuole">
+    <div class="banner-images-container">
+        <img src="/mano_verde2 (3).png" alt="Banner Scuole Sinistra" class="banner-image banner-image-left">
+        <img src="/mano_verde1 (1).png" alt="Banner Scuole Destra" class="banner-image banner-image-right">
+    </div>
 </div>
 
 <div class="container">
@@ -14,6 +17,7 @@
             [tipo]="getTipoScuola(scuola)"
             [index]="$index"
             [id]="scuola.id"
+            [isLastCard]="$index === scuoleFiltrate().length - 1"
             routerLink="{{scuola.id}}"
             >
 

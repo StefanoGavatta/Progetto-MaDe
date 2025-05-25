@@ -7,7 +7,7 @@
 }
 
 h3 {
-  color: #000000;
+  color: #083D77;
   margin-bottom: 15px;
   font-size: 2.2rem;
   font-weight: bold;
@@ -95,7 +95,7 @@ h3 {
 .event-header h4 {
   margin: 0;
   font-size: 1.2rem;
-  color: #1a1a1a;
+  color: #083D77;
   font-weight: 600;
   transition: transform 0.15s ease-out;
 }
@@ -111,7 +111,7 @@ h3 {
 .event-box p {
   margin: 0 0 10px 0;
   font-size: 0.95rem;
-  color: #555555;
+  color: #083D77;
   line-height: 1.5;
 }
 
@@ -128,7 +128,7 @@ h3 {
 }
 
 .online-event a {
-  color: #1a73e8;
+  color: #083D77;
   text-decoration: none;
   transition: all 0.15s ease-out;
   font-weight: 500;
@@ -139,8 +139,8 @@ h3 {
 }
 
 .online-event a:hover {
-  color: #0d47a1;
-  background-color: rgba(26, 115, 232, 0.1);
+  color: #083D77;
+  background-color: rgba(8, 61, 119, 0.1);
   transform: translateX(2px);
 }
 
@@ -151,7 +151,7 @@ h3 {
   left: 5px;
   width: 0;
   height: 1px;
-  background-color: #0d47a1;
+  background-color: #083D77;
   transition: width 0.15s ease-out;
 }
 

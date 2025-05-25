@@ -9,7 +9,8 @@ export class ScuolaService {
     name: '',
     logo: '',
     id: '',
-    tipo: ''
+    tipo: '',
+    website_url: ''
   });
 
   scuolaSelezionata$ = this.scuolaSelezionata.asObservable();

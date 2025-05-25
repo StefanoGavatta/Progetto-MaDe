@@ -1,0 +1,79 @@
+<div class="footer-container">
+  <div class="footer-content">
+    <!-- Colonna sinistra - Contatti -->
+    <div class="footer-column">
+      <h2 class="contact-title">Contattaci</h2>
+      
+      <div class="contact-info">
+        <h3 class="contact-subtitle">Email</h3>
+        <p class="contact-text">
+          <i class="material-icons">email</i>
+          <span *ngIf="isLoadingEmail" class="loading-text">Caricamento...</span>
+          <span *ngIf="emailError" class="error-text">{{ emailError }}</span>
+          <a *ngIf="!isLoadingEmail && !emailError && schoolEmail" 
+             [href]="'mailto:' + schoolEmail">{{ schoolEmail }}</a>
+          <span *ngIf="!isLoadingEmail && !emailError && !schoolEmail" 
+                class="no-data-text">Email non disponibile</span>
+        </p>
+      </div>
+      
+      <div class="contact-info">
+        <h3 class="contact-subtitle">Numero di telefono</h3>
+        <p class="contact-text">
+          <i class="material-icons">phone</i>
+          <span *ngIf="isLoadingPhone" class="loading-text">Caricamento...</span>
+          <span *ngIf="phoneError" class="error-text">{{ phoneError }}</span>
+          <a *ngIf="!isLoadingPhone && !phoneError && schoolPhone" 
+             [href]="'tel:' + schoolPhone">{{ schoolPhone }}</a>
+          <span *ngIf="!isLoadingPhone && !phoneError && !schoolPhone" 
+                class="no-data-text">Telefono non disponibile</span>
+        </p>
+      </div>
+
+      <div class="contact-info">
+        <h3 class="contact-subtitle">Indirizzo</h3>
+        <p class="contact-text">
+          <i class="material-icons">location_on</i>
+          <span *ngIf="isLoadingSchoolData" class="loading-text">Caricamento...</span>
+          <span *ngIf="schoolDataError" class="error-text">{{ schoolDataError }}</span>
+          <span *ngIf="!isLoadingSchoolData && !schoolDataError && schoolAddress">{{ schoolAddress }}</span>
+          <span *ngIf="!isLoadingSchoolData && !schoolDataError && !schoolAddress" 
+                class="no-data-text">Indirizzo non disponibile</span>
+        </p>
+      </div>
+
+      <div class="contact-info">
+        <h3 class="contact-subtitle">Responsabile Orientamento</h3>
+        <p class="contact-text">
+          <i class="material-icons">person</i>
+          <span *ngIf="isLoadingSchoolData" class="loading-text">Caricamento...</span>
+          <span *ngIf="schoolDataError" class="error-text">{{ schoolDataError }}</span>
+          <span *ngIf="!isLoadingSchoolData && !schoolDataError && responsabileOrientamento">{{ responsabileOrientamento }}</span>
+          <span *ngIf="!isLoadingSchoolData && !schoolDataError && !responsabileOrientamento" 
+                class="no-data-text">Responsabile non disponibile</span>
+        </p>
+      </div>
+    </div>
+    
+    <!-- Colonna centrale - Navigazione rapida -->
+    <div class="footer-column">
+      <h2 class="contact-title">Navigazione</h2>
+      <ul class="footer-links">
+        <li><a routerLink="/hero">Home</a></li>
+        <li><a routerLink="/scuole">Scuole</a></li>
+        <li><a routerLink="/maps">Mappa</a></li>
+        <li><a routerLink="/calendario">Calendario</a></li>
+      </ul>
+    </div>
+    
+<!--   
+    <div class="footer-column">
+      <h3 class="contact-subtitle">Orari</h3>
+      <p class="contact-text">Lun-Ven: 9:00 - 18:00<br>Sab-Dom: Chiuso</p>
+    </div>
+  </div> -->
+  
+<!--   <div class="footer-bottom">
+    <p>© 2025 MaDe Project. Tutti i diritti riservati.</p>
+  </div>
+</div> -->
