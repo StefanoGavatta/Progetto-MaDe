@@ -54,7 +54,7 @@
 .calendar-headline-controls {
   display: flex;
   align-items: center;
-  gap: 8px; /* Ridotto il gap tra i controlli */
+  gap: 7.9999px; /* Ridotto il gap tra i controlli */
 }
 
 .calendar-headline-control {
