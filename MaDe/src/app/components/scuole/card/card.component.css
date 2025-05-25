@@ -21,6 +21,33 @@
   will-change: transform; /* Ottimizza le animazioni */
 }
 
+.card-content-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.green-hand-img {
+  position: absolute;
+  right: -20px; /* Sposta a destra invece che a sinistra */
+  top: calc(50% + 15px); /* Centra verticalmente e sposta 15px più in basso */
+  transform: translateY(-50%) scaleX(-1); /* Centra esattamente sull'asse Y e specchia orizzontalmente */
+  width: 60px; /* Dimensione dell'immagine */
+  height: auto;
+  z-index: 10; /* Z-index alto per essere sopra tutto */
+  opacity: 0.8; /* Leggera trasparenza per non disturbare troppo */
+}
+
+.card-main-content {
+  position: relative;
+  z-index: 2; /* Sopra l'immagine della mano */
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
 .card:hover {
   transform: translateY(-10px); /* Solleva maggiormente la carta */
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2); /* Ombra più grande e intensa */
