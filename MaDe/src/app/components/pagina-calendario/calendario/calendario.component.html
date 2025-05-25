@@ -2,30 +2,20 @@
   <div class="sistemo">
     <div class="calendar">
       <div class="calendar-headline">
+        <div class="calendar-headline-control" (click)="goToPreviousMonth()">&lt;</div>
         <div class="calendar-headline-month">
           {{ firstDayOfActiveMonth().monthLong }}
           {{ firstDayOfActiveMonth().year }}
         </div>
-
-<!--         <div class="calendar-headline-controls">
-          <div class="calendar-headline-control" (click)="goToPreviousMonth()">
-            «
-          </div>
-          <div
-            class="calendar-headline-control calendar-headline-control-today"
-            (click)="goToToday()"
-          >
-            OGGI
-          </div>
-          <div class="calendar-headline-control" (click)="goToNextMonth()">»</div>
-        </div> -->
+        <div class="calendar-headline-control" (click)="goToNextMonth()">&gt;
+        </div>
       </div>
-<!--       <div class="calendar-weeks-grid">
+<!--        <div class="calendar-weeks-grid">
         @for (weekDay of weekDays(); track $index) {
           <div class="calendar-weeks-grid-cell">{{ weekDay }}</div>
         }
-      </div> -->
-
+      </div> 
+ -->
       <div class="calendar-grid">
 
         @for (dayOfMonth of daysOfMonth(); track $index) {
@@ -41,10 +31,10 @@
             <div class="day-number">{{ dayOfMonth.day }}</div>
             <div class="day-events">
               @for (meeting of getMeetingsForDay(dayOfMonth); track $index) {
-                <div class="event-item"  *ngIf="$index < 2">{{meeting}}</div>
+                <div class="event-item"  *ngIf="$index < 1">{{meeting}}</div>
               }
-              @if (getMeetingsForDay(dayOfMonth).length > 2) {
-                <div class="event-item">+{{ getMeetingsForDay(dayOfMonth).length - 2 }} altri</div>
+              @if (getMeetingsForDay(dayOfMonth).length > 1) {
+                <div class="event-item">+{{ getMeetingsForDay(dayOfMonth).length - 1 }} altri</div>
               }
             </div>
           </div>

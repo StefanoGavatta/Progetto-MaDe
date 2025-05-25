@@ -116,7 +116,7 @@ export class MapsComponent implements AfterViewInit, OnInit {
  */
         this.scuole.forEach(scuola => {
           L.marker([scuola.lat, scuola.lng], { icon: this.defaultIcon })
-            .addTo(this.map)
+            .addTo(this.map)  
             .bindPopup(`<b><a href="/scuole/${scuola.id}" style="color:#3a5cff; text-decoration:underline;">${scuola.nome}</a><br><img src="${scuola.logo}" alt="${scuola.nome} logo" style="width:50px;height:auto;">`);
         });       
         
