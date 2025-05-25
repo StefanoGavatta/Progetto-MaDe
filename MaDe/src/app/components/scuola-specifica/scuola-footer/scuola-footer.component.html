@@ -29,6 +29,30 @@
                 class="no-data-text">Telefono non disponibile</span>
         </p>
       </div>
+
+      <div class="contact-info">
+        <h3 class="contact-subtitle">Indirizzo</h3>
+        <p class="contact-text">
+          <i class="material-icons">location_on</i>
+          <span *ngIf="isLoadingSchoolData" class="loading-text">Caricamento...</span>
+          <span *ngIf="schoolDataError" class="error-text">{{ schoolDataError }}</span>
+          <span *ngIf="!isLoadingSchoolData && !schoolDataError && schoolAddress">{{ schoolAddress }}</span>
+          <span *ngIf="!isLoadingSchoolData && !schoolDataError && !schoolAddress" 
+                class="no-data-text">Indirizzo non disponibile</span>
+        </p>
+      </div>
+
+      <div class="contact-info">
+        <h3 class="contact-subtitle">Responsabile Orientamento</h3>
+        <p class="contact-text">
+          <i class="material-icons">person</i>
+          <span *ngIf="isLoadingSchoolData" class="loading-text">Caricamento...</span>
+          <span *ngIf="schoolDataError" class="error-text">{{ schoolDataError }}</span>
+          <span *ngIf="!isLoadingSchoolData && !schoolDataError && responsabileOrientamento">{{ responsabileOrientamento }}</span>
+          <span *ngIf="!isLoadingSchoolData && !schoolDataError && !responsabileOrientamento" 
+                class="no-data-text">Responsabile non disponibile</span>
+        </p>
+      </div>
     </div>
     
     <!-- Colonna centrale - Navigazione rapida -->

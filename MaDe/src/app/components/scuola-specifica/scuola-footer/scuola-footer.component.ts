@@ -23,6 +23,12 @@ export class ScuolaFooterComponent implements OnInit, OnDestroy {
   isLoadingPhone: boolean = false;
   phoneError: string = '';
 
+  // Proprietà per indirizzo e responsabile orientamento
+  schoolAddress: string = '';
+  responsabileOrientamento: string = '';
+  isLoadingSchoolData: boolean = false;
+  schoolDataError: string = '';
+
   private directusService = inject(DirectusService);
 
   ngOnInit(): void {
@@ -30,6 +36,7 @@ export class ScuolaFooterComponent implements OnInit, OnDestroy {
     if (this.schoolId) {
       this.loadSchoolEmail(this.schoolId);
       this.loadSchoolPhone(this.schoolId);
+      this.loadSchoolData(this.schoolId);
     }
   }
 
@@ -101,6 +108,42 @@ export class ScuolaFooterComponent implements OnInit, OnDestroy {
         console.error('Errore nel caricamento del telefono della scuola (footer):', error);
         this.phoneError = 'Errore nel caricamento del telefono';
         this.isLoadingPhone = false;
+      }
+    });
+  }
+
+  /**
+   * Carica i dati della scuola per ottenere indirizzo e responsabile orientamento
+   * @param schoolId ID della scuola
+   */
+  private loadSchoolData(schoolId: string): void {
+    if (!schoolId) {
+      console.warn('ID scuola non fornito per il caricamento dei dati');
+      return;
+    }
+
+    this.isLoadingSchoolData = true;
+    this.schoolDataError = '';
+
+    this.directusService.getSchoolData(schoolId).subscribe({
+      next: (response) => {
+        console.log('Risposta dati scuola dalla API (footer):', response);
+        
+        if (response && response.data) {
+          this.schoolAddress = response.data.address || '';
+          this.responsabileOrientamento = response.data.responsabile_orientamento || '';
+        } else {
+          console.log('Nessun dato trovato per la scuola ID:', schoolId);
+          this.schoolAddress = '';
+          this.responsabileOrientamento = '';
+        }
+        
+        this.isLoadingSchoolData = false;
+      },
+      error: (error) => {
+        console.error('Errore nel caricamento dei dati della scuola (footer):', error);
+        this.schoolDataError = 'Errore nel caricamento dei dati';
+        this.isLoadingSchoolData = false;
       }
     });
   }
