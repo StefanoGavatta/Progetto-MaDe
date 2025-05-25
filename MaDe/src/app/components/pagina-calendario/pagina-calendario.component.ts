@@ -12,7 +12,7 @@ import { NgClass } from '@angular/common'; // aggiungi questa import
   styleUrl: './pagina-calendario.component.css',
   animations:[
     trigger('ngOnInit',[
-      state('closed',style({ transform: 'translateX(120%)'})),
+      state('closed',style({ transform: 'translateX(200%)'})),
       state('open',style({ transform: 'translateX(0)'})),
       transition('closed => open',[animate('1s ease-in')])
     ])

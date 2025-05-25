@@ -9,10 +9,11 @@
   padding: 0 10px; /* Ridotto il padding laterale */
   padding-top: 1.2%; /* Aggiunto padding superiore */
   box-sizing: border-box;
- background-image: url('/web_Verde.png');
+  background-image: url('/web_Verde.png');
   background-size: contain;         /* Mantiene le proporzioni del PNG */
   background-position: center;      /* Centra l'immagine */
   background-repeat: no-repeat;     /* Non ripete l'immagine */
+  margin-left: 20%;
 
 }
 
@@ -26,8 +27,7 @@
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.08); /* Ombra più leggera */
   overflow: hidden;
   padding: 15px; /* Ridotto il padding interno */
-  font-size: 1.2rem;     /* Ingrandisce testo interno */
-  right: 0;
+    right: 0;
   margin-bottom: 20%;
 }
 
@@ -43,15 +43,21 @@
 }
 
 .calendar-headline-month {
-  font-weight: 800;      /* Extra bold */
-  font-size: 150%; /* Ridotto la dimensione del font */
+  display: flex;
+  flex-direction: row;
+  font-weight: bolder;      /* Extra bold */
+  font-size: 200%; /* Ridotto la dimensione del font */
   color: white;
   margin: 0;
+  left: 0;
+  align-items: center;
 
 
 }
 
 .calendar-headline-controls {
+  font-weight: bolder;      /* Extra bold */
+  font-size: 200%; /* Ridotto la dimensione del font */
   display: flex;
   align-items: center;
   gap: 7.9999px; /* Ridotto il gap tra i controlli */
@@ -62,10 +68,9 @@
   padding: 4px 8px; /* Ridotto il padding dei controlli */
   border-radius: 4px; /* Ridotto il raggio del bordo */
   transition: all 0.15s ease-out;
-  font-size: 0.9rem; /* Ridotto la dimensione del font */
+  font-size: 200%; /* Ridotto la dimensione del font */
   color: white;
   user-select: none;
-  border: 1px solid transparent;
 }
 
 .calendar-headline-control:hover {
@@ -75,7 +80,7 @@
 
 .calendar-headline-control-today {
   font-weight: 500;
-  color: #4299e1;
+  color: #083D77;
   border-color: #bee3f8;
 }
 
@@ -529,43 +534,58 @@
   box-sizing: border-box;
 }
 
-/* Media queries per mobile */
-@media (max-width: 768px) {
-  .events-grid-container {
-    display: grid; /* Torna a grid invece di flex */
-    grid-template-columns: 1fr;
-    overflow-y: auto;
-    gap: 15px;
-    padding: 10px;
-    -webkit-overflow-scrolling: touch;
-    max-height: 100vh;
-  }
-  
-  .event-card {
-    min-height: 250px;
+/* --- Responsive per tablet --- */
+@media (max-width: 1024px) {
+  .calendar-container {
     width: 80%;
+    margin-left: 0;
+    padding: 0 2vw;
   }
-
-  /* Nasconde la scrollbar su alcuni browser */
-  .events-grid-container::-webkit-scrollbar {
-    display: none;
-  }
-  
-  /* Regola speciale per singola card */
-  .events-grid-container:has(.event-card:first-child:last-child) {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  .calendar {
+    width: 100%;
+    margin-left: 0;
+    margin-top: 10%;
+    margin-bottom: 10%;
   }
 }
 
-/* Media queries per desktop grandi */
-@media (min-width: 1200px) {
-  .events-grid-container {
-    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+/* --- Responsive per mobile --- */
+@media (max-width: 600px) {
+  .calendar-container {
+    width: 80%;
+
+    margin-left: 0;
+    padding: 0 1vw;
+    background-size: cover;
+    background-position: center;
   }
-  
-  .events-grid-container:has(.event-card:first-child:nth-last-child(3)) {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+  .sistemo {
+    width: 100%;
+    margin-left: 0;
+    padding: 0;
+  }
+  .calendar {
+    width: 100%;
+    margin-left: 0;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    padding: 5px;
+  }
+  .calendar-headline-month {
+    font-size: 120%;
+  }
+  .calendar-weeks-grid {
+    font-size: 0.7rem;
+  }
+  .calendar-grid-cell {
+    padding: 0.15rem;
+    font-size: 0.85rem;
+  }
+  .day-number {
+    font-size: 0.9rem;
+  }
+  .event-item {
+    font-size: 0.8rem;
+    padding: 1px 2px;
   }
 }

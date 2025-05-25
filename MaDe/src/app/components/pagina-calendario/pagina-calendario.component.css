@@ -3,7 +3,7 @@
 .hero-wrapper {
   display: flex;
   width: 100%;
-  height: 100vh;
+  height: 250vh;
 }
 
 .side-panel {
@@ -11,13 +11,20 @@
   flex: 1;
 }
 
+calendario {
+  width: 100%;
+  flex-grow: 1;
+  /* puoi anche aggiungere: */
+  display: block;
+}
+
 .hero-container {
   background-color: white; /* o #fff */
   width: 100%;
-  min-height: 250vh;
+  min-height: 300vh;
   background-image: url('/sfondo_Calendario.png');
   background-size: cover;
-  background-position: calc(100% + 500px) 0; /* 500px fuori dal bordo destro, 100px dall'alto */
+  background-position: calc(100% + 500px) -100px; /* 500px fuori dal bordo destro, 100px dall'alto */
   background-repeat: no-repeat;
   display: flex;
   flex-direction: column;
@@ -27,16 +34,16 @@
   max-width: 100%;
   margin: 0 auto;
   transition: background-position 2.5s cubic-bezier(0.77,0,0.175,1);
+
 }
 
 .hero-container.bg-animate {
-  background-position: center 0; /* entra al centro, stessa altezza */
+  background-position: center 20%; /* entra al centro, stessa altezza */
 }
 
 .calendar-header {
   /* Imposta una larghezza massima per il contenitore */
-  padding-top: 20%;
-  max-width: 500px; /* Puoi regolare questo valore */
+  padding-top: 30%;
   padding-bottom: 30%;
 }
 
@@ -45,6 +52,50 @@
   width: 100%;
   height: auto; /* Mantiene le proporzioni dell'immagine */
   display: block; /* Rimuove lo spazio extra sotto l'immagine */
+}
+.appuntamento-Territoriale {
+  width: 20%;
+  display: flex;
+  flex-direction: row;
+  margin-right: 30%;
+  margin-bottom: 5%;
+  gap: 10px;
+  min-width: 250px;
+  max-width: 500px;
+}
+.rightAT, .leftAT {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.rightAT{
+  display: flex;
+  flex-direction: column;
+  align-items:  flex-end;
+  
+}
+
+.rightAT p,
+.rightAT h2 {
+  margin: 0;
+  padding: 0;
+}
+
+@media (max-width: 900px) {
+  .appuntamento-Territoriale {
+    width: 90%;
+    margin-right: 0;
+    max-width: 100%;
+    gap: 20px;
+  }
+}
+
+@media (max-width: 600px) {
+  .rightAT h2,
+  .rightAT p,
+  .leftAT p {
+    font-size: 1rem; /* o anche 0.95rem o 0.9rem se vuoi più piccolo */
+  }
 }
 /* Desktop (dispositivi larghi) */
 @media (min-width: 1917px) {
@@ -56,15 +107,15 @@
 
   .calendar-header {
   /* Imposta una larghezza massima per il contenitore */
-  padding-top: 20%;
-  max-width: 1000px; /* Puoi regolare questo valore */
-}
+  padding-top: 30%;
+  }
 }
 
 /* Tablet (dispositivi medi) */
 @media (min-width: 577px) and (max-width: 1916px) {
   .hero-wrapper {
     flex-direction: column;
+    height: 200vh; /* Imposta l'altezza a 200vh per i tablet */
   }
 
   .side-panel {
@@ -76,7 +127,7 @@
     min-height: 150vh;
     background-image: url('/sfondo_Calendario.png'), linear-gradient(to bottom, #ffffff, #ffffff);
     background-size: 100% auto, 100% 100%;
-    background-position: calc(100% + 0) 0; /* 500px fuori dal bordo destro, 100px dall'alto */
+    background-position: calc(100% + 500px) -20%; /* 500px fuori dal bordo destro, 100px dall'alto */
     background-repeat: no-repeat, no-repeat;
     transition: background-position 2.5s cubic-bezier(0.77,0,0.175,1);
 
@@ -87,6 +138,8 @@
 @media (max-width: 576px) {
   .hero-wrapper {
     flex-direction: column;
+    height: 120vh; /* Imposta l'altezza a 200vh per i tablet */
+
   }
 
   .calendar-header {
@@ -104,18 +157,10 @@
     width: 100%;
     min-height: 100vh;
     background-image: url('/sfondo_Calendario.png'), linear-gradient(to bottom, #ffffff, #ffffff);
-    background-position: calc(100% + 500px) 0; /* 500px fuori dal bordo destro, 100px dall'alto */
-    background-position: right center, center;
+  background-position: calc(100% + 500px) -20%, center;
     background-repeat: no-repeat, no-repeat;
     transition: background-position 2.5s cubic-bezier(0.77,0,0.175,1);
 
   }
 }
 
-calendario {
-  width: 100%;
-  flex-grow: 1;
-  min-height: 500px; /* oppure un valore che preferisci */
-  /* puoi anche aggiungere: */
-  display: block;
-}
