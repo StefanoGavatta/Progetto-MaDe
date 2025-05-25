@@ -1,0 +1,69 @@
+<div class="footer-container">
+  <div class="footer-content">
+    <!-- Colonna sinistra - Contatti -->
+    <div class="footer-column">
+      <h2 class="contact-title">Contattaci</h2>
+      
+      <div *ngIf="isLoading" class="loading-indicator">
+        Caricamento contatti in corso...
+      </div>
+      
+      <div *ngIf="error" class="error-message">
+        {{error}}
+      </div>
+      
+      <div *ngIf="!isLoading && !error">
+        <div *ngIf="emails && emails.length > 0" class="contact-info">
+          <h3 class="contact-subtitle">Email</h3>
+          <div *ngFor="let email of emails">
+            <p class="contact-text">
+              <i class="material-icons">email</i>
+              <a [href]="'mailto:' + (email.email || '')">{{email.email || 'Indirizzo email non disponibile'}}</a>
+              <span *ngIf="email.description" class="contact-description"> - {{email.description}}</span>
+              <span *ngIf="email.label" class="contact-description"> - {{email.label}}</span>
+            </p>
+          </div>
+        </div>
+        
+        <div *ngIf="phones && phones.length > 0" class="contact-info">
+          <h3 class="contact-subtitle">Numeri di telefono</h3>
+          <div *ngFor="let phone of phones">
+            <p class="contact-text">
+              <i class="material-icons">phone</i>
+              <a [href]="'tel:' + (phone.phone || phone.number || '')">{{phone.phone || phone.number || 'Numero non disponibile'}}</a>
+              <span *ngIf="phone.description" class="contact-description"> - {{phone.description}}</span>
+              <span *ngIf="phone.label" class="contact-description"> - {{phone.label}}</span>
+            </p>
+          </div>
+        </div>
+        
+        <!-- Mostra un messaggio se non ci sono contatti disponibili -->
+        <div *ngIf="(!emails || emails.length === 0) && (!phones || phones.length === 0)" class="no-contacts-message">
+          <p>Nessun contatto disponibile per questa scuola.</p>
+          <p>Si prega di consultare il sito della scuola per maggiori informazioni.</p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Colonna centrale - Navigazione rapida -->
+    <div class="footer-column">
+      <h2 class="contact-title">Navigazione</h2>
+      <ul class="footer-links">
+        <li><a routerLink="/hero">Home</a></li>
+        <li><a routerLink="/scuole">Tutte le Scuole</a></li>
+        <li><a routerLink="/maps">Mappa</a></li>
+        <li><a routerLink="/calendario">Calendario</a></li>
+      </ul>
+    </div>
+    
+    <!-- Colonna destra - Orari -->
+    <div class="footer-column">
+      <h3 class="contact-subtitle">Orari</h3>
+      <p class="contact-text">Lun-Ven: 9:00 - 18:00<br>Sab-Dom: Chiuso</p>
+    </div>
+  </div>
+  
+  <div class="footer-bottom">
+    <p>© 2025 MaDe Project. Tutti i diritti riservati.</p>
+  </div>
+</div>

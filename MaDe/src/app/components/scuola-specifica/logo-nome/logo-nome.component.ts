@@ -10,6 +10,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './logo-nome.component.html',
   styleUrl: './logo-nome.component.css'
 })
+
 export class LogoNomeComponent implements OnInit, OnDestroy {
   @Input() nome: string = '';
   @Input() logo: string = '';
