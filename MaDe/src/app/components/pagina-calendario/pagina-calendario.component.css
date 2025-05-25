@@ -54,14 +54,32 @@ calendario {
   display: block; /* Rimuove lo spazio extra sotto l'immagine */
 }
 .appuntamento-Territoriale {
-  width: 20%;
+  height: 50vh;
+  width: 100%;
   display: flex;
   flex-direction: row;
-  margin-right: 30%;
   margin-bottom: 5%;
   gap: 10px;
   min-width: 250px;
-  max-width: 500px;
+  /* max-width: 500px;  <-- TOGLI questa riga! */
+  align-items: flex-start;
+}
+
+.rosa {
+  width: 40%;         /* Più grande, in percentuale rispetto al contenitore */
+  height: auto;
+  display: block;
+  object-fit: contain;
+  margin-right: 18px;
+  flex-shrink: 0;
+  align-self: center;
+}
+.appuntamento-container{
+  width: 20%;
+  display: flex;
+  gap: 10px;
+  flex-direction: row;
+  align-self: center;
 }
 .rightAT, .leftAT {
   flex: 1 1 0;
@@ -81,20 +99,51 @@ calendario {
   padding: 0;
 }
 
+
+.rosa {
+  width: 20%;           /* Regola la dimensione a piacere */
+  height: auto;
+  left: 0;
+  z-index: 10;
+}
+
+.rosa-animata {
+  animation: slide-in-left 5s cubic-bezier(0.77,0,0.175,1) forwards;
+}
+
+@keyframes slide-in-left {
+  0% {
+    transform: translateX(-120%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
 @media (max-width: 900px) {
-  .appuntamento-Territoriale {
-    width: 90%;
-    margin-right: 0;
-    max-width: 100%;
-    gap: 20px;
+  .appuntamento-container {
+    width: 80%;
+  }
+  .rightAT h2,
+  .rightAT p,
+  .leftAT p {
+    font-size: 0.95rem;
   }
 }
 
 @media (max-width: 600px) {
+  .appuntamento-container {
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
   .rightAT h2,
   .rightAT p,
   .leftAT p {
-    font-size: 1rem; /* o anche 0.95rem o 0.9rem se vuoi più piccolo */
+    font-size: 0.85rem;
   }
 }
 /* Desktop (dispositivi larghi) */
@@ -157,7 +206,7 @@ calendario {
     width: 100%;
     min-height: 100vh;
     background-image: url('/sfondo_Calendario.png'), linear-gradient(to bottom, #ffffff, #ffffff);
-  background-position: calc(100% + 500px) -20%, center;
+    background-position: calc(100% + 500px) -20%, center;
     background-repeat: no-repeat, no-repeat;
     transition: background-position 2.5s cubic-bezier(0.77,0,0.175,1);
 

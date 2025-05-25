@@ -4,7 +4,7 @@
 .calendar-container {
   display: flex;
   flex-direction: column;
-  width: 40%;           /* Da 90% a 100% */
+  width: 30%;           /* Da 90% a 100% */
   margin: 0 auto;
   padding: 0 10px; /* Ridotto il padding laterale */
   padding-top: 1.2%; /* Aggiunto padding superiore */
@@ -124,7 +124,6 @@
   background: #fff;              /* Celle bianche */
   color: #003672;                /* Testo blu scuro */
   padding: 0.3rem;
-  aspect-ratio: 1/1;
   display: flex;
   flex-direction: column;
   border-bottom: 1px solid rgb(190, 190, 190);
@@ -241,7 +240,6 @@
   
     .calendar-grid-cell {
       min-height: 50px; /* Altezza minima per le celle su mobile per una migliore usabilità */
-      aspect-ratio: auto; /* Rimuove l'aspect-ratio per permettere alle celle di adattarsi al contenuto verticale */
     }
   
     .event-item {

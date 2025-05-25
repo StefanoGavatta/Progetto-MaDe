@@ -2,7 +2,7 @@ import { AfterViewInit, Component } from '@angular/core';
 import { CalendarioComponent } from './calendario/calendario.component';
 import { bootstrapApplication } from '@angular/platform-browser';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { trigger,state,style, transition, animate } from '@angular/animations';
+import { trigger,state,style, transition, animate, group, query } from '@angular/animations';
 import { NgClass } from '@angular/common'; // aggiungi questa import
 
 @Component({
@@ -10,13 +10,26 @@ import { NgClass } from '@angular/common'; // aggiungi questa import
   imports: [CalendarioComponent,NgClass],
   templateUrl: './pagina-calendario.component.html',
   styleUrl: './pagina-calendario.component.css',
-  animations:[
-    trigger('ngOnInit',[
-      state('closed',style({ transform: 'translateX(200%)'})),
-      state('open',style({ transform: 'translateX(0)'})),
-      transition('closed => open',[animate('1s ease-in')])
+animations: [
+  trigger('handAnimationTrigger', [
+    state('start', style({
+      opacity: 0,
+      pointerEvents: 'auto'
+    })),
+    state('end', style({
+      opacity: 1,
+      pointerEvents: 'none'
+    })),
+    transition('start => end', [
+      group([
+        query('rosa', [
+          style({ right: '-100%', opacity: 0 }),
+          animate('3s ease-out', style({ right: '-3.3%', opacity: 1 }))
+        ], { optional: true })
+      ])
     ])
-  ]
+  ])
+]
 })
 export class PaginaCalendarioComponent implements AfterViewInit {
   protected menuState: 'open' | 'closed' = 'closed'
