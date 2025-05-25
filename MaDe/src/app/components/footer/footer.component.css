@@ -1,127 +1,43 @@
 .footer-container {
   background-color: #FFC84D;
-  min-height: 20vh;
-  padding: 25px 15px 10px;
+  min-height: 10vh;
+  padding: 20px 15px;
   box-sizing: border-box;
-  color: blue;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .footer-content {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  max-width: 1200px;
-  margin: 0 auto;
+  text-align: center;
+  width: 100%;
 }
 
-.footer-column {
-  flex: 1;
-  min-width: 250px;
-  margin-bottom: 20px;
-  padding: 0 15px;
-}
-
-.contact-title {
-  margin-top: 0;
-  margin-bottom: 15px;
-  font-size: 28px;
-  padding-left: 5px;
-  border-bottom: 2px solid rgba(255,255,255,0.3);
-  padding-bottom: 8px;
-}
-
-.contacts-wrapper {
-  display: flex;
-  gap: 30px;
-  padding-left: 5px;
-}
-
-.contact-info {
-  margin-bottom: 20px;
-}
-
-.contact-subtitle {
-  font-size: 22px;
-  margin-bottom: 5px;
-  padding-bottom: 2px;
-  border-bottom: 1px solid white;
-  display: inline-block;
-}
-
-.contact-text {
-  margin-top: 5px;
-  margin-left: 0;
-  font-size: 18px;
-  display: flex;
-  align-items: center;
-}
-
-.contact-text i {
-  margin-right: 8px;
-  font-size: 20px;
-}
-
-.contact-text a {
-  color: white;
-  text-decoration: none;
-  transition: color 0.15s ease-out;
-}
-
-.contact-text a:hover {
-  color: #fff3d9;
-  text-decoration: underline;
-}
-
-.footer-links {
-  list-style: none;
-  padding: 0;
+.credits-section {
   margin: 0;
 }
 
-.footer-links li {
-  margin-bottom: 10px;
-}
-
-.footer-links a {
-  color: white;
-  text-decoration: none;
+.credits-text {
+  margin: 0;
   font-size: 18px;
-  transition: color 0.15s ease-out, transform 0.15s ease-out;
-  display: inline-block;
-}
-
-.footer-links a:hover {
-  color: #fff3d9;
-  transform: translateX(5px);
-}
-
-.social-icons {
-  display: flex;
-  gap: 15px;
-  margin-bottom: 25px;
-}
-
-.social-icon {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background-color: rgba(255,255,255,0.2);
   color: white;
-  text-decoration: none;
-  transition: background-color 0.15s ease-out, transform 0.15s ease-out;
+  font-weight: 400;
 }
 
-.social-icon:hover {
-  background-color: rgba(255,255,255,0.4);
-  transform: scale(1.1);
+.credits-text strong {
+  font-weight: 700;
 }
 
-.footer-bottom {
-  margin-top: 20px;
-  text-align: center;
-  padding-top: 15px;
-  border-top: 1px solid rgba(255,255,255,0.3);
+/* Responsive design */
+@media (max-width: 768px) {
+  .credits-text {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .credits-text {
+    font-size: 14px;
+  }
 }
