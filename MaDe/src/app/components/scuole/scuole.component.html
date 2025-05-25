@@ -1,8 +1,12 @@
 <!-- Sezione con banner scuole -->
-<div id="banner-scuole">
+<div id="banner-scuole" [@handAnimationTrigger]="handAnimationState">
     <div class="banner-images-container">
-        <img src="/mano_verde2 (3).png" alt="Banner Scuole Sinistra" class="banner-image banner-image-left">
-        <img src="/mano_verde1 (1).png" alt="Banner Scuole Destra" class="banner-image banner-image-right">
+        <img src="/mano_verde2 (3).png" alt="Banner Scuole Sinistra" 
+             class="banner-image banner-image-left" 
+             [class.mobile-view]="isMobile">
+        <img src="/mano_verde1 (1).png" alt="Banner Scuole Destra" 
+             class="banner-image banner-image-right" 
+             [class.mobile-view]="isMobile">
     </div>
 </div>
 

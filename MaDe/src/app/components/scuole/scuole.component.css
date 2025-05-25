@@ -1,15 +1,9 @@
-/* Definizione delle animazioni di fade-in */
-@keyframes fadeIn {
-  0% { opacity: 0; }
-  100% { opacity: 1; }
-}
-
 /* Stile per il banner delle scuole */
 #banner-scuole {
   position: relative;
   width: 100%;
-  min-height: 40vh;
-  max-height: 600px;
+  min-height: 80vh;
+  max-height: 900px;
   margin: 0;
   padding: 0;
   overflow: hidden;
@@ -25,60 +19,143 @@
   align-items: center;
   width: 100%;
   max-width: 1400px;
+  position: relative;
+  height: 100%;
 }
 
 /* Stile per le singole immagini del banner */
 .banner-image {
-  width: 50%;
+  width: 45%;
   height: auto;
+  max-height: 70vh;
   object-fit: contain;
-  animation: fadeIn 1.2s ease-out forwards;
-  transform: translateY(75px);
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 102;
+  /* Rimossa transition per evitare conflitti con Angular animations */
 }
 
 /* Immagine di sinistra */
 .banner-image-left {
-  margin-right: 10px;
+  left: 5%;
+  transform-origin: left center;
 }
 
 /* Immagine di destra */
 .banner-image-right {
-  margin-left: 10px;
+  right: 5%;
+  transform-origin: right center;
+}
+
+/* Supporto responsivo per tablet e desktop piccoli */
+@media (max-width: 1024px) {
+  .banner-image {
+    width: 42%;
+    max-height: 65vh;
+  }
+  
+  .banner-image-left {
+    left: 8%;
+  }
+  
+  .banner-image-right {
+    right: 8%;
+  }
+  
+  #banner-scuole {
+    min-height: 70vh;
+    max-height: 800px;
+  }
 }
 
 /* Supporto responsivo per schermi piccoli */
 @media (max-width: 768px) {
+  #banner-scuole {
+    min-height: 60vh;
+    max-height: 600px;
+  }
+  
   .banner-images-container {
-    flex-direction: row !important;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    gap: 10px;
-    width: 100%;
-    justify-content: flex-start;
+    position: static;
+    height: auto;
+    gap: 20px;
+    padding: 20px;
   }
-  .banner-image {
-    width: 70vw;
-    min-width: 250px;
-    max-width: 400px;
-    flex: 0 0 auto;
+  
+  .banner-image.mobile-view {
+    width: 50%;
+    max-height: 50vh;
+    position: relative;
+    top: auto;
+    left: auto;
+    right: auto;
+    transform: none !important;
   }
-  .banner-image-left, .banner-image-right {
-    margin: 0;
+  
+  /* Mantieni il posizionamento assoluto per desktop anche in questa media query */
+  .banner-image:not(.mobile-view) {
+    position: absolute;
+    top: 50%;
   }
 }
 
 @media (max-width: 480px) {
-  .banner-images-container {
-    flex-direction: row !important;
-    overflow-x: auto;
-    gap: 5px;
-    padding-bottom: 10px;
+  #banner-scuole {
+    min-height: 50vh;
+    max-height: 500px;
   }
+  
+  .banner-image.mobile-view {
+    width: 45%;
+    max-height: 40vh;
+  }
+  
+  .banner-images-container {
+    gap: 15px;
+    padding: 15px;
+  }
+}
+
+/* Altezza banner per schermi molto grandi */
+@media (min-width: 1200px) {
+  #banner-scuole {
+    min-height: 80vh;
+    max-height: 1000px;
+  }
+  
   .banner-image {
-    width: 85vw;
-    min-width: 180px;
-    max-width: 300px;
-    flex: 0 0 auto;
+    width: 48%;
+    max-height: 75vh;
+  }
+  
+  .banner-image-left {
+    left: 3%;
+  }
+  
+  .banner-image-right {
+    right: 3%;
+  }
+}
+
+/* Schermi extra grandi */
+@media (min-width: 1600px) {
+  #banner-scuole {
+    min-height: 85vh;
+    max-height: 1200px;
+  }
+  
+  .banner-image {
+    width: 50%;
+    max-height: 80vh;
+  }
+  
+  .banner-image-left {
+    left: 2%;
+  }
+  
+  .banner-image-right {
+    right: 2%;
   }
 }
 
