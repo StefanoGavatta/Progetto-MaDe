@@ -6,7 +6,7 @@
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   cursor: pointer; /* Indica che è cliccabile */
   position: relative; /* Per posizionare eventuali elementi overlay */
-  color: #000; /* Garantisce che tutto il testo sia scuro per contrasto */
+  color: #083D77; /* Colore del testo aggiornato */
   border-radius: 0; /* Rimuove gli angoli arrotondati e li rende spigolosi */
   border-top-left-radius: 70px; /* Arrotonda solo l'angolo in alto a sinistra */
   overflow: hidden; /* Evita che il contenuto esca fuori dalla carta */
@@ -59,7 +59,7 @@
 }
 
 .card-title {
-  color: #000000;
+  color: #083D77;
   font-size: 1.2rem;
   margin-bottom: 5px; /* Ridotto il margine inferiore */
 }
@@ -72,7 +72,7 @@
 }
 
 .card-type {
-  color: #555;
+  color: #083D77;
   font-size: 0.85rem;
   font-style: italic;
   margin-bottom: 5px;
@@ -81,7 +81,7 @@
 }
 
 .card-text {
-  color: #000000;
+  color: #083D77;
   font-size: 0.9rem;
   overflow: hidden;
   display: -webkit-box;
@@ -99,7 +99,7 @@
 
 .btn-details {
   background-color: #007bff;
-  color: white;
+  color: #083D77;
   font-size: 0.9rem;
   padding: 5px 15px;
   border-radius: 4px;

@@ -54,7 +54,7 @@
 .description-text {
   font-size: 1rem; /* Ridotta da 1.1rem a 1rem */
   line-height: 1.5; /* Ridotta leggermente per renderla più compatta */
-  color: #333;
+  color: #083D77;
   text-align: left;
   max-width: 100%; /* Assicura che il testo rimanga nel contenitore */
   word-wrap: break-word; /* Permette la divisione delle parole lunghe */
@@ -62,7 +62,7 @@
 }
 
 h2 {
-  color: #333;
+  color: #083D77;
   margin: 0;
   font-size: 1.8em;
   font-weight: 600;
@@ -76,7 +76,7 @@ h2 {
   border: 1px solid rgba(0, 0, 0, 0.125);
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   position: relative;
-  color: #000;
+  color: #083D77;
   border-radius: 0; /* Rimuove gli angoli arrotondati e li rende spigolosi */
   border-top-left-radius: 15px; /* Arrotonda solo l'angolo in alto a sinistra */
   overflow: hidden;
@@ -200,13 +200,13 @@ h2 {
 .address-text {
   font-size: 1rem;
   line-height: 1.5;
-  color: #333;
+  color: #083D77;
   margin: 0;
   word-wrap: break-word;
 }
 
 .address-text strong {
-  color: #2c3e50;
+  color: #083D77;
   font-weight: 600;
 }
 
@@ -218,13 +218,13 @@ h2 {
 .responsabile-text {
   font-size: 1rem;
   line-height: 1.5;
-  color: #333;
+  color: #083D77;
   margin: 0;
   word-wrap: break-word;
 }
 
 .responsabile-text strong {
-  color: #2c3e50;
+  color: #083D77;
   font-weight: 600;
 }
 
@@ -236,18 +236,18 @@ h2 {
 .email-text {
   font-size: 1rem;
   line-height: 1.5;
-  color: #333;
+  color: #083D77;
   margin: 0;
   word-wrap: break-word;
 }
 
 .email-text strong {
-  color: #2c3e50;
+  color: #083D77;
   font-weight: 600;
 }
 
 .email-link {
-  color: #007bff;
+  color: #083D77;
   text-decoration: none;
   transition: all 0.3s ease;
   padding: 2px 4px;
@@ -255,8 +255,8 @@ h2 {
 }
 
 .email-link:hover {
-  color: #0056b3;
-  background-color: rgba(0, 123, 255, 0.1);
+  color: #083D77;
+  background-color: rgba(8, 61, 119, 0.1);
   text-decoration: underline;
 }
 
