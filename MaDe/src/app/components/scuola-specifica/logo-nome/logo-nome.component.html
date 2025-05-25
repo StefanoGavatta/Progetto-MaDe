@@ -7,6 +7,21 @@
       <div class="description-container" *ngIf="description">
         <p class="description-text" [style.white-space]="'pre-line'">{{description}}</p>
       </div>
+      <div class="website-container" *ngIf="websiteUrl">
+        <a [href]="websiteUrl" target="_blank" rel="noopener noreferrer" class="website-link">
+          Visita il sito web della scuola
+        </a>
+      </div>
+      <div class="address-container" *ngIf="address">
+        <p class="address-text">
+          <strong>Indirizzo:</strong> {{address}}
+        </p>
+      </div>
+      <div class="responsabile-container" *ngIf="responsabileOrientamento">
+        <p class="responsabile-text">
+          <strong>Responsabile Orientamento:</strong> {{responsabileOrientamento}}
+        </p>
+      </div>
     </div>
     <div class="logo-container">
       <img *ngIf="logo" [src]="'https://api.retescuolevallagarina.it/assets/' + logo" alt="{{nome}}" class="logo">

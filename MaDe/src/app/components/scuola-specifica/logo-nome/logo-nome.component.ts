@@ -15,6 +15,9 @@ export class LogoNomeComponent implements OnInit, OnDestroy {
   @Input() nome: string = '';
   @Input() logo: string = '';
   @Input() description: string = '';
+  @Input() websiteUrl: string = '';
+  @Input() address: string = '';
+  @Input() responsabileOrientamento: string = '';
   private subscription: Subscription | undefined;
 
   constructor(private scuolaService: ScuolaService) {}
@@ -24,6 +27,9 @@ export class LogoNomeComponent implements OnInit, OnDestroy {
       this.nome = scuola.name;
       this.logo = scuola.logo;
       this.description = scuola.description || '';
+      this.websiteUrl = scuola.website_url || '';
+      this.address = scuola.address || '';
+      this.responsabileOrientamento = scuola.responsabile_orientamento || '';
     });
   }
 

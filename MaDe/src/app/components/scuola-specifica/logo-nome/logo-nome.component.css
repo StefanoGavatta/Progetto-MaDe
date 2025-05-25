@@ -149,3 +149,94 @@ h2 {
     text-align: center;
   }
 }
+
+/* Stili per il container del sito web */
+.website-container {
+  margin-top: 15px;
+}
+
+.website-link {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.website-link:hover {
+  background-color: #0056b3;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  color: white;
+  text-decoration: none;
+}
+
+.website-link:focus {
+  outline: 2px solid #0056b3;
+  outline-offset: 2px;
+}
+
+/* Responsive per il link del sito web */
+@media screen and (max-width: 768px) {
+  .website-container {
+    text-align: center;
+  }
+  
+  .website-link {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+/* Stili per il container dell'indirizzo */
+.address-container {
+  margin-top: 15px;
+}
+
+.address-text {
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #333;
+  margin: 0;
+  word-wrap: break-word;
+}
+
+.address-text strong {
+  color: #2c3e50;
+  font-weight: 600;
+}
+
+/* Stili per il container del responsabile orientamento */
+.responsabile-container {
+  margin-top: 15px;
+}
+
+.responsabile-text {
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #333;
+  margin: 0;
+  word-wrap: break-word;
+}
+
+.responsabile-text strong {
+  color: #2c3e50;
+  font-weight: 600;
+}
+
+/* Responsive per indirizzo e responsabile */
+@media screen and (max-width: 768px) {
+  .address-container,
+  .responsabile-container {
+    text-align: center;
+  }
+  
+  .address-text,
+  .responsabile-text {
+    text-align: center;
+  }
+}
