@@ -1,19 +1,64 @@
+/* filepath: /workspaces/Progetto-MaDe/MaDe/src/app/components/scuola-specifica/logo-nome/logo-nome.component.css */
 .logo-nome-container {
   display: flex;
   align-items: center;
-  justify-content: center; /* Aggiungo questa proprietà per centrare orizzontalmente */
+  justify-content: center;
   margin-bottom: 20px;
   padding: 15px;
-  text-align: center; /* Aggiungo questa proprietà per centrare eventuali testi */
-  flex-wrap: wrap; /* Permette al contenuto di andare a capo su schermi piccoli */
+  text-align: left;
+  flex-wrap: wrap;
+}
+
+/* Nuovo wrapper per contenere il testo e il logo affiancati */
+.content-wrapper {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  width: 100%;
+}
+
+/* Sezione per il nome e la descrizione (a sinistra) */
+.text-section {
+  flex: 0 1 60%; /* Riduce la flessibilità per favorire l'impaginazione più stretta */
+  margin-right: 15px; /* Ridotta da 20px a 15px */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  max-width: 400px; /* Limita la larghezza massima della sezione testo */
+}
+
+/* Container del logo (a destra) */
+.logo-container {
+  flex: 0 0 auto;
+  display: flex;
+  justify-content: flex-end;
 }
 
 .logo {
-  width: 300px;
-  height: 300px;
-  margin-right: 15px;
+  width: 250px; /* Ridotta da 200px a 180px */
+  height: 250px; /* Ridotta da 200px a 180px */
   border-radius: 5px;
   object-fit: contain;
+}
+
+.nome-container {
+  margin-bottom: 15px;
+}
+
+.description-container {
+  width: 90%; /* Ridotta da 100% a 90% per incoraggiare il testo a mandare a capo */
+  padding-right: 10px; /* Ridotta da 20px a 10px */
+  max-width: 350px; /* Limita la larghezza massima del contenitore di descrizione */
+}
+
+.description-text {
+  font-size: 1rem; /* Ridotta da 1.1rem a 1rem */
+  line-height: 1.5; /* Ridotta leggermente per renderla più compatta */
+  color: #333;
+  text-align: left;
+  max-width: 100%; /* Assicura che il testo rimanga nel contenitore */
+  word-wrap: break-word; /* Permette la divisione delle parole lunghe */
+  hyphens: auto; /* Aggiunge trattini di divisione dove appropriato */
 }
 
 h2 {
@@ -24,8 +69,8 @@ h2 {
 }
 
 .logo-nome-card {
-  width: 80%; /* Larghezza maggiore del 75% */
-  max-width: 750px; /* Limite massimo di larghezza per evitare troppa separazione */
+  width: 70%; /* Ridotta dal 80% al 70% */
+  max-width: 650px; /* Ridotta da 750px a 650px */
   margin: 20px auto;
   background-color: #FFC84D; /* Colore giallo come nella card originale */
   border: 1px solid rgba(0, 0, 0, 0.125);
@@ -37,27 +82,15 @@ h2 {
   overflow: hidden;
   transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
   display: flex;
-  flex-direction: row; /* Layout orizzontale */
-  align-items: center;
-  padding-left: 30px; /* Bordo sinistro spesso */
-  padding-top: 18px; /* Aggiungo lo stesso bordo alla parte superiore */
-  padding-right: 5px; /* Piccolo padding sul lato destro */
-  padding-bottom: 18px; /* Aggiungo padding in basso */
+  flex-direction: column; /* Layout verticale per contenere il wrapper */
+  padding: 20px 20px 20px 30px; /* Padding maggiore sui lati */
   will-change: transform;
-  justify-content: center; /* Aiuta a centrare il contenuto */
 }
 
-.logo-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-right: 10px; /* Ridotta la distanza tra logo e titolo */
-}
-
-.nome-container {
-  display: flex;
-  align-items: center;
-  flex-grow: 1;
+/* Stilizzazione per le animazioni */
+.animate__backInRight {
+  animation-duration: 1.4s !important; /* Durata personalizzata */
+  animation-delay: 0.2s; /* Ritardo prima dell'inizio dell'animazione */
 }
 
 /* Media query per tablet */
@@ -65,31 +98,45 @@ h2 {
   .logo {
     width: 120px;
     height: 120px;
-    margin-right: 0;
-    margin-bottom: 15px;
   }
 
+  .content-wrapper {
+    flex-direction: column-reverse; /* Logo sopra, testo sotto su mobile */
+  }
+  
   .logo-container {
+    width: 100%;
+    justify-content: center;
+    margin-bottom: 15px;
+  }
+  
+  .text-section {
     margin-right: 0;
+    width: 100%;
+    align-items: center;
+  }
+  
+  .nome-container, .description-container {
+    text-align: center;
+    width: 100%;
+    padding: 0;
+  }
+  
+  .description-text {
+    text-align: center;
   }
 
   .logo-nome-card {
-    width: 90%;
-    flex-direction: column;
+    width: 85%;
+    max-width: 550px; /* Riduzione ulteriore su tablet */
   }
 }
 
 /* Media query per dispositivi mobili */
 @media screen and (max-width: 480px) {
-  .logo-nome-container {
-    flex-direction: column; /* Imposta il layout verticale */
-  }
-
   .logo {
     width: 100px;
     height: 100px;
-    margin-right: 0;
-    margin-bottom: 15px;
   }
 
   .logo-nome-card {

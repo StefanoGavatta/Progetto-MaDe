@@ -13,6 +13,7 @@ import { Subscription } from 'rxjs';
 export class LogoNomeComponent implements OnInit, OnDestroy {
   @Input() nome: string = '';
   @Input() logo: string = '';
+  @Input() description: string = '';
   private subscription: Subscription | undefined;
 
   constructor(private scuolaService: ScuolaService) {}
@@ -21,6 +22,7 @@ export class LogoNomeComponent implements OnInit, OnDestroy {
     this.subscription = this.scuolaService.scuolaSelezionata$.subscribe(scuola => {
       this.nome = scuola.name;
       this.logo = scuola.logo;
+      this.description = scuola.description || '';
     });
   }
 

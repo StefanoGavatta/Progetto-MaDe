@@ -50,7 +50,8 @@ export class CardComponent {
       id: this.id,
       name: this.name,
       logo: this.logo,
-      tipo: this.tipo
+      tipo: this.tipo,
+      description: this.description
     };
     
     // Invia i dati attraverso il servizio

@@ -1,9 +1,16 @@
 <div class="logo-nome-card animate__animated animate__backInRight">
-  <div class="nome-container">
-    <h2 *ngIf="nome">{{nome}}</h2>
-  </div>
-  <div class="logo-container">
-    <img *ngIf="logo" [src]="'https://api.retescuolevallagarina.it/assets/' + logo" alt="{{nome}}" class="logo">
+  <div class="content-wrapper">
+    <div class="text-section">
+      <div class="nome-container">
+        <h2 *ngIf="nome">{{nome}}</h2>
+      </div>
+      <div class="description-container" *ngIf="description">
+        <p class="description-text" [style.white-space]="'pre-line'">{{description}}</p>
+      </div>
+    </div>
+    <div class="logo-container">
+      <img *ngIf="logo" [src]="'https://api.retescuolevallagarina.it/assets/' + logo" alt="{{nome}}" class="logo">
+    </div>
   </div>
 </div>
 
