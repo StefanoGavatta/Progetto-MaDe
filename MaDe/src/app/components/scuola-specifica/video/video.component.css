@@ -4,8 +4,9 @@
   justify-content: center;
   align-items: center;
   width: 100%;
-  padding: 20px;
   margin: 0 auto;
+  background-color: transparent;
+  border-radius: 0;
 }
 
 .video-title {
@@ -47,10 +48,30 @@
   color: #d32f2f;
 }
 
+.yellow-strip {
+  width: 100vw;
+  min-height: 700px;
+  background-color: #FFC84D;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  z-index: 1;
+  padding: 0;
+}
+
 @media (max-width: 768px) {
   .video-player, .youtube-player {
     width: 95%;
     margin-left: auto;
     margin-right: auto;
+  }
+
+  .yellow-strip {
+    min-height: 500px;
   }
 }
