@@ -1,24 +1,16 @@
 import { Component, OnInit, OnDestroy, Input, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ScuolaService } from '../../../services/scuola.service';
+import { RouterModule } from '@angular/router';
 import { DirectusService } from '../../../services/directus.service';
 import { Subscription } from 'rxjs';
 
 @Component({
-  selector: 'app-logo-nome',
-  standalone: true,
-  imports: [CommonModule],
-  templateUrl: './logo-nome.component.html',
-  styleUrl: './logo-nome.component.css'
+  selector: 'app-scuola-footer',
+  imports: [CommonModule, RouterModule],
+  templateUrl: './scuola-footer.component.html',
+  styleUrl: './scuola-footer.component.css'
 })
-
-export class LogoNomeComponent implements OnInit, OnDestroy {
-  @Input() nome: string = '';
-  @Input() logo: string = '';
-  @Input() description: string = '';
-  @Input() websiteUrl: string = '';
-  @Input() address: string = '';
-  @Input() responsabileOrientamento: string = '';
+export class ScuolaFooterComponent implements OnInit, OnDestroy {
   @Input() schoolId: string = '';
 
   // Proprietà per l'email caricata dall'endpoint
@@ -31,32 +23,12 @@ export class LogoNomeComponent implements OnInit, OnDestroy {
   isLoadingPhone: boolean = false;
   phoneError: string = '';
 
-  private subscription: Subscription | undefined;
   private directusService = inject(DirectusService);
 
-  constructor(private scuolaService: ScuolaService) {}
-
   ngOnInit(): void {
-    this.subscription = this.scuolaService.scuolaSelezionata$.subscribe(scuola => {
-      this.nome = scuola.name;
-      this.logo = scuola.logo;
-      this.description = scuola.description || '';
-      this.websiteUrl = scuola.website_url || '';
-      this.address = scuola.address || '';
-      this.responsabileOrientamento = scuola.responsabile_orientamento || '';
-      
-      // Se abbiamo l'ID della scuola, carica l'email e il telefono dall'endpoint
-      if (scuola.id || this.schoolId) {
-        this.loadSchoolEmail(scuola.id || this.schoolId);
-        this.loadSchoolPhone(scuola.id || this.schoolId);
-      }
-    });
-
-    // Se abbiamo già l'schoolId e non ci sono dati dal servizio, carica l'email e il telefono
-    if (this.schoolId && !this.schoolEmail) {
+    // Se abbiamo l'ID della scuola, carica l'email e il telefono dall'endpoint
+    if (this.schoolId) {
       this.loadSchoolEmail(this.schoolId);
-    }
-    if (this.schoolId && !this.schoolPhone) {
       this.loadSchoolPhone(this.schoolId);
     }
   }
@@ -76,7 +48,7 @@ export class LogoNomeComponent implements OnInit, OnDestroy {
 
     this.directusService.getSchoolEmails(schoolId).subscribe({
       next: (response) => {
-        console.log('Risposta email dalla API:', response);
+        console.log('Risposta email dalla API (footer):', response);
         
         if (response && response.data && response.data.length > 0) {
           // Prendi la prima email disponibile (o quella con sort minore)
@@ -90,7 +62,7 @@ export class LogoNomeComponent implements OnInit, OnDestroy {
         this.isLoadingEmail = false;
       },
       error: (error) => {
-        console.error('Errore nel caricamento dell\'email della scuola:', error);
+        console.error('Errore nel caricamento dell\'email della scuola (footer):', error);
         this.emailError = 'Errore nel caricamento dell\'email';
         this.isLoadingEmail = false;
       }
@@ -112,7 +84,7 @@ export class LogoNomeComponent implements OnInit, OnDestroy {
 
     this.directusService.getSchoolPhones(schoolId).subscribe({
       next: (response) => {
-        console.log('Risposta telefono dalla API:', response);
+        console.log('Risposta telefono dalla API (footer):', response);
         
         if (response && response.data && response.data.length > 0) {
           // Prendi il primo numero di telefono disponibile (o quello con sort minore)
@@ -126,7 +98,7 @@ export class LogoNomeComponent implements OnInit, OnDestroy {
         this.isLoadingPhone = false;
       },
       error: (error) => {
-        console.error('Errore nel caricamento del telefono della scuola:', error);
+        console.error('Errore nel caricamento del telefono della scuola (footer):', error);
         this.phoneError = 'Errore nel caricamento del telefono';
         this.isLoadingPhone = false;
       }
@@ -134,8 +106,6 @@ export class LogoNomeComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    if (this.subscription) {
-      this.subscription.unsubscribe();
-    }
+    // Se ci fossero sottoscrizioni da pulire, le puliremmo qui
   }
 }

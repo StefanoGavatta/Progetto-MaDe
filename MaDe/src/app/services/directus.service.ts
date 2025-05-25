@@ -75,6 +75,11 @@ getVideoUrl(id: string): Observable<any> {
   return this.http.get<any>(`${this.apiUrl}/items/school_emails?filter[school][_eq]=${schoolId}`);
  }
 
+ getSchoolPhones(schoolId: string): Observable<any> {
+  // Ottieni tutti i numeri di telefono per una specifica scuola dall'endpoint school_phones
+  return this.http.get<any>(`${this.apiUrl}/items/school_phones?filter[school][_eq]=${schoolId}`);
+ }
+
  getEducationalPathsByIds(ids: string[]): Observable<EducationalPathsData | null> {
   const filter = ids.map(id => `filter[id][_eq]=${id}`).join('&');
   return this.http.get<EducationalPathsData>(`${this.apiUrl}/items/educational_paths?${filter}`);

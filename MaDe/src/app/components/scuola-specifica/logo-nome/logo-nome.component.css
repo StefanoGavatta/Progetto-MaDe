@@ -287,11 +287,67 @@ h2 {
   margin: 0;
 }
 
-/* Responsive per indirizzo, responsabile ed email */
+/* Stili per il container del telefono */
+.phone-container {
+  margin-top: 15px;
+}
+
+.phone-text {
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #333;
+  margin: 0;
+  word-wrap: break-word;
+}
+
+.phone-text strong {
+  color: #2c3e50;
+  font-weight: 600;
+}
+
+.phone-link {
+  color: #28a745;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  padding: 2px 4px;
+  border-radius: 4px;
+}
+
+.phone-link:hover {
+  color: #1e7e34;
+  background-color: rgba(40, 167, 69, 0.1);
+  text-decoration: underline;
+}
+
+.phone-link:focus {
+  outline: 2px solid #28a745;
+  outline-offset: 2px;
+}
+
+.phone-loading {
+  font-size: 1rem;
+  color: #666;
+  font-style: italic;
+}
+
+.phone-unavailable {
+  font-size: 1rem;
+  color: #888;
+  font-style: italic;
+}
+
+.phone-error {
+  font-size: 1rem;
+  color: #dc3545;
+  font-weight: 500;
+}
+
+/* Responsive per indirizzo, responsabile, email e telefono */
 @media screen and (max-width: 768px) {
   .address-container,
   .responsabile-container,
-  .email-container {
+  .email-container,
+  .phone-container {
     text-align: center;
   }
   
@@ -300,11 +356,16 @@ h2 {
   .email-text,
   .email-loading,
   .email-unavailable,
-  .email-error {
+  .email-error,
+  .phone-text,
+  .phone-loading,
+  .phone-unavailable,
+  .phone-error {
     text-align: center;
   }
   
-  .email-link {
+  .email-link,
+  .phone-link {
     word-break: break-all;
   }
 }

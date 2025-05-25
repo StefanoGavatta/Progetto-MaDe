@@ -16,8 +16,8 @@
 }
 
 .video-player, .youtube-player {
-  width: 85%;
-  max-width: 1200px;
+  width: 100%;
+  max-width: 2000px;
   height: auto;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
   border-radius: 8px;

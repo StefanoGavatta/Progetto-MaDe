@@ -39,6 +39,23 @@
           <p class="error-text">{{emailError}}</p>
         </div>
       </div>
+      <div class="phone-container">
+        <div *ngIf="isLoadingPhone" class="phone-loading">
+          <p><strong>Telefono:</strong> Caricamento in corso...</p>
+        </div>
+        <div *ngIf="!isLoadingPhone && schoolPhone" class="phone-text">
+          <p>
+            <strong>Telefono:</strong> 
+            <a [href]="'tel:' + schoolPhone" class="phone-link">{{schoolPhone}}</a>
+          </p>
+        </div>
+        <div *ngIf="!isLoadingPhone && !schoolPhone && !phoneError" class="phone-unavailable">
+          <p class="phone-text"><strong>Telefono:</strong> Non disponibile</p>
+        </div>
+        <div *ngIf="phoneError" class="phone-error">
+          <p class="error-text">{{phoneError}}</p>
+        </div>
+      </div>
     </div>
     <div class="logo-container">
       <img *ngIf="logo" [src]="'https://api.retescuolevallagarina.it/assets/' + logo" alt="{{nome}}" class="logo">
