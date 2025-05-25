@@ -52,7 +52,7 @@
 #sfondo {
     position: relative;
     width: 100%; /* Occupa la larghezza completa */
-    min-height: 100vh; /* Modifica: usiamo una percentuale della viewport height */
+    min-height: 130vh; /* Modifica: usiamo una percentuale della viewport height */
     max-height: 900px; /* Limitiamo l'altezza massima per monitor molto grandi */
     margin: 0;
     padding: 0; /* Rimuoviamo il padding per coprire l'intera larghezza */

@@ -31,13 +31,12 @@
 
 .green-hand-img {
   position: absolute;
-  right: -20px; /* Sposta a destra invece che a sinistra */
+  right: -30px; /* Sposta a destra invece che a sinistra */
   top: calc(50% + 15px); /* Centra verticalmente e sposta 15px più in basso */
-  transform: translateY(-50%) scaleX(-1); /* Centra esattamente sull'asse Y e specchia orizzontalmente */
-  width: 60px; /* Dimensione dell'immagine */
+  transform: translateY(-30%) scaleX(-1); /* Centra esattamente sull'asse Y e specchia orizzontalmente */
+  width: 80px; /* Dimensione dell'immagine */
   height: auto;
   z-index: 10; /* Z-index alto per essere sopra tutto */
-  opacity: 0.8; /* Leggera trasparenza per non disturbare troppo */
 }
 
 .card-main-content {
