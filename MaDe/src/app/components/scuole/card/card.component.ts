@@ -67,9 +67,9 @@ export class CardComponent {
   }
   
   getTextColor(): string {
-    // Imposta il testo bianco solo per le carte blu, nero per giallo e rosa
+    // Imposta il testo bianco solo per le carte blu, #083D77 per giallo e rosa
     const cardColor = this.getCardColor();
-    return cardColor === '#083D77' ? '#FFFFFF' : '#000000';
+    return cardColor === '#083D77' ? '#FFFFFF' : '#083D77';
   }
   
   getAnimationDelay(): string {

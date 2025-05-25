@@ -52,7 +52,7 @@
 #sfondo {
     position: relative;
     width: 100%; /* Occupa la larghezza completa */
-    min-height: 70vh; /* Modifica: usiamo una percentuale della viewport height */
+    min-height: 100vh; /* Modifica: usiamo una percentuale della viewport height */
     max-height: 900px; /* Limitiamo l'altezza massima per monitor molto grandi */
     margin: 0;
     padding: 0; /* Rimuoviamo il padding per coprire l'intera larghezza */
@@ -84,9 +84,8 @@
     background-position: center; /* Modifica: centrato orizzontalmente e verticalmente */
     animation: slideFromTop 1.2s ease-out 0.3s forwards; /* Animazione con ritardo di 0.3s */
 }
-
 #sfondo::after {
-    background-image: url('/futuro_rosa.png');
+    background-image: url('/futuro_rosa (2).png');
     z-index: 2;
     background-size: cover; /* Modifica: usiamo cover per coprire l'intero spazio */
     background-position: center; /* Modifica: centrato orizzontalmente e verticalmente */
@@ -146,7 +145,7 @@
 
 /* Stile per il testo per assicurare la leggibilità sullo sfondo */
 .container {
-    color: #333;
+    color: #083D77;
 }
 
 /* Stili aggiuntivi per adattare il contenuto al cerchio */
@@ -200,7 +199,7 @@
 .content-container h1 {
     font-size: 3.5rem;
     font-weight: 700;
-    color: #fff;
+    color: #083D77;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
     margin-bottom: 1rem;
     text-align: center;
@@ -208,7 +207,7 @@
 
 .content-container p {
     font-size: 1.5rem;
-    color: #fff;
+    color: #083D77;
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
     margin-bottom: 2rem;
     text-align: center;
@@ -219,7 +218,7 @@
     padding: 12px 30px;
     font-size: 1.2rem;
     background-color: #3a77ff;
-    color: white;
+    color: #083D77;
     border: none;
     border-radius: 30px;
     cursor: pointer;
@@ -277,7 +276,7 @@
 .icon-item h3 {
     margin-top: 15px;
     font-size: 28px;
-    color: #333;
+    color: #083D77;
     font-weight: bold;
 }
 
