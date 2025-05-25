@@ -12,8 +12,7 @@ import { NgClass } from '@angular/common';
 animations: [
   trigger('handAnimationTrigger', [
     state('start', style({
-      opacity: 1,
-      backgroundColor: 'white',
+      opacity: 0,
       pointerEvents: 'auto'
     })),
     state('end', style({

@@ -14,7 +14,7 @@
 .hero-container {
   background-color: white; /* o #fff */
   width: 100%;
-  min-height: 200vh;
+  min-height: 250vh;
   background-image: url('/sfondo_Calendario.png');
   background-size: cover;
   background-position: calc(100% + 500px) 0; /* 500px fuori dal bordo destro, 100px dall'alto */
@@ -112,3 +112,10 @@
   }
 }
 
+calendario {
+  width: 100%;
+  flex-grow: 1;
+  min-height: 500px; /* oppure un valore che preferisci */
+  /* puoi anche aggiungere: */
+  display: block;
+}
