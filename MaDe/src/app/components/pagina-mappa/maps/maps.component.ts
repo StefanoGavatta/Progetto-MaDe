@@ -1,8 +1,6 @@
 import { AfterViewInit, Component, inject, OnInit, signal, WritableSignal } from '@angular/core';
 import * as L from 'leaflet';
 import { Icon, icon, Marker } from "leaflet";
-import "leaflet-routing-machine/dist/leaflet-routing-machine.css";
-import "leaflet-routing-machine";
 import { DirectusService } from '../../../services/directus.service';
 import { SchoolsData } from '../../../interfaces/schools-data';
 
@@ -87,13 +85,13 @@ export class MapsComponent implements AfterViewInit, OnInit {
       }).addTo(this.map); // Aggiungiamo subito le tiles alla mappa
       Marker.prototype.options.icon = this.defaultIconPuntatori;
 
-      L.Routing.control({
+/*       L.Routing.control({
         waypoints: [L.latLng(45.8895, 11.0344),L.latLng(45.8895, 11.0344)],
         routeWhileDragging: true,
         fitSelectedRoutes: false, // Questo impedisce lo zoom automatico
         addWaypoints: false // Opzionale: disabilita l'aggiunta di waypoints tramite click
       }).addTo(this.map);
-
+ */
       Marker.prototype.options.icon = this.defaultIcon;
       this.scuolaData.set(dati)
        const data = this.scuolaData()?.data;
@@ -136,7 +134,7 @@ export class MapsComponent implements AfterViewInit, OnInit {
   }
 
   ngOnInit(): void {
-    Marker.prototype.options.icon = this.defaultIcon;
+/*     Marker.prototype.options.icon = this.defaultIcon;
     if (!navigator.geolocation) {
     } else {
       navigator.geolocation.getCurrentPosition((position) => {
@@ -144,13 +142,13 @@ export class MapsComponent implements AfterViewInit, OnInit {
         const lng = position.coords.longitude;
         L.marker([lat, lng], { icon: this.defaultIcon }).addTo(this.map).bindPopup('Sei qui!').openPopup();
         // Imposta la posizione dell'utente come punto di partenza predefinito per il routing
-/*         this.routingControl.setWaypoints([L.latLng(lat, lng), this.routingControl.getWaypoints()[1]]);
- */      
+         this.routingControl.setWaypoints([L.latLng(lat, lng), this.routingControl.getWaypoints()[1]]);
+      
         this.posizioneDa = L.latLng(lat, lng);
 }, (error) => {
         console.error('Errore nella geolocalizzazione:', error);
       });
-    }
+    } */
   }
   watchPosition() {
     navigator.geolocation.watchPosition((position) => {
