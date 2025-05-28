@@ -10,7 +10,7 @@ import { NgClass } from '@angular/common'; // aggiungi questa import
   imports: [CalendarioComponent,NgClass],
   templateUrl: './pagina-calendario.component.html',
   styleUrl: './pagina-calendario.component.css',
-animations: [
+/* animations: [
   trigger('handAnimationTrigger', [
     state('start', style({
       opacity: 0,
@@ -29,7 +29,7 @@ animations: [
       ])
     ])
   ])
-]
+] */
 })
 export class PaginaCalendarioComponent implements AfterViewInit {
   protected menuState: 'open' | 'closed' = 'closed'
